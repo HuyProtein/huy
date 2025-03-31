@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khám phá Động vật Hoang dã Thế giới</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #10b981;
+            --secondary-color: #065f46;
+            --background-light: #ffffff;
+            --text-light: #1f2937;
+            --background-dark: #1f2937;
+            --text-dark: #f3f4f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            background-image: url('https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=1000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        body.dark {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+
+        body:not(.dark) {
+            background-color: var(--background-light);
+            color: var(--text-light);
+        }
+
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        body.dark .overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 30;
+            transition: all 0.3s;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark .navbar.scrolled {
+            background-color: rgba(31, 41, 55, 0.8);
+        }
+
+        .continent-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        body.dark .continent-card {
+            background-color: #374151;
+        }
+
+        .continent-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .continent-icon {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 50;
+            overflow-y: auto;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 40;
+        }
+
+        .modal-container {
+            position: relative;
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            max-width: 64rem;
+            width: 90%;
+            margin: 2rem auto;
+            max-height: 90vh;
+            overflow: hidden;
+            z-index: 50;
+        }
+
+        body.dark .modal-container {
+            background-color: #374151;
+            color: white;
+        }
+
+        .country-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        body.dark .country-card {
+            background-color: #4b5563;
+        }
+
+        .country-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .flag-container {
+            width: 3rem;
+            height: 2rem;
+            position: relative;
+            margin-right: 0.75rem;
+            overflow: hidden;
+            border-radius: 0.25rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        body.dark .flag-container {
+            border-color: #6b7280;
+        }
+
+        .flag-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .animal-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        body.dark .animal-card {
+            background-color: #4b5563;
+        }
+
+        .animal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .animal-img-container {
+            position: relative;
+            height: 12rem;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .animal-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .animal-card:hover .animal-img {
+            transform: scale(1.1);
+        }
+
+        .animal-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .animal-card:hover .animal-overlay {
+            opacity: 1;
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 9999px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #4b5563;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .favorite-btn.active {
+            background-color: #ef4444;
+            color: white;
+        }
+
+        .info-btn {
+            position: absolute;
+            bottom: 0.5rem;
+            right: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 9999px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #4b5563;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .animal-card:hover .info-btn {
+            opacity: 1;
+        }
+
+        .animal-content {
+            padding: 1rem;
+        }
+
+        .animal-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark .animal-title {
+            color: white;
+        }
+
+        .animal-description {
+            color: #6b7280;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        body.dark .animal-description {
+            color: #d1d5db;
+        }
+
+        .animal-detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 60;
+            overflow-y: auto;
+        }
+
+        .animal-detail-container {
+            position: relative;
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            max-width: 64rem;
+            width: 90%;
+            margin: 2rem auto;
+            max-height: 90vh;
+            overflow: hidden;
+            z-index: 60;
+        }
+
+        body.dark .animal-detail-container {
+            background-color: #374151;
+            color: white;
+        }
+
+        .animal-detail-img {
+            position: relative;
+            height: 24rem;
+            width: 100%;
+        }
+
+        .animal-detail-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .animal-detail-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+        }
+
+        .animal-detail-title {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+            color: white;
+            font-size: 1.875rem;
+            font-weight: 700;
+        }
+
+        .animal-detail-content {
+            padding: 1.5rem;
+            overflow-y: auto;
+            max-height: calc(90vh - 24rem);
+        }
+
+        .favorites-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 24rem;
+            max-width: 100%;
+            background-color: white;
+            box-shadow: -10px 0 15px -5px rgba(0, 0, 0, 0.1);
+            z-index: 40;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        body.dark .favorites-drawer {
+            background-color: #374151;
+            color: white;
+        }
+
+        .favorites-drawer.open {
+            transform: translateX(0);
+        }
+
+        .favorite-item {
+            display: flex;
+            padding: 0.75rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.75rem;
+        }
+
+        body.dark .favorite-item {
+            background-color: #4b5563;
+        }
+
+        .favorite-item-img {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 0.375rem;
+            overflow: hidden;
+            margin-right: 0.75rem;
+        }
+
+        .favorite-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .quiz-container {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark .quiz-container {
+            background-color: #374151;
+        }
+
+        .quiz-option {
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 0.75rem;
+            transition: background-color 0.2s;
+        }
+
+        body.dark .quiz-option {
+            border-color: #6b7280;
+        }
+
+        .quiz-option:hover {
+            background-color: #f3f4f6;
+        }
+
+        body.dark .quiz-option:hover {
+            background-color: #4b5563;
+        }
+
+        .quiz-option.correct {
+            background-color: #d1fae5;
+            border-color: #10b981;
+        }
+
+        body.dark .quiz-option.correct {
+            background-color: #065f46;
+            border-color: #10b981;
+        }
+
+        .quiz-option.incorrect {
+            background-color: #fee2e2;
+            border-color: #ef4444;
+        }
+
+        body.dark .quiz-option.incorrect {
+            background-color: #7f1d1d;
+            border-color: #ef4444;
+        }
+
+        .progress-bar {
+            height: 0.5rem;
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        body.dark .progress-bar {
+            background-color: #4b5563;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #10b981;
+            transition: width 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .continent-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            
+            .country-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            
+            .animal-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            
+            .favorites-drawer {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 640px) {
+            .continent-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .country-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .animal-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .continent-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .country-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .animal-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay min-h-screen">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center">
+                        <a href="#" class="flex items-center">
+                            <span class="text-2xl font-bold text-green-600">WildLife</span>
+                        </a>
+                    </div>
+
+                    <div class="hidden md:flex items-center space-x-4">
+                        <button id="favorites-btn" class="p-2 rounded-full hover:bg-gray-100 transition-colors relative">
+                            <i class="fas fa-heart"></i>
+                            <span id="favorites-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                        </button>
+                        <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+
+                    <div class="md:hidden">
+                        <button id="mobile-menu-btn" class="p-2 rounded-full hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="bg-white dark:bg-gray-900 shadow-lg px-4 py-3 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <button id="mobile-favorites-btn" class="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-heart"></i>
+                            <span>Yêu thích</span>
+                            <span id="mobile-favorites-count" class="bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                        </button>
+                        <button id="mobile-theme-toggle" class="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-moon"></i>
+                            <span>Chế độ tối</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <header class="bg-green-600/80 backdrop-blur-sm text-white py-16 text-center mt-16">
+            <h1 class="text-4xl font-bold mb-2 animate-float">Khám phá Động vật Hoang dã Thế giới</h1>
+            <p class="text-lg max-w-2xl mx-auto px-4">Tìm hiểu về các loài động vật tuyệt vời trên khắp các châu lục. Hãy bắt đầu cuộc phiêu lưu của bạn ngay bây giờ!</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto py-12 px-4">
+            <!-- Continents Section -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-10">Khám phá theo Châu lục</h2>
+                <div class="grid gap-8 continent-grid">
+                    <!-- Asia -->
+                    <div class="continent-card" data-continent="asia">
+                        <div class="cursor-pointer p-6">
+                            <div class="continent-icon bg-yellow-500">
+                                <i class="fas fa-globe-asia text-white text-2xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white">Châu Á</h2>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mt-2">Khám phá các loài động vật đa dạng của châu Á</p>
+                        </div>
+                    </div>
+
+                    <!-- Europe -->
+                    <div class="continent-card" data-continent="europe">
+                        <div class="cursor-pointer p-6">
+                            <div class="continent-icon bg-blue-500">
+                                <i class="fas fa-globe-europe text-white text-2xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white">Châu Âu</h2>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mt-2">Tìm hiểu về các loài động vật của châu Âu</p>
+                        </div>
+                    </div>
+
+                    <!-- Africa -->
+                    <div class="continent-card" data-continent="africa">
+                        <div class="cursor-pointer p-6">
+                            <div class="continent-icon bg-green-500">
+                                <i class="fas fa-globe-africa text-white text-2xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white">Châu Phi</h2>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mt-2">Khám phá thế giới hoang dã phong phú của châu Phi</p>
+                        </div>
+                    </div>
+
+                    <!-- North America -->
+                    <div class="continent-card" data-continent="north-america">
+                        <div class="cursor-pointer p-6">
+                            <div class="continent-icon bg-yellow-400">
+                                <i class="fas fa-globe-americas text-white text-2xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white">Bắc Mỹ</h2>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mt-2">Tìm hiểu về các loài động vật của Bắc Mỹ</p>
+                        </div>
+                    </div>
+
+                    <!-- South America -->
+                    <div class="continent-card" data-continent="south-america">
+                        <div class="cursor-pointer p-6">
+                            <div class="continent-icon bg-red-500">
+                                <i class="fas fa-globe-americas text-white text-2xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white">Nam Mỹ</h2>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mt-2">Khám phá các loài động vật độc đáo của Nam Mỹ</p>
+                        </div>
+                    </div>
+
+                    <!-- Oceania -->
+                    <div class="continent-card" data-continent="oceania">
+                        <div class="cursor-pointer p-6">
+                            <div class="continent-icon bg-purple-500">
+                                <i class="fas fa-globe text-white text-2xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white">Châu Đại Dương</h2>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mt-2">Tìm hiểu về các loài động vật đặc trưng của châu Đại Dương</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section class="mb-16">
+                <div class="quiz-container">
+                    <h2 class="text-3xl font-bold text-center mb-6">Thử thách kiến thức</h2>
+                    <p class="text-center text-gray-600 dark:text-gray-300 mb-8">Kiểm tra hiểu biết của bạn về động vật hoang dã với trò chơi câu đố thú vị của chúng tôi!</p>
+                    
+                    <div id="quiz-start" class="text-center">
+                        <h3 class="text-xl font-bold mb-4">Sẵn sàng thử thách?</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">Trả lời 5 câu hỏi về động vật hoang dã để kiểm tra kiến thức của bạn!</p>
+                        <button id="start-quiz-btn" class="px-6 py-3 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors">
+                            Bắt đầu ngay
+                        </button>
+                    </div>
+
+                    <div id="quiz-questions" class="hidden">
+                        <div class="mb-4 flex justify-between items-center">
+                            <span id="question-number" class="text-sm font-medium">Câu hỏi 1/5</span>
+                            <div class="w-32 h-2 progress-bar">
+                                <div id="progress-bar-fill" class="progress-bar-fill" style="width: 20%"></div>
+                            </div>
+                            <span id="time-left" class="text-sm font-medium">15s</span>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden mb-6">
+                            <div id="question-image" class="relative h-64 w-full">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Elephas_maximus_indicus.jpg/1200px-Elephas_maximus_indicus.jpg" alt="Câu hỏi" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-6">
+                                <h3 id="question-text" class="text-xl font-bold mb-6">Loài động vật nào là động vật có vú lớn nhất trên cạn?</h3>
+                                
+                                <div class="space-y-3" id="quiz-options">
+                                    <button class="quiz-option" data-correct="true">Voi châu Phi</button>
+                                    <button class="quiz-option">Hà mã</button>
+                                    <button class="quiz-option">Tê giác trắng</button>
+                                    <button class="quiz-option">Hươu cao cổ</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="next-button" class="flex justify-end hidden">
+                            <button id="next-question-btn" class="flex items-center px-6 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors">
+                                Câu tiếp theo
+                                <i class="fas fa-chevron-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="quiz-results" class="text-center hidden">
+                        <i class="fas fa-award text-yellow-500 text-4xl mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">Kết quả của bạn</h3>
+                        <p id="quiz-score" class="text-3xl font-bold text-green-600 dark:text-green-400 mb-6">0/5</p>
+                        
+                        <div class="mb-8">
+                            <p id="quiz-feedback" class="text-gray-700 dark:text-gray-200">Hãy thử lại! Bạn có thể làm tốt hơn.</p>
+                        </div>
+                        
+                        <button id="retry-quiz-btn" class="px-6 py-3 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors">
+                            Thử lại
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Conservation Section -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-10">Bảo tồn động vật hoang dã</h2>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="relative h-80 rounded-xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1541675154750-0444c7d51e8e?q=80&w=1000&auto=format&fit=crop" alt="Bảo tồn động vật hoang dã" class="w-full h-full object-cover">
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-semibold">Tại sao bảo tồn lại quan trọng?</h3>
+                        <p>Động vật hoang dã đóng vai trò quan trọng trong việc duy trì sự cân bằng của hệ sinh thái. Mỗi loài đều có chức năng riêng trong tự nhiên, và sự mất mát của bất kỳ loài nào cũng có thể gây ra những hậu quả không lường trước được.</p>
+                        <p>Bảo tồn động vật hoang dã không chỉ là việc bảo vệ các loài động vật, mà còn là bảo vệ môi trường sống của chúng - những khu rừng, đại dương, và hệ sinh thái khác mà chúng ta cũng phụ thuộc vào.</p>
+                        <button class="mt-4 px-6 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors">Tìm hiểu thêm</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white py-8">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Về chúng tôi</h3>
+                        <p class="text-gray-300">Chúng tôi là một nhóm những người yêu thích động vật và cam kết nâng cao nhận thức về bảo tồn động vật hoang dã trên toàn thế giới.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Liên kết</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-300 hover:text-white">Trang chủ</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">Động vật theo châu lục</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">Bảo tồn</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">Liên hệ</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Liên hệ</h3>
+                        <p class="text-gray-300">Email: dhuyy007@gmail.com</p>
+                        <p class="text-gray-300">Điện thoại: +84 0964509848</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" class="text-gray-300 hover:text-white">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="text-gray-300 hover:text-white">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="text-gray-300 hover:text-white">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+                    <p class="text-gray-400">© <span id="current-year"></span> Động vật Hoang dã Thế giới. Bảo tồn là trách nhiệm của chúng ta.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Countries Modal -->
+    <div id="countries-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="flex justify-between items-center p-6 border-b">
+                <div>
+                    <h2 id="continent-title" class="text-2xl font-bold">Châu Á</h2>
+                    <button id="back-to-countries" class="text-sm text-blue-600 flex items-center mt-1 hidden">
+                        <i class="fas fa-chevron-left mr-1"></i>
+                        Quay lại danh sách quốc gia
+                    </button>
+                </div>
+                <button id="close-countries-modal" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto" style="max-height: calc(90vh - 80px);">
+                <div id="countries-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 country-grid">
+                    <!-- Countries will be populated here -->
+                </div>
+                
+                <div id="animals-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 animal-grid hidden">
+                    <!-- Animals will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Animal Detail Modal -->
+    <div id="animal-detail-modal" class="animal-detail-modal">
+        <div class="modal-overlay"></div>
+        <div class="animal-detail-container">
+            <div class="animal-detail-img">
+                <img id="detail-animal-img" src="/placeholder.svg" alt="Animal">
+                <div class="animal-detail-overlay"></div>
+                <button id="close-animal-detail" class="absolute top-4 right-4 p-2 rounded-full bg-white/80 text-gray-700 hover:bg-white transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2 id="detail-animal-name" class="animal-detail-title">Animal Name</h2>
+            </div>
+            <div class="animal-detail-content">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="md:col-span-2">
+                        <h3 class="text-xl font-semibold mb-2">Mô tả</h3>
+                        <p id="detail-animal-description" class="text-gray-700 dark:text-gray-300 mb-6">Animal description</p>
+                        
+                        <h3 class="text-xl font-semibold mb-2">Môi trường sống</h3>
+                        <p id="detail-animal-habitat" class="text-gray-700 dark:text-gray-300 mb-6">Habitat information</p>
+                        
+                        <h3 class="text-xl font-semibold mb-2">Chế độ ăn</h3>
+                        <p id="detail-animal-diet" class="text-gray-700 dark:text-gray-300">Diet information</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold mb-4 border-b pb-2">Thông tin khoa học</h3>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Tên khoa học</p>
+                                <p id="detail-animal-scientific" class="font-medium italic">Scientific name</p>
+                            </div>
+                            
+                            <div>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Tình trạng bảo tồn</p>
+                                <div class="flex items-center mt-1">
+                                    <div id="conservation-status-indicator" class="h-3 w-3 rounded-full mr-2 bg-gray-400"></div>
+                                    <p id="detail-animal-conservation">Conservation status</p>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-4 mt-4 border-t">
+                                <a id="learn-more-link" href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline flex items-center">
+                                    Tìm hiểu thêm <i class="fas fa-external-link-alt ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorites Drawer -->
+    <div id="favorites-drawer" class="favorites-drawer">
+        <div class="p-4 border-b flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-heart text-red-500 mr-2"></i>
+                <h2 class="text-xl font-bold">Động vật yêu thích</h2>
+            </div>
+            <button id="close-favorites" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto p-4">
+            <div id="favorites-list" class="space-y-4">
+                <!-- Favorites will be populated here -->
+            </div>
+            
+            <div id="no-favorites" class="flex flex-col items-center justify-center h-64 text-center text-gray-500">
+                <i class="fas fa-heart text-4xl mb-4 text-gray-300"></i>
+                <p class="text-lg font-medium">Chưa có động vật yêu thích</p>
+                <p class="mt-2">Bấm vào biểu tượng trái tim trên thẻ động vật để thêm vào danh sách yêu thích</p>
+            </div>
+        </div>
+        
+        <div id="clear-favorites-container" class="p-4 border-t hidden">
+            <button id="clear-favorites" class="w-full py-2 px-4 bg-red-50 text-red-600 rounded-md hover:bg-red-100 transition-colors flex items-center justify-center">
+                <i class="fas fa-trash-alt mr-2"></i>
+                Xóa tất cả
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        const continentsData = {
+            "asia": {
+             name: "Châu Á",
+                countries: [
+                    {
+                        name: "Afghanistan",
+                        flag: "https://flagcdn.com/w320/af.png",
+                        animals: [
+                            { name: "Snow Leopard", description: "Loài mèo lớn sống trên núi cao, nổi tiếng với bộ lông đốm.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Snow_leopard_in_Ladakh.jpg/1024px-Snow_leopard_in_Ladakh.jpg" },
+                            { name: "Markhor", description: "Loài dê núi có sừng xoắn ốc lớn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Markhor_male_in_Pakistan.jpg/1024px-Markhor_male_in_Pakistan.jpg" },
+                            { name: "Bactrian Camel", description: "Loài lạc đà hai bướu, thích nghi với khí hậu khắc nghiệt.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Bactrian_Camel_in_China.jpg/1024px-Bactrian_Camel_in_China.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Armenia",
+                        flag: "https://flagcdn.com/w320/am.png",
+                        animals: [
+                            { name: "Armenian Mouflon", description: "Loài cừu hoang đặc hữu của vùng núi Armenia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Armenian_mouflon.jpg/800px-Armenian_mouflon.jpg" },
+                            { name: "Caucasian Leopard", description: "Phân loài báo có nguy cơ tuyệt chủng, sinh sống ở vùng núi Caucasus.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Caucasian_leopard.jpg/1024px-Caucasian_leopard.jpg" },
+                            { name: "Bezoar Ibex", description: "Loài dê núi hoang dã với sừng cong lớn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Bezoar_ibex_male_Nahal_Yitla.jpg/1024px-Bezoar_ibex_male_Nahal_Yitla.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Azerbaijan",
+                        flag: "https://flagcdn.com/w320/az.png",
+                        animals: [
+                            { name: "Caucasian Leopard", description: "Phân loài báo có nguy cơ tuyệt chủng, sinh sống ở vùng núi Caucasus.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Caucasian_leopard.jpg/1024px-Caucasian_leopard.jpg" },
+                            { name: "Maral Deer", description: "Loài hươu lớn sống trong rừng, có sừng phân nhánh.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Cervus_elaphus_maral.jpg/1024px-Cervus_elaphus_maral.jpg" },
+                            { name: "Eastern Imperial Eagle", description: "Loài đại bàng lớn, có sải cánh rộng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Aquila_heliaca_Kazakhstan.jpg/1024px-Aquila_heliaca_Kazakhstan.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Bahrain",
+                        flag: "https://flagcdn.com/w320/bh.png",
+                        animals: [
+                            { name: "Arabian Oryx", description: "Loài linh dương trắng thích nghi với cuộc sống sa mạc, biểu tượng quốc gia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Arabian_oryx_in_Oman.jpg/1024px-Arabian_oryx_in_Oman.jpg" },
+                            { name: "Red Fox", description: "Loài cáo phổ biến, thích nghi với nhiều môi trường sống.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Vulpes_vulpes_resting.jpg/1024px-Vulpes_vulpes_resting.jpg" },
+                            { name: "Socotra Cormorant", description: "Loài chim biển quý hiếm, sinh sống ở các đảo gần Bahrain.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Socotra_Cormorant.jpg/800px-Socotra_Cormorant.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Bangladesh",
+                        flag: "https://flagcdn.com/w320/bd.png",
+                        animals: [
+                            { name: "Bengal Tiger", description: "Loài hổ nổi tiếng, sinh sống trong rừng ngập mặn Sundarbans.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Panthera_tigris_tigris_Kolkata_Zoo.jpg/1024px-Panthera_tigris_tigris_Kolkata_Zoo.jpg" },
+                            { name: "Asian Elephant", description: "Loài слон nhỏ hơn слон châu Phi, có tai nhỏ hơn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Elephas_maximus_indicus.jpg/1200px-Elephas_maximus_indicus.jpg" },
+                            { name: "Gharial", description: "Loài cá sấu có mõm dài và hẹp, nguy cơ tuyệt chủng cao.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Gharial_Gavialis_gangeticus.jpg/1024px-Gharial_Gavialis_gangeticus.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Bhutan",
+                        flag: "https://flagcdn.com/w320/bt.png",
+                        animals: [
+                            { name: "Takin", description: "Loài động vật có vú lớn, có họ hàng với cừu và dê.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Bhutan_Takin_Bubalus_taxicolor_whitei.jpg/1024px-Bhutan_Takin_Bubalus_taxicolor_whitei.jpg" },
+                            { name: "Snow Leopard", description: "Loài mèo lớn sống trên núi cao, nổi tiếng với bộ lông đốm.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Snow_leopard_in_Ladakh.jpg/1024px-Snow_leopard_in_Ladakh.jpg" },
+                            { name: "Rufous-necked Hornbill", description: "Loài chim lớn với chiếc mỏ cong lớn màu đỏ.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Rufous-necked_Hornbill.jpg/1024px-Rufous-necked_Hornbill.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Brunei",
+                        flag: "https://flagcdn.com/w320/bn.png",
+                        animals: [
+                            { name: "Proboscis Monkey", description: "Loài khỉ có mũi lớn đặc trưng, sống trên cây.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Proboscis_Monkey_in_Borneo.jpg/1024px-Proboscis_Monkey_in_Borneo.jpg" },
+                            { name: "Bornean Orangutan", description: "Loài vượn lớn sống trên cây, có nguy cơ tuyệt chủng cao.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Orangutan_Tanjung_Puting.jpg/1024px-Orangutan_Tanjung_Puting.jpg" },
+                            { name: "Rhinoceros Hornbill", description: "Loài chim lớn với chiếc mỏ cong lớn, có màu sắc rực rỡ.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Rhinoceros_Hornbill_in_flight.jpg/1024px-Rhinoceros_Hornbill_in_flight.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Campuchia",
+                        flag: "https://flagcdn.com/w320/kh.png",
+                        animals: [
+                            { name: "Giant Ibis", description: "Loài chim lớn, có nguy cơ tuyệt chủng cao, biểu tượng quốc gia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Giant_Ibis.jpg/800px-Giant_Ibis.jpg" },
+                            { name: "Asian Elephant", description: "Loài слон nhỏ hơn слон châu Phi, có tai nhỏ hơn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Elephas_maximus_indicus.jpg/1200px-Elephas_maximus_indicus.jpg" },
+                            { name: "Irrawaddy Dolphin", description: "Loài cá heo nước ngọt quý hiếm, sống ở sông Mekong và hồ Tonle Sap.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Irrawaddy_dolphin_in_Laos.jpg/1024px-Irrawaddy_dolphin_in_Laos.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Trung Quốc",
+                        flag: "https://flagcdn.com/w320/cn.png",
+                        animals: [
+                            { name: "Giant Panda", description: "Loài gấu trúc nổi tiếng, biểu tượng quốc gia của Trung Quốc.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Giant_Panda_2.JPG/1024px-Giant_Panda_2.JPG" },
+                            { name: "Tibetan Antelope", description: "Loài linh dương sống trên cao nguyên, có bộ lông dày.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tibetan_antelope_male.jpg/1024px-Tibetan_antelope_male.jpg" },
+                            { name: "Golden Snub-nosed Monkey", description: "Loài khỉ có bộ lông màu vàng cam và khuôn mặt xanh lam đặc trưng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Golden_Snub-nosed_Monkey_in_Qinling_Mountains.jpg/1024px-Golden_Snub-nosed_Monkey_in_Qinling_Mountains.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Síp",
+                        flag: "https://flagcdn.com/w320/cy.png",
+                        animals: [
+                            { name: "Cyprus Mouflon", description: "Loài cừu hoang đặc hữu của đảo Síp.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Cyprus_Mouflon.jpg/800px-Cyprus_Mouflon.jpg" },
+                            { name: "Red Fox", description: "Loài cáo phổ biến, thích nghi với nhiều môi trường sống.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Vulpes_vulpes_resting.jpg/1024px-Vulpes_vulpes_resting.jpg" },
+                            { name: "Cyprus Scops Owl", description: "Loài cú nhỏ đặc hữu của đảo Síp.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Cyprus_Scops_Owl.jpg/800px-Cyprus_Scops_Owl.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Georgia",
+                        flag: "https://flagcdn.com/w320/ge.png",
+                        animals: [
+                            { name: "Caucasian Leopard", description: "Phân loài báo có nguy cơ tuyệt chủng, sinh sống ở vùng núi Caucasus.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Caucasian_leopard.jpg/1024px-Caucasian_leopard.jpg" },
+                            { name: "Brown Bear", description: "Loài gấu lớn, phổ biến ở nhiều vùng của Georgia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Brown_Bear_in_Karelia.jpg/1024px-Brown_Bear_in_Karelia.jpg" },
+                            { name: "Caucasian Tur", description: "Loài dê núi sống ở vùng núi cao của Caucasus.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Caucasian_Tur.jpg/800px-Caucasian_Tur.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Ấn Độ",
+                        flag: "https://flagcdn.com/w320/in.png",
+                        animals: [
+                            { name: "Bengal Tiger", description: "Loài hổ nổi tiếng, biểu tượng quốc gia của Ấn Độ.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Panthera_tigris_tigris_Kolkata_Zoo.jpg/1024px-Panthera_tigris_tigris_Kolkata_Zoo.jpg" },
+                            { name: "Asian Elephant", description: "Loài слон nhỏ hơn слон châu Phi, có tai nhỏ hơn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Elephas_maximus_indicus.jpg/1200px-Elephas_maximus_indicus.jpg" },
+                            { name: "Indian Rhinoceros", description: "Loài tê giác một sừng lớn, sống ở vùng đồng cỏ.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Rhinoceros_unicornis_in_Kaziranga_National_Park.jpg/1024px-Rhinoceros_unicornis_in_Kaziranga_National_Park.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Indonesia",
+                        flag: "https://flagcdn.com/w320/id.png",
+                        animals: [
+                            { name: "Komodo Dragon", description: "Loài thằn lằn lớn nhất thế giới, đặc hữu của một số đảo ở Indonesia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Komodo_dragon_October_2014.jpg/1024px-Komodo_dragon_October_2014.jpg" },
+                            { name: "Orangutan", description: "Loài vượn lớn sống trên cây, có nguy cơ tuyệt chủng cao.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Orangutan_Tanjung_Puting.jpg/1024px-Orangutan_Tanjung_Puting.jpg" },
+                            { name: "Javan Rhinoceros", description: "Loài tê giác một sừng cực kỳ nguy cấp, số lượng còn rất ít.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Javan_Rhinoceros.jpg/800px-Javan_Rhinoceros.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Iran",
+                        flag: "https://flagcdn.com/w320/ir.png",
+                        animals: [
+                            { name: "Persian Leopard", description: "Phân loài báo lớn, sinh sống ở nhiều vùng của Iran.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Panthera_pardus_saxicolor.jpg/1024px-Panthera_pardus_saxicolor.jpg" },
+                            { name: "Asiatic Cheetah", description: "Phân loài báo гепард cực kỳ nguy cấp, số lượng còn rất ít ở Iran.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Asiatic_cheetah_in_Mehrdasht.jpg/1024px-Asiatic_cheetah_in_Mehrdasht.jpg" },
+                            { name: "Persian Fallow Deer", description: "Loài hươu nhỏ, có nguy cơ tuyệt chủng cao, sống ở phía tây Iran.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Persian_Fallow_Deer.jpg/1024px-Persian_Fallow_Deer.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Iraq",
+                        flag: "https://flagcdn.com/w320/iq.png",
+                        animals: [
+                            { name: "Asiatic Lion", description: "Phân loài sư tử sống ở Ấn Độ và trước đây từng có ở Iraq.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Asiatic_Lion1.jpg/1024px-Asiatic_Lion1.jpg" },
+                            { name: "Striped Hyena", description: "Loài linh cẩu có sọc, sống ở nhiều vùng của Iraq.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/StripedHyena.JPG/1024px-StripedHyena.JPG" },
+                            { name: "Euphrates Softshell Turtle", description: "Loài rùa nước ngọt lớn, sống ở sông Euphrates.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Rafetus_euphraticus.jpg/800px-Rafetus_euphraticus.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Israel",
+                        flag: "https://flagcdn.com/w320/il.png",
+                        animals: [
+                            { name: "Arabian Leopard", description: "Phân loài báo nhỏ, sinh sống ở sa mạc Negev.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Arabian_leopard.jpg/1024px-Arabian_leopard.jpg" },
+                            { name: "Nubian Ibex", description: "Loài dê núi thích nghi với cuộc sống sa mạc, có sừng cong lớn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Nubian_ibex_male.jpg/1024px-Nubian_ibex_male.jpg" },
+                            { name: "Sand Cat", description: "Loài mèo nhỏ sống ở sa mạc, có khả năng thích nghi tốt với môi trường khắc nghiệt.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Felis_margarita_Zoo_Wuppertal_2016-07-13_01.jpg/1024px-Felis_margarita_Zoo_Wuppertal_2016-07-13_01.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Nhật Bản",
+                        flag: "https://flagcdn.com/w320/jp.png",
+                        animals: [
+                            { name: "Japanese Macaque", description: "Loài khỉ sống ở phía bắc, nổi tiếng với việc ngâm mình trong suối nước nóng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Japanese_macaque_in_Yamanouchi.jpg/1024px-Japanese_macaque_in_Yamanouchi.jpg" },
+                            { name: "Red-crowned Crane", description: "Loài chim lớn, thanh lịch, có màu đỏ trên đầu.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Grus_japonensis_in_winter.jpg/1024px-Grus_japonensis_in_winter.jpg" },
+                            { name: "Japanese Serow", description: "Loài dê núi đặc hữu của Nhật Bản.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Japanese_serow_in_Nagano.jpg/1024px-Japanese_serow_in_Nagano.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Jordan",
+                        flag: "https://flagcdn.com/w320/jo.png",
+                        animals: [
+                            { name: "Arabian Oryx", description: "Loài linh dương trắng thích nghi với cuộc sống sa mạc, biểu tượng quốc gia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Arabian_oryx_in_Oman.jpg/1024px-Arabian_oryx_in_Oman.jpg" },
+                            { name: "Nubian Ibex", description: "Loài dê núi thích nghi với cuộc sống sa mạc, có sừng cong lớn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Nubian_ibex_male.jpg/1024px-Nubian_ibex_male.jpg" },
+                            { name: "Blanford's Fox", description: "Loài cáo nhỏ, sống ở vùng núi đá.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Blanford%27s_Fox_%28Vulpes_cana%29.jpg/1024px-Blanford%27s_Fox_%28Vulpes_cana%29.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Kazakhstan",
+                        flag: "https://flagcdn.com/w320/kz.png",
+                        animals: [
+                            { name: "Snow Leopard", description: "Loài mèo lớn sống trên núi cao, nổi tiếng với bộ lông đốm.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Snow_leopard_in_Ladakh.jpg/1024px-Snow_leopard_in_Ladakh.jpg" },
+                            { name: "Saiga Antelope", description: "Loài linh dương có mũi phình to đặc biệt, nguy cơ tuyệt chủng cao.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Saiga_tatarica_male_and_females.jpg/1024px-Saiga_tatarica_male_and_females.jpg" },
+                            { name: "Steppe Eagle", description: "Loài đại bàng lớn, sống ở thảo nguyên rộng lớn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/SteppeEagle.jpg/1024px-SteppeEagle.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Kuwait",
+                        flag: "https://flagcdn.com/w320/kw.png",
+                        animals: [
+                            { name: "Arabian Oryx", description: "Loài linh dương trắng thích nghi với cuộc sống sa mạc, biểu tượng quốc gia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Arabian_oryx_in_Oman.jpg/1024px-Arabian_oryx_in_Oman.jpg" },
+                            { name: "Red Fox", description: "Loài cáo phổ biến, thích nghi với nhiều môi trường sống.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Vulpes_vulpes_resting.jpg/1024px-Vulpes_vulpes_resting.jpg" },
+                            { name: "Greater Spotted Eagle", description: "Loài đại bàng lớn, có đốm trắng trên cánh.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Greater_Spotted_Eagle.jpg/1024px-Greater_Spotted_Eagle.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Kyrgyzstan",
+                        flag: "https://flagcdn.com/w320/kg.png",
+                        animals: [
+                            { name: "Snow Leopard", description: "Loài mèo lớn sống trên núi cao, nổi tiếng với bộ lông đốm.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Snow_leopard_in_Ladakh.jpg/1024px-Snow_leopard_in_Ladakh.jpg" },
+                            { name: "Marco Polo Sheep", description: "Loài cừu hoang lớn, có sừng xoắn ốc dài.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Marco_Polo_Sheep_Pamirs.jpg/1024px-Marco_Polo_Sheep_Pamirs.jpg" },
+                            { name: "Saker Falcon", description: "Loài chim săn mồi nhanh nhẹn, có khả năng bay lượn tuyệt vời.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Saker_Falcon_Falco_cherrug.jpg/1024px-Saker_Falcon_Falco_cherrug.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Lào",
+                        flag: "https://flagcdn.com/w320/la.png",
+                        animals: [
+                            { name: "Asian Elephant", description: "Loài слон nhỏ hơn слон châu Phi, có tai nhỏ hơn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Elephas_maximus_indicus.jpg/1200px-Elephas_maximus_indicus.jpg" },
+                            { name: "Irrawaddy Dolphin", description: "Loài cá heo nước ngọt quý hiếm, sống ở sông Mekong.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Irrawaddy_dolphin_in_Laos.jpg/1024px-Irrawaddy_dolphin_in_Laos.jpg" },
+                            { name: "Giant Catfish", description: "Loài cá da trơn lớn nhất thế giới, sống ở sông Mekong.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Mekong_giant_catfish.jpg/800px-Mekong_giant_catfish.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Liban",
+                        flag: "https://flagcdn.com/w320/lb.png",
+                        animals: [
+                            { name: "Lebanese Mountain Goat", description: "Loài dê núi sống ở vùng núi Liban.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Lebanese_Mountain_Goat.jpg/800px-Lebanese_Mountain_Goat.jpg" },
+                            { name: "Red Fox", description: "Loài cáo phổ biến, thích nghi với nhiều môi trường sống.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Vulpes_vulpes_resting.jpg/1024px-Vulpes_vulpes_resting.jpg" },
+                            { name: "Long-eared Bat", description: "Loài dơi nhỏ, có đôi tai dài đặc trưng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Plecotus_auritus.jpg/1024px-Plecotus_auritus.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Malaysia",
+                        flag: "https://flagcdn.com/w320/my.png",
+                        animals: [
+                            { name: "Orangutan", description: "Loài vượn lớn sống trên cây, có nguy cơ tuyệt chủng cao.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Orangutan_Tanjung_Puting.jpg/1024px-Orangutan_Tanjung_Puting.jpg" },
+                            { name: "Malayan Tiger", description: "Phân loài hổ sinh sống ở bán đảo Mã Lai.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Panthera_tigris_jacksoni.jpg/1024px-Panthera_tigris_jacksoni.jpg" },
+                            { name: "Proboscis Monkey", description: "Loài khỉ có mũi lớn đặc trưng, sống trên cây.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Proboscis_Monkey_in_Borneo.jpg/1024px-Proboscis_Monkey_in_Borneo.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Maldives",
+                        flag: "https://flagcdn.com/w320/mv.png",
+                        animals: [
+                            { name: "Whale Shark", description: "Loài cá mập lớn nhất thế giới, hiền lành và ăn sinh vật phù du.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Rhincodon_typus.jpg/1024px-Rhincodon_typus.jpg" },
+                            { name: "Manta Ray", description: "Loài cá đuối lớn, có hình dáng duyên dáng, bơi lượn dưới biển.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Manta_ray_underwater.jpg/1024px-Manta_ray_underwater.jpg" },
+                            { name: "Maldivian Clownfish", description: "Loài cá nhỏ, màu sắc rực rỡ, sống cộng sinh với hải quỳ.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Amphiprion_nigripes.jpg/800px-Amphiprion_nigripes.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Mông Cổ",
+                        flag: "https://flagcdn.com/w320/mn.png",
+                        animals: [
+                            { name: "Gobi Bear", description: "Loài gấu hiếm, sống ở sa mạc Gobi.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Gobi_bear.jpg/800px-Gobi_bear.jpg" },
+                            { name: "Przewalski's Horse", description: "Loài ngựa hoang cuối cùng còn sót lại trên thế giới.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Przewalski%27s_Horse_at_Zurich_Zoo.jpg/1024px-Przewalski%27s_Horse_at_Zurich_Zoo.jpg" },
+                            { name: "Saker Falcon", description: "Loài chim săn mồi nhanh nhẹn, có khả năng bay lượn tuyệt vời.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Saker_Falcon_Falco_cherrug.jpg/1024px-Saker_Falcon_Falco_cherrug.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Myanmar",
+                        flag: "https://flagcdn.com/w320/mm.png",
+                        animals: [
+                            { name: "Asian Elephant", description: "Loài слон nhỏ hơn слон châu Phi, có tai nhỏ hơn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Elephas_maximus_indicus.jpg/1200px-Elephas_maximus_indicus.jpg" },
+                            { name: "Irrawaddy Dolphin", description: "Loài cá heo nước ngọt quý hiếm, sống ở sông Irrawaddy.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Irrawaddy_dolphin_in_Laos.jpg/1024px-Irrawaddy_dolphin_in_Laos.jpg" },
+                            { name: "Burmese Roofed Turtle", description: "Loài rùa nước ngọt cực kỳ nguy cấp, sống ở sông Chindwin.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Burmese_roofed_turtle_Batagur_turtle_affinis%29.jpg/800px-Burmese_roofed_turtle_Batagur_turtleta_affinis%29.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Nepal",
+                        flag: "https://flagcdn.com/w320/np.png",
+                        animals: [
+                            { name: "Bengal Tiger", description: "Loài hổ nổi tiếng, sinh sống trong các khu rừng của Nepal.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Panthera_tigris_tigris_Kolkata_Zoo.jpg/1024px-Panthera_tigris_tigris_Kolkata_Zoo.jpg" },
+                            { name: "One-horned Rhinoceros", description: "Loài tê giác một sừng lớn, sống ở vùng đồng cỏ.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Rhinoceros_unicornis_in_Kaziranga_National_Park.jpg/1024px-Rhinoceros_unicornis_in_Kaziranga_National_Park.jpg" },
+                            { name: "Snow Leopard", description: "Loài mèo lớn sống trên núi cao, nổi tiếng với bộ lông đốm.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Snow_leopard_in_Ladakh.jpg/1024px-Snow_leopard_in_Ladakh.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Bắc Triều Tiên",
+                        flag: "https://flagcdn.com/w320/kp.png",
+                        animals: [
+                            { name: "Amur Leopard", description: "Phân loài báo cực kỳ nguy cấp, sinh sống ở vùng biên giới Nga và Triều Tiên.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Amur_leopard_WWF.jpg/1024px-Amur_leopard_WWF.jpg" },
+                            { name: "Siberian Tiger", description: "Phân loài hổ lớn nhất, sống ở vùng Viễn Đông của Nga và Triều Tiên.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Siberian_tiger_at_Whipsnade_Zoo.jpg/1024px-Siberian_tiger_at_Whipsnade_Zoo.jpg" },
+                            { name: "Red-crowned Crane", description: "Loài chim lớn, thanh lịch, có màu đỏ trên đầu.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Grus_japonensis_in_winter.jpg/1024px-Grus_japonensis_in_winter.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Oman",
+                        flag: "https://flagcdn.com/w320/om.png",
+                        animals: [
+                            { name: "Arabian Oryx", description: "Loài linh dương trắng thích nghi với cuộc sống sa mạc, biểu tượng quốc gia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Arabian_oryx_in_Oman.jpg/1024px-Arabian_oryx_in_Oman.jpg" },
+                            { name: "Arabian Leopard", description: "Phân loài báo nhỏ, sinh sống ở vùng núi Oman.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Arabian_leopard.jpg/1024px-Arabian_leopard.jpg" },
+                            { name: "Green Turtle", description: "Loài rùa biển lớn, làm tổ trên các bãi biển của Oman.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Green_turtle_swimming.jpg/1024px-Green_turtle_swimming.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Pakistan",
+                        flag: "https://flagcdn.com/w320/pk.png",
+                        animals: [
+                            { name: "Markhor", description: "Loài dê núi có sừng xoắn ốc lớn, biểu tượng quốc gia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Markhor_male_in_Pakistan.jpg/1024px-Markhor_male_in_Pakistan.jpg" },
+                            { name: "Snow Leopard", description: "Loài mèo lớn sống trên núi cao, nổi tiếng với bộ lông đốm.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Snow_leopard_in_Ladakh.jpg/1024px-Snow_leopard_in_Ladakh.jpg" },
+                            { name: "Indus River Dolphin", description: "Loài cá heo nước ngọt quý hiếm, sống ở sông Indus.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Indus_River_Dolphin.jpg/1024px-Indus_River_Dolphin.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Palestine",
+                        flag: "https://flagcdn.com/w320/ps.png",
+                        animals: [
+                            { name: "Palestine Mountain Gazelle", description: "Loài linh dương nhỏ, sinh sống ở vùng đồi núi.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gazelle_gazella_male.jpg/1024px-Gazelle_gazella_male.jpg" },
+                            { name: "Sand Cat", description: "Loài mèo nhỏ sống ở sa mạc, có khả năng thích nghi tốt với môi trường khắc nghiệt.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Felis_margarita_Zoo_Wuppertal_2016-07-13_01.jpg/1024px-Felis_margarita_Zoo_Wuppertal_2016-07-13_01.jpg" },
+                            { name: "Dead Sea Sparrow", description: "Loài chim nhỏ, sống ở vùng gần Biển Chết.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Dead_Sea_Sparrow_male.jpg/800px-Dead_Sea_Sparrow_male.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Philippines",
+                        flag: "https://flagcdn.com/w320/ph.png",
+                        animals: [
+                            { name: "Philippine Eagle", description: "Loài đại bàng lớn, có nguy cơ tuyệt chủng cao, biểu tượng quốc gia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Philippine_Eagle_close-up.jpg/1024px-Philippine_Eagle_close-up.jpg" },
+                            { name: "Tamaraw", description: "Loài trâu nhỏ đặc hữu của đảo Mindoro.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Tamaraw_Bubalus_mindorensis.jpg/1024px-Tamaraw_Bubalus_mindorensis.jpg" },
+                            { name: "Palawan Peacock-pheasant", description: "Loài chim đẹp, có màu sắc rực rỡ, sống ở đảo Palawan.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Palawan_Peacock-pheasant.jpg/1024px-Palawan_Peacock-pheasant.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Qatar",
+                        flag: "https://flagcdn.com/w320/qa.png",
+                        animals: [
+                            { name: "Arabian Oryx", description: "Loài linh dương trắng thích nghi với cuộc sống sa mạc, biểu tượng quốc gia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Arabian_oryx_in_Oman.jpg/1024px-Arabian_oryx_in_Oman.jpg" },
+                            { name: "Red Fox", description: "Loài cáo phổ biến, thích nghi với nhiều môi trường sống.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Vulpes_vulpes_resting.jpg/1024px-Vulpes_vulpes_resting.jpg" },
+                            { name: "Flamingo", description: "Loài chim lớn, có màu hồng đặc trưng, sống ở vùng nước nông.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Greater_Flamingo_at_Lake_Nakuru_National_Park.jpg/1024px-Greater_Flamingo_at_Lake_Nakuru_National_Park.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Nga",
+                        flag: "https://flagcdn.com/w320/ru.png",
+                        animals: [
+                            { name: "Siberian Tiger", description: "Phân loài hổ lớn nhất, sống ở vùng Viễn Đông của Nga.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Siberian_tiger_at_Whipsnade_Zoo.jpg/1024px-Siberian_tiger_at_Whipsnade_Zoo.jpg" },
+                            { name: "Snow Leopard", description: "Loài mèo lớn sống trên núi cao, nổi tiếng với bộ lông đốm.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Snow_leopard_in_Ladakh.jpg/1024px-Snow_leopard_in_Ladakh.jpg" },
+                            { name: "Brown Bear", description: "Loài gấu lớn, phổ biến ở nhiều vùng của Nga.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Brown_Bear_in_Karelia.jpg/1024px-Brown_Bear_in_Karelia.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Ả Rập Xê Út",
+                        flag: "https://flagcdn.com/w320/sa.png",
+                        animals: [
+                            { name: "Arabian Oryx", description: "Loài linh dương trắng thích nghi với cuộc sống sa mạc, biểu tượng quốc gia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Arabian_oryx_in_Oman.jpg/1024px-Arabian_oryx_in_Oman.jpg" },
+                            { name: "Red Sea Clownfish", description: "Loài cá nhỏ, màu sắc rực rỡ, sống cộng sinh với hải quỳ ở Biển Đỏ.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Red_Sea_Clownfish.jpg/800px-Red_Sea_Clownfish.jpg" },
+                            { name: "Asir Magpie", description: "Loài chim đặc hữu của vùng núi Asir ở Ả Rập Xê Út.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Asir_Magpie_Pica_asirensis.jpg/800px-Asir_Magpie_Pica_asirensis.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Singapore",
+                        flag: "https://flagcdn.com/w320/sg.png",
+                        animals: [
+                            { name: "Sunda Pangolin", description: "Loài tê tê có nguy cơ tuyệt chủng cao, bị đe dọa bởi săn bắn trộm.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Sunda_pangolin.jpg/1024px-Sunda_pangolin.jpg" },
+                            { name: "Lesser Mousedeer", description: "Loài hươu nhỏ nhất thế giới, sống trong rừng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Lesser_Mouse-deer.jpg/1024px-Lesser_Mouse-deer.jpg" },
+                            { name: "Smooth-coated Otter", description: "Loài rái cá sống ở sông và ven biển.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Smooth-coated_otter.jpg/1024px-Smooth-coated_otter.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Hàn Quốc",
+                        flag: "https://flagcdn.com/w320/kr.png",
+                        animals: [
+                            { name: "Amur Leopard", description: "Phân loài báo cực kỳ nguy cấp, sinh sống ở vùng biên giới Nga và Triều Tiên.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Amur_leopard_WWF.jpg/1024px-Amur_leopard_WWF.jpg" },
+                            { name: "Korean Water Deer", description: "Loài hươu nhỏ, không có sừng, sống ở gần các con sông.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Korean_water_deer.jpg/1024px-Korean_water_deer.jpg" },
+                            { name: "Red-crowned Crane", description: "Loài chim lớn, thanh lịch, có màu đỏ trên đầu.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Grus_japonensis_in_winter.jpg/1024px-Grus_japonensis_in_winter.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Sri Lanka",
+                        flag: "https://flagcdn.com/w320/lk.png",
+                        animals: [
+                            { name: "Sri Lankan Elephant", description: "Phân loài слон lớn nhất châu Á, có số lượng lớn ở Sri Lanka.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Sri_Lankan_Elephant.jpg/1024px-Sri_Lankan_Elephant.jpg" },
+                            { name: "Leopard", description: "Loài mèo lớn, có bộ lông đốm, sinh sống ở nhiều vùng của Sri Lanka.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Sri_Lankan_Leopard_Yala.jpg/1024px-Sri_Lankan_Leopard_Yala.jpg" },
+                            { name: "Blue Whale", description: "Loài cá voi lớn nhất thế giới, thường được nhìn thấy ở ngoài khơi Sri Lanka.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Blue_whale_dorsal_fin.jpg/1024px-Blue_whale_dorsal_fin.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Syria",
+                        flag: "https://flagcdn.com/w320/sy.png",
+                        animals: [
+                            { name: "Syrian Brown Bear", description: "Phân loài gấu nhỏ, sinh sống ở vùng núi Syria.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Ursus_arctos_syriacus.jpg/1024px-Ursus_arctos_syriacus.jpg" },
+                            { name: "Red Fox", description: "Loài cáo phổ biến, thích nghi với nhiều môi trường sống.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Vulpes_vulpes_resting.jpg/1024px-Vulpes_vulpes_resting.jpg" },
+                            { name: "Northern Bald Ibis", description: "Loài chim có nguy cơ tuyệt chủng cao, với cái đầu trọc màu đỏ.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Northern_Bald_Ibis_Rote_Waldrapp.jpg/1024px-Northern_Bald_Ibis_Rote_Waldrapp.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Đài Loan",
+                        flag: "https://flagcdn.com/w320/tw.png",
+                        animals: [
+                            { name: "Formosan Black Bear", description: "Loài gấu đen đặc hữu của Đài Loan, có chữ V trắng trên ngực.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Formosan_black_bear.jpg/1024px-Formosan_black_bear.jpg" },
+                            { name: "Formosan Sika Deer", description: "Loài hươu nhỏ, có đốm trắng, sống ở vùng núi Đài Loan.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Formosan_Sika_Deer.jpg/1024px-Formosan_Sika_Deer.jpg" },
+                            { name: "Mikado Pheasant", description: "Loài chim đẹp, có màu sắc rực rỡ, sống ở vùng núi cao.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Mikado_Pheasant.jpg/1024px-Mikado_Pheasant.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Tajikistan",
+                        flag: "https://flagcdn.com/w320/tj.png",
+                        animals: [
+                            { name: "Snow Leopard", description: "Loài mèo lớn sống trên núi cao, nổi tiếng với bộ lông đốm.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Snow_leopard_in_Ladakh.jpg/1024px-Snow_leopard_in_Ladakh.jpg" },
+                            { name: "Marco Polo Sheep", description: "Loài cừu hoang lớn, có sừng xoắn ốc dài.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Marco_Polo_Sheep_Pamirs.jpg/1024px-Marco_Polo_Sheep_Pamirs.jpg" },
+                            { name: "Saker Falcon", description: "Loài chim săn mồi nhanh nhẹn, có khả năng bay lượn tuyệt vời.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Saker_Falcon_Falco_cherrug.jpg/1024px-Saker_Falcon_Falco_cherrug.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Thái Lan",
+                        flag: "https://flagcdn.com/w320/th.png",
+                        animals: [
+                            { name: "Asian Elephant", description: "Loài слон nhỏ hơn слон châu Phi, có tai nhỏ hơn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Elephas_maximus_indicus.jpg/1200px-Elephas_maximus_indicus.jpg" },
+                            { name: "Tiger", description: "Loài mèo lớn, có sọc đen, sống trong các khu rừng của Thái Lan.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Panthera_tigris_tigris_Kolkata_Zoo.jpg/1024px-Panthera_tigris_tigris_Kolkata_Zoo.jpg" },
+                            { name: "Gurney's Pitta", description: "Loài chim quý hiếm, có màu sắc rực rỡ, sống trong các khu rừng thấp.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Gurney%27s_Pitta.jpg/800px-Gurney%27s_Pitta.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Đông Timor",
+                        flag: "https://flagcdn.com/w320/tl.png",
+                        animals: [
+                            { name: "Timor Deer", description: "Loài hươu nhỏ, sống ở đảo Timor.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Timor_deer_Rusa_timorensis.jpg/1024px-Timor_deer_Rusa_timorensis.jpg" },
+                            { name: "Dugong", description: "Loài động vật có vú ở biển, hiền lành, ăn cỏ biển.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Dugong_in_Redang.jpg/1024px-Dugong_in_Redang.jpg" },
+                            { name: "Yellow-crested Cockatoo", description: "Loài vẹt lớn, có màu trắng và mào màu vàng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Yellow-crested_Cockatoo.jpg/1024px-Yellow-crested_Cockatoo.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Thổ Nhĩ Kỳ",
+                        flag: "https://flagcdn.com/w320/tr.png",
+                        animals: [
+                            { name: "Anatolian Leopard", description: "Phân loài báo có nguy cơ tuyệt chủng cao, sinh sống ở Thổ Nhĩ Kỳ.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Anatolian_Leopard.jpg/800px-Anatolian_Leopard.jpg" },
+                            { name: "Brown Bear", description: "Loài gấu lớn, phổ biến ở nhiều vùng của Thổ Nhĩ Kỳ.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Brown_Bear_in_Karelia.jpg/1024px-Brown_Bear_in_Karelia.jpg" },
+                            { name: "Bald Ibis", description: "Loài chim có nguy cơ tuyệt chủng cao, với cái đầu trọc màu đỏ.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Northern_Bald_Ibis_Rote_Waldrapp.jpg/1024px-Northern_Bald_Ibis_Rote_Waldrapp.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Turkmenistan",
+                        flag: "https://flagcdn.com/w320/tm.png",
+                        animals: [
+                            { name: "Markhor", description: "Loài dê núi có sừng xoắn ốc lớn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Markhor_male_in_Pakistan.jpg/1024px-Markhor_male_in_Pakistan.jpg" },
+                            { name: "Caracal", description: "Loài mèo hoang có kích thước trung bình, có đôi tai nhọn với túm lông.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/A_caracal_in_the_Kruger_National_Park.jpg/1024px-A_caracal_in_the_Kruger_National_Park.jpg" },
+                            { name: "Caspian Seal", description: "Loài hải cẩu nhỏ, sống ở biển Caspi.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Caspian_seal.jpg/800px-Caspian_seal.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Các Tiểu vương quốc Ả Rập Thống nhất",
+                        flag: "https://flagcdn.com/w320/ae.png",
+                        animals: [
+                            { name: "Arabian Oryx", description: "Loài linh dương trắng thích nghi với cuộc sống sa mạc, biểu tượng quốc gia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Arabian_oryx_in_Oman.jpg/1024px-Arabian_oryx_in_Oman.jpg" },
+                            { name: "Sand Cat", description: "Loài mèo nhỏ sống ở sa mạc, có khả năng thích nghi tốt với môi trường khắc nghiệt.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Felis_margarita_Zoo_Wuppertal_2016-07-13_01.jpg/1024px-Felis_margarita_Zoo_Wuppertal_2016-07-13_01.jpg" },
+                            { name: "Socotra Cormorant", description: "Loài chim biển quý hiếm, sinh sống ở các đảo gần UAE.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Socotra_Cormorant.jpg/800px-Socotra_Cormorant.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Uzbekistan",
+                        flag: "https://flagcdn.com/w320/uz.png",
+                        animals: [
+                            { name: "Saiga Antelope", description: "Loài linh dương có mũi phình to đặc biệt, nguy cơ tuyệt chủng cao.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Saiga_tatarica_male_and_females.jpg/1024px-Saiga_tatarica_male_and_females.jpg" },
+                            { name: "Snow Leopard", description: "Loài mèo lớn sống trên núi cao, nổi tiếng với bộ lông đốm.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Snow_leopard_in_Ladakh.jpg/1024px-Snow_leopard_in_Ladakh.jpg" },
+                            { name: "Bactrian Camel", description: "Loài lạc đà hai bướu, thích nghi với khí hậu khắc nghiệt.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Bactrian_Camel_in_China.jpg/1024px-Bactrian_Camel_in_China.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Việt Nam",
+                        flag: "https://flagcdn.com/w320/vn.png",
+                        animals: [
+                            { name: "Sao La", description: "Loài thú quý hiếm, được mệnh danh là 'kỳ lân châu Á'.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Saola_Pseudoryx_nghetinhensis.jpg/800px-Saola_Pseudoryx_nghetinhensis.jpg" },
+                            { name: "Voọc Chà vá", description: "Loài khỉ có màu sắc rực rỡ, sống trên cây.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Red-shanked_douc_Langur.jpg/1024px-Red-shanked_douc_Langur.jpg" },
+                            { name: "Cá Sấu Xiêm", description: "Loài cá sấu nước ngọt, có nguy cơ tuyệt chủng cao.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Siamese_Crocodile.jpg/1024px-Siamese_Crocodile.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Yemen",
+                        flag: "https://flagcdn.com/w320/ye.png",
+                        animals: [
+                            { name: "Arabian Leopard", description: "Phân loài báo nhỏ, sinh sống ở vùng núi Yemen.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Arabian_leopard.jpg/1024px-Arabian_leopard.jpg" },
+                            { name: "Striped Hyena", description: "Loài linh cẩu có sọc, sống ở nhiều vùng của Yemen.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/StripedHyena.JPG/1024px-StripedHyena.JPG" },
+                            { name: "Arabian Wolf", description: "Phân loài sói nhỏ, sống ở bán đảo Ả Rập.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Arabian_wolf_Canis_lupus_arabs.jpg/1024px-Arabian_wolf_Canis_lupus_arabs.jpg" }
+                        ]
+                    }
+                ]
+            },
+            "europe": {
+                name: "Châu Âu",
+                countries: [
+                    {
+                        name: "Áo",
+                        flag: "https://flagcdn.com/w320/at.png",
+                        animals: [
+                            { name: "Alpine Ibex", description: "Loài dê núi sống ở dãy núi Alps.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Alpine_ibex_male_Gran_Paradiso_National_Park.jpg/1024px-Alpine_ibex_male_Gran_Paradiso_National_Park.jpg" },
+                            { name: "Brown Bear", description: "Loài gấu lớn, phổ biến ở vùng núi Áo.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Brown_Bear_in_Karelia.jpg/1024px-Brown_Bear_in_Karelia.jpg" },
+                            { name: "White-throated Dipper", description: "Loài chim nhỏ, sống gần sông suối, có khả năng lặn bắt cá.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/White-throated_Dipper.jpg/1024px-White-throated_Dipper.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Belarus",
+                        flag: "https://flagcdn.com/w320/by.png",
+                        animals: [
+                            { name: "European Bison", description: "Loài bò rừng lớn nhất châu Âu, từng gần như tuyệt chủng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/European_bison_in_Bialowieza.jpg/1024px-European_bison_in_Bialowieza.jpg" },
+                            { name: "Brown Bear", description: "Loài gấu lớn, phổ biến ở các khu rừng của Belarus.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Brown_Bear_in_Karelia.jpg/1024px-Brown_Bear_in_Karelia.jpg" },
+                            { name: "Eurasian Lynx", description: "Loài mèo Lynx lớn, sống trong các khu rừng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Eurasian_lynx.jpg/1024px-Eurasian_lynx.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Bỉ",
+                        flag: "https://flagcdn.com/w320/be.png",
+                        animals: [
+                            { name: "Red Deer", description: "Loài hươu lớn, sống trong các khu rừng của Bỉ.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/RedDeer.jpg/1024px-RedDeer.jpg" },
+                            { name: "Wild Boar", description: "Loài lợn hoang, sống trong các khu rừng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Wild_Boar_Wallowing.jpg/1024px-Wild_Boar_Wallowing.jpg" },
+                            { name: "Eurasian Beaver", description: "Loài hải ly lớn, sống ở các con sông.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Castor_fiber_in_Poland.jpg/1024px-Castor_fiber_in_Poland.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Bosnia và Herzegovina",
+                        flag: "https://flagcdn.com/w320/ba.png",
+                        animals: [
+                            { name: "Brown Bear", description: "Loài gấu lớn, phổ biến ở vùng núi của Bosnia và Herzegovina.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Brown_Bear_in_Karelia.jpg/1024px-Brown_Bear_in_Karelia.jpg" },
+                            { name: "Balkan Chamois", description: "Loài dê núi sống ở vùng núi Balkan.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Balkan_Chamois_Rupicapra_rupicapra_balcanica.jpg/1024px-Balkan_Chamois_Rupicapra_rupicapra_balcanica.jpg" },
+                            { name: "Golden Eagle", description: "Loài đại bàng lớn, săn mồi trên các vùng núi cao.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Golden_Eagle_flying.jpg/1024px-Golden_Eagle_flying.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Bulgaria",
+                        flag: "https://flagcdn.com/w320/bg.png",
+                        animals: [
+                            { name: "Brown Bear", description: "Loài gấu lớn, phổ biến ở vùng núi Bulgaria.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Brown_Bear_in_Karelia.jpg/1024px-Brown_Bear_in_Karelia.jpg" },
+                            { name: "Balkan Lynx", description: "Phân loài mèo Lynx có nguy cơ tuyệt chủng cao, sống ở vùng núi Balkan.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Balkan_lynx_in_Mavrovo.jpg/1024px-Balkan_lynx_in_Mavrovo.jpg" },
+                            { name: "Imperial Eagle", description: "Loài đại bàng lớn, có sải cánh rộng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Aquila_heliaca_Kazakhstan.jpg/1024px-Aquila_heliaca_Kazakhstan.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Croatia",
+                        flag: "https://flagcdn.com/w320/hr.png",
+                        animals: [
+                            { name: "Brown Bear", description: "Loài gấu lớn, sống ở vùng núi Croatia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Brown_Bear_in_Karelia.jpg/1024px-Brown_Bear_in_Karelia.jpg" },
+                            { name: "Lynx", description: "Loài mèo hoang sống trong rừng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Eurasian_lynx.jpg/1024px-Eurasian_lynx.jpg" },
+                            { name: "Golden Jackal", description: "Loài chó hoang có kích thước trung bình, sống ở vùng ven biển.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Golden_Jackal_canis_aureus.jpg/1024px-Golden_Jackal_canis_aureus.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Cộng hòa Séc",
+                        flag: "https://flagcdn.com/w320/cz.png",
+                        animals: [
+                            { name: "Red Deer", description: "Loài hươu lớn, sống trong các khu rừng của Cộng hòa Séc.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/RedDeer.jpg/1024px-RedDeer.jpg" },
+                            { name: "Wild Boar", description: "Loài lợn hoang, sống trong các khu rừng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Wild_Boar_Wallowing.jpg/1024px-Wild_Boar_Wallowing.jpg" },
+                            { name: "Eurasian Lynx", description: "Loài mèo Lynx lớn, sống trong các khu rừng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5  sống trong các khu rừng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Eurasian_lynx.jpg/1024px-Eurasian_lynx.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Đan Mạch",
+                        flag: "https://flagcdn.com/w320/dk.png",
+                        animals: [
+                            { name: "Red Deer", description: "Loài hươu lớn, sống trong các khu rừng của Đan Mạch.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/RedDeer.jpg/1024px-RedDeer.jpg" },
+                            { name: "Fallow Deer", description: "Loài hươu nhỏ hơn, có đốm trắng trên lưng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Fallow_deer_Dyrehaven_Copenhagen_2009.jpg/1024px-Fallow_deer_Dyrehaven_Copenhagen_2009.jpg" },
+                            { name: "European Otter", description: "Loài rái cá sống ở sông và ven biển.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/European_otter_Lutra_lutra.jpg/1024px-European_otter_Lutra_lutra.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Estonia",
+                        flag: "https://flagcdn.com/w320/ee.png",
+                        animals: [
+                            { name: "Brown Bear", description: "Loài gấu lớn, phổ biến ở các khu rừng của Estonia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Brown_Bear_in_Karelia.jpg/1024px-Brown_Bear_in_Karelia.jpg" },
+                            { name: "Eurasian Lynx", description: "Loài mèo Lynx lớn, sống trong các khu rừng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Eurasian_lynx.jpg/1024px-Eurasian_lynx.jpg" },
+                            { name: "Grey Wolf", description: "Loài sói lớn, sống theo đàn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/GreyWolf.jpg/1024px-GreyWolf.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Phần Lan",
+                        flag: "https://flagcdn.com/w320/fi.png",
+                        animals: [
+                            { name: "Brown Bear", description: "Loài gấu lớn, phổ biến ở các khu rừng của Phần Lan.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Brown_Bear_in_Karelia.jpg/1024px-Brown_Bear_in_Karelia.jpg" },
+                            { name: "Eurasian Lynx", description: "Loài mèo Lynx lớn, sống trong các khu rừng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Eurasian_lynx.jpg/1024px-Eurasian_lynx.jpg" },
+                            { name: "Saimaa Ringed Seal", description: "Loài hải cẩu nước ngọt quý hiếm, sống ở hồ Saimaa.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Saimaa_Ringed_Seal_resting_on_a_rock.jpg/1024px-Saimaa_Ringed_Seal_resting_on_a_rock.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Pháp",
+                        flag: "https://flagcdn.com/w320/fr.png",
+                        animals: [
+                            { name: "Brown Bear", description: "Loài gấu lớn, sống ở vùng núi Pyrenees và Alps.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Brown_Bear_in_Karelia.jpg/1024px-Brown_Bear_in_Karelia.jpg" },
+                            { name: "Iberian Wolf", description: "Phân loài sói sống ở phía nam nước Pháp.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Lobo_ib%C3%A9rico.jpg/1024px-Lobo_ib%C3%A9rico.jpg" },
+                            { name: "Alpine Ibex", description: "Loài dê núi sống ở dãy núi Alps.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Alpine_ibex_male_Gran_Paradiso_National_Park.jpg/1024px-Alpine_ibex_male_Gran_Paradiso_National_Park.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Đức",
+                        flag: "https://flagcdn.com/w320/de.png",
+                        animals: [
+                            { name: "Lợn rừng", description: "Loài động vật có vú thuộc họ lợn, có nguồn gốc từ lục địa Á-Âu và Bắc Phi. Chúng là tổ tiên của lợn nhà và là một trong những loài có vú lớn nhất và phổ biến nhất ở châu Âu.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Wild_Boar_-_Sus_scrofa.jpg/800px-Wild_Boar_-_Sus_scrofa.jpg" },
+                            { name: "Sói xám", description: "Loài động vật có vú thuộc họ chó, từng phân bố rộng rãi ở châu Âu. Mặc dù số lượng đã giảm đáng kể, nhưng chúng đang dần phục hồi ở một số khu vực của Đức và các nước châu Âu khác.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Kolm%C3%A5rden_Wolf.jpg/800px-Kolm%C3%A5rden_Wolf.jpg" },
+                            { name: "Red Deer", description: "Loài hươu lớn, sống trong các khu rừng của Đức.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/RedDeer.jpg/1024px-RedDeer.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Hy Lạp",
+                        flag: "https://flagcdn.com/w320/gr.png",
+                        animals: [
+                            { name: "Brown Bear", description: "Loài gấu lớn, sống ở vùng núi Hy Lạp.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Brown_Bear_in_Karelia.jpg/1024px-Brown_Bear_in_Karelia.jpg" },
+                            { name: "Mediterranean Monk Seal", description: "Loài hải cẩu quý hiếm, sống ở vùng ven biển Hy Lạp.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Monachus_monachus_Cres.JPG/1024px-Monachus_monachus_Cres.JPG" },
+                            { name: "Cretan Wildgoat", description: "Loài dê núi hoang dã, đặc hữu của đảo Crete.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Kri-kri_male_Capra_aegagrus_creticus.jpg/1024px-Kri-kri_male_Capra_aegagrus_creticus.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Na Uy",
+                        flag: "https://flagcdn.com/w320/no.png",
+                        animals: [
+                            { name: "Tuần lộc", description: "Loài hươu sống ở vùng Bắc Cực và vùng cận Bắc Cực, bao gồm cả Na Uy. Cả con đực và con cái đều có sừng, điều hiếm thấy ở các loài hươu khác.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Reinbukken_p%C3%A5_frisk_gr%C3%B8nt_beite._-_panoramio.jpg/800px-Reinbukken_p%C3%A5_frisk_gr%C3%B8nt_beite._-_panoramio.jpg" },
+                            { name: "Cáo Bắc Cực", description: "Loài cáo nhỏ thích nghi với môi trường lạnh giá của vùng Bắc Cực. Chúng có bộ lông dày màu trắng vào mùa đông và chuyển sang màu nâu hoặc xám vào mùa hè.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Iceland-1979445_%28cropped_3%29.jpg/800px-Iceland-1979445_%28cropped_3%29.jpg" },
+                            { name: "Atlantic Puffin", description: "Loài chim biển nhỏ, có mỏ màu sắc rực rỡ.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Puffin_bird.jpg/1024px-Puffin_bird.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Tây Ban Nha",
+                        flag: "https://flagcdn.com/w320/es.png",
+                        animals: [
+                            { name: "Linh miêu Iberia", description: "Loài mèo hoang dã đặc hữu của bán đảo Iberia. Đây là một trong những loài mèo hoang dã nguy cấp nhất thế giới, với số lượng chỉ còn khoảng 400 cá thể trong tự nhiên.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Linces19.jpg/800px-Linces19.jpg" },
+                            { name: "Đại bàng Hoàng gia", description: "Loài chim săn mồi lớn nhất ở châu Âu. Chúng có sải cánh lên đến 2,3 mét và là biểu tượng của sức mạnh và sự uy nghi trong nhiều nền văn hóa.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Golden_Eagle_in_flight_-_5.jpg/800px-Golden_Eagle_in_flight_-_5.jpg" },
+                            { name: "Iberian Wolf", description: "Loài sói sống ở bán đảo Iberia.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Lobo_ib%C3%A9rico.jpg/1024px-Lobo_ib%C3%A9rico.jpg" }
+                        ]
+                    }
+                ]
+            },
+            "africa": {
+                name: "Châu Phi",
+                countries: [
+                    {
+                        name: "Algeria",
+                        flag: "https://flagcdn.com/w320/dz.png",
+                        animals: [
+                            { name: "Fennec Fox", description: "Loài cáo nhỏ thích nghi với cuộc sống sa mạc, nổi tiếng với đôi tai lớn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Fennec_Fox.jpg/1200px-Fennec_Fox.jpg" },
+                            { name: "Barbary Lion", description: "Một phân loài sư tử đã tuyệt chủng ở tự nhiên, từng sinh sống ở Bắc Phi.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Panthera_leo_barbarus.jpg/800px-Panthera_leo_barbarus.jpg" },
+                            { name: "Gazelle", description: "Loài linh dương duyên dáng với tốc độ và sự nhanh nhẹn đáng kinh ngạc.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Gazella_dorcas.jpg/1024px-Gazella_dorcas.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Angola",
+                        flag: "https://flagcdn.com/w320/ao.png",
+                        animals: [
+                            { name: "Angolan Colobus", description: "Loài khỉ sống trên cây với bộ lông đen trắng đặc trưng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Angolan_colobus.jpg/800px-Angolan_colobus.jpg" },
+                            { name: "Black Rhinoceros", description: "Loài tê giác đang cực kỳ nguy cấp, bị đe dọa bởi săn bắn trộm.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Black_rhinoceros.jpg/1024px-Black_rhinoceros.jpg" },
+                            { name: "African Elephant", description: "Động vật có vú trên cạn lớn nhất thế giới, nổi tiếng với vòi và ngà.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Elephas_maximus_indicus.jpg/1200px-Elephas_maximus_indicus.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Botswana",
+                        flag: "https://flagcdn.com/w320/bw.png",
+                        animals: [
+                            { name: "African Wild Dog", description: "Loài chó săn có nguy cơ tuyệt chủng, sống theo đàn và có kiểu săn mồi độc đáo.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Lycaon_pictus_chubbi.jpg/1024px-Lycaon_pictus_chubbi.jpg" },
+                            { name: "Cheetah", description: "Loài động vật trên cạn nhanh nhất thế giới, nổi tiếng với tốc độ đáng kinh ngạc.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Cheetah_at_Cincinnati_Zoo.jpg/1200px-Cheetah_at_Cincinnati_Zoo.jpg" },
+                            { name: "Kalahari Lion", description: "Phân loài sư tử thích nghi với môi trường khô cằn của sa mạc Kalahari.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Kalahari_lion.jpg/800px-Kalahari_lion.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Burundi",
+                        flag: "https://flagcdn.com/w320/bi.png",
+                        animals: [
+                            { name: "Mountain Gorilla", description: "Loài linh trưởng lớn sống trên núi, có nguy cơ tuyệt chủng cao.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Mountain_gorilla_Silverback_Madagascar.jpg/1024px-Mountain_gorilla_Silverback_Madagascar.jpg" },
+                            { name: "Chimpanzee", description: "Loài linh trưởng thông minh và có tính xã hội cao, có họ hàng gần với con người.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Chimpanzee_with_infant.jpg/1024px-Chimpanzee_with_infant.jpg" },
+                            { name: "Golden Monkey", description: "Một loài khỉ quý hiếm với bộ lông màu vàng cam nổi bật.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Golden_monkey_in_natural_habitat.jpg/800px-Golden_monkey_in_natural_habitat.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Cameroon",
+                        flag: "https://flagcdn.com/w320/cm.png",
+                        animals: [
+                            { name: "Cross River Gorilla", description: "Phân loài gorilla cực kỳ nguy cấp, sinh sống ở biên giới Nigeria và Cameroon.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Cross_River_Gorilla.jpg/800px-Cross_River_Gorilla.jpg" },
+                            { name: "Giant Pangolin", description: "Loài tê tê lớn nhất, bị đe dọa nghiêm trọng bởi săn bắn trộm.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Giant_Pangolin_%28Smutsia_gigantea%29.jpg/1024px-Giant_Pangolin_%28Smutsia_gigantea%29.jpg" },
+                            { name: "African Forest Elephant", description: "Phân loài слон nhỏ hơn обитающий в лесах Центральной и Западной Африки.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/African_Forest_Elephant.jpg/1024px-African_Forest_Elephant.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Ai Cập",
+                        flag: "https://flagcdn.com/w320/eg.png",
+                        animals: [
+                            { name: "Egyptian Vulture", description: "Loài kền kền nhỏ với bộ lông trắng và mỏ màu vàng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Egyptian_Vulture_%28Neophron_percnopterus%29_at_Sanjay_Gandhi_National_Park.jpg/1024px-Egyptian_Vulture_%28Neophron_percnopterus%29_at_Sanjay_Gandhi_National_Park.jpg" },
+                            { name: "Nile Crocodile", description: "Loài cá sấu lớn nhất châu Phi, обитающий в реках и озерах.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Nilkrokodil.jpg/1024px-Nilkrokodil.jpg" },
+                            { name: "Dorcas Gazelle", description: "Loài linh dương nhỏ, хорошо приспособленная к жизни в пустыне.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Gazella_dorcas.jpg/1024px-Gazella_dorcas.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Kenya",
+                        flag: "https://flagcdn.com/w320/ke.png",
+                        animals: [
+                            { name: "Lion", description: "Loài кошка nổi tiếng với sức mạnh và vẻ đẹp của nó.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/1024px-Lion_waiting_in_Namibia.jpg" },
+                            { name: "African Elephant", description: "Động vật có vú trên cạn lớn nhất thế giới, nổi tiếng với vòi và ngà.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Elephas_maximus_indicus.jpg/1200px-Elephas_maximus_indicus.jpg" },
+                            { name: "Masai Giraffe", description: "Loài hươu cao cổ cao nhất thế giới, có hoa văn đốm đặc biệt.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Masai_giraffe.jpg/1024px-Masai_giraffe.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Nigeria",
+                        flag: "https://flagcdn.com/w320/ng.png",
+                        animals: [
+                            { name: "Khỉ đột", description: "Loài linh trưởng lớn, chủ yếu sống trên mặt đất, sinh sống ở các khu rừng của Châu Phi cận Sahara. Chúng là loài linh trưởng lớn nhất hiện nay và có quan hệ gần gũi với con người.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Male_western_gorilla_in_SF_zoo.jpg/800px-Male_western_gorilla_in_SF_zoo.jpg" },
+                            { name: "Voi châu Phi", description: "Loài động vật có vú trên cạn lớn nhất hiện nay. Chúng có đặc điểm nhận dạng là tai lớn hình châu Phi và ngà dài cong. Voi đóng vai trò quan trọng trong hệ sinh thái và văn hóa châu Phi.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/African_elephant_warning_raised_trunk.jpg/800px-African_elephant_warning_raised_trunk.jpg" },
+                            { name: "Nigerian Chimpanzee", description: "Phân loài tinh tinh đang bị đe dọa, sinh sống trong các khu rừng của Nigeria.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Nigerian_chimpanzee.jpg/800px-Nigerian_chimpanzee.jpg" }
+                        ]
+                    }
+                ]
+            },
+            "north-america": {
+                name: "Bắc Mỹ",
+                countries: [
+                    {
+                        name: "Canada",
+                        flag: "https://flagcdn.com/w320/ca.png",
+                        animals: [
+                            { name: "Hải ly Canada", description: "Loài gặm nhấm bán thủy sinh bản địa của Bắc Mỹ. Chúng nổi tiếng với khả năng xây đập và nhà bằng cành cây, bùn và đá, tạo ra các hồ nhỏ làm nơi trú ẩn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/American_Beaver.jpg/800px-American_Beaver.jpg" },
+                            { name: "Gấu xám", description: "Loài gấu lớn, có bướu trên vai.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Grizzly_bear_at_Denali.jpg/800px-Grizzly_bear_at_Denali.jpg" },
+                            { name: "Canadian Lynx", description: "Loài mèo Lynx sống ở phương bắc.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Canadian_Lynx_in_snow.jpg/1024px-Canadian_Lynx_in_snow.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Hoa Kỳ",
+                        flag: "https://flagcdn.com/w320/us.png",
+                        animals: [
+                            { name: "Đại bàng đầu trắng", description: "Loài chim săn mồi được tìm thấy ở Bắc Mỹ. Đây là biểu tượng quốc gia của Hoa Kỳ, xuất hiện trên quốc huy, tiền và nhiều biểu tượng chính thức khác.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/About_to_Launch_%2826075320352%29.jpg/800px-About_to_Launch_%2826075320352%29.jpg" },
+                            { name: "Bò rừng Bison", description: "Loài bò rừng Bison Mỹ từng lang thang khắp Bắc Mỹ với số lượng hàng triệu con, nhưng gần như bị săn bắn tuyệt chủng vào cuối thế kỷ 19. Ngày nay, chúng đã phục hồi một phần nhờ các nỗ lực bảo tồn.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/American_bison_k5680-1.jpg/800px-American_bison_k5680-1.jpg" },
+                            { name: "American Bison", description: "Loài bò rừng lớn, sống ở đồng cỏ.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/American_bison_k5683.jpg/1024px-American_bison_k5683.jpg" }
+                        ]
+                    },
+                    {
+                        name: "Mexico",
+                        flag: "https://flagcdn.com/w320/mx.png",
+                        animals: [
+                            { name: "Báo gấm", description: "Loài mèo lớn thứ ba ở Tây bán cầu, sau báo đốm và sư tử núi. Chúng có bộ lông đốm đặc trưng giúp ngụy trang trong môi trường rừng nhiệt đới.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Jaguar_%28Panthera_onca_palustris%29_female_Piquiri_River_2.JPG/800px-Jaguar_%28Panthera_onca_palustris%29_female_Piquiri_River_2.JPG" },
+                            { name: "Mexican Wolf", description: "Phân loài sói nhỏ, có nguy cơ tuyệt chủng cao.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Mexican_wolf_pair.jpg/1024px-Mexican_wolf_pair.jpg" },
+                            { name: "Monarch Butterfly", description: "Loài bướm di cư nổi tiếng.", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Monarch_Butterfly_on_Milkweed.jpg/1024px-Monarch_Butterfly_on_Milkweed.jpg" }
+                        ]
+                    }
+                ]
+            },
+            "south-america": {
+                name: "Nam Mỹ",
+                countries: [
+                    {
+                        name: "Brazil",
+                        flag: "https://flagcdn.com/w320/br.png",
+                        animals: [
+                        
+                            {
+                                name: "Báo đốm Mỹ",
+                                description: "Báo đốm Mỹ là một loài mèo lớn, là thành viên duy nhất còn sống của chi Panthera có nguồn gốc từ Châu Mỹ. Chúng là loài săn mồi đỉnh cao trong rừng Amazon và các hệ sinh thái khác ở Nam Mỹ.",
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Standing_jaguar.jpg/800px-Standing_jaguar.jpg",
+                                scientificName: "Panthera onca",
+                                habitat: "Rừng nhiệt đới Amazon, đầm lầy Pantanal và rừng khô",
+                                diet: "Săn mồi lớn như cá sấu caiman, capybara và hươu",
+                                conservationStatus: "Sắp nguy cấp"
+                            },
+                            {
+                                name: "Khỉ nhện",
+                                description: "Khỉ nhện là loài khỉ có đuôi dài, sống trên cây ở rừng nhiệt đới Nam Mỹ. Chúng có tay dài và đuôi có thể nắm bắt, giúp di chuyển nhanh nhẹn giữa các cành cây.",
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Ateles_fusciceps_Colombia.JPG/800px-Ateles_fusciceps_Colombia.JPG",
+                                scientificName: "Ateles",
+                                habitat: "Rừng nhiệt đới nguyên sinh",
+                                diet: "Quả, hạt, lá, hoa, côn trùng và trứng chim",
+                                conservationStatus: "Nguy cấp"
+                            }
+                        ]
+                    },
+                    {
+                        name: "Colombia",
+                        flag: "https://flagcdn.com/w320/co.png",
+                        animals: [
+                            {
+                                name: "Gấu trúc mũi trắng",
+                                description: "Gấu trúc mũi trắng là một loài động vật có vú thuộc họ gấu trúc, có nguồn gốc từ Châu Mỹ. Chúng có đặc điểm nhận dạng là chiếc mũi dài, linh hoạt và vòng trắng quanh mắt.",
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Coati_in_Tikal.jpg/800px-Coati_in_Tikal.jpg",
+                                scientificName: "Nasua nasua",
+                                habitat: "Rừng nhiệt đới và rừng khô",
+                                diet: "Ăn tạp: côn trùng, trứng, quả và động vật nhỏ",
+                                conservationStatus: "Ít quan tâm"
+                            },
+                            {
+                                name: "Ếch độc màu vàng",
+                                description: "Ếch độc màu vàng là một trong những loài động vật độc nhất thế giới. Chỉ một con ếch nhỏ có thể chứa đủ độc tố để giết chết 10 người. Màu sắc rực rỡ của chúng là tín hiệu cảnh báo cho kẻ săn mồi.",
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Oophaga_lehmanni.jpg/800px-Oophaga_lehmanni.jpg",
+                                scientificName: "Phyllobates terribilis",
+                                habitat: "Rừng mưa nhiệt đới ẩm ướt",
+                                diet: "Côn trùng nhỏ, đặc biệt là kiến và mối",
+                                conservationStatus: "Nguy cấp"
+                            }
+                        ]
+                    },
+                    {
+                        name: "Peru",
+                        flag: "https://flagcdn.com/w320/pe.png",
+                        animals: [
+                            {
+                                name: "Lạc đà không bướu",
+                                description: "Lạc đà không bướu, bao gồm alpaca và llama, là loài thú có vú bản địa của dãy núi Andes ở Nam Mỹ. Chúng đã được thuần hóa từ hàng nghìn năm và có vai trò quan trọng trong văn hóa và kinh tế của người dân địa phương.",
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Llama_lying_down.jpg/800px-Llama_lying_down.jpg",
+                                scientificName: "Lama glama",
+                                habitat: "Vùng cao nguyên Andes",
+                                diet: "Cỏ, rêu và thực vật thấp",
+                                conservationStatus: "Ít quan tâm"
+                            },
+                            {
+                                name: "Gấu kính",
+                                description: "Gấu kính là loài gấu duy nhất bản địa của Nam Mỹ. Chúng có đặc điểm nhận dạng là vòng lông trắng quanh mắt, trông giống như đang đeo kính, từ đó có tên gọi.",
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Spectacled_Bear_-_Houston_Zoo.jpg/800px-Spectacled_Bear_-_Houston_Zoo.jpg",
+                                scientificName: "Tremarctos ornatus",
+                                habitat: "Rừng mây và rừng khô ở dãy núi Andes",
+                                diet: "Chủ yếu ăn thực vật: quả, lá cây, thân cây và rễ",
+                                conservationStatus: "Sắp bị đe dọa"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "oceania": {
+                name: "Châu Đại Dương",
+                countries: [
+                    {
+                        name: "Úc",
+                        flag: "https://flagcdn.com/w320/au.png",
+                        animals: [
+                            {
+                                name: "Kangaroo",
+                                description: "Kangaroo là một loài thú có túi từ họ Macropodidae (macropods, có nghĩa là 'bàn chân lớn'). Chúng nổi tiếng với khả năng nhảy xa và túi trên bụng để nuôi con.",
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Kangaroo_Australia_01_11_2008_-_retouch.JPG/800px-Kangaroo_Australia_01_11_2008_-_retouch.JPG",
+                                scientificName: "Macropus",
+                                habitat: "Đồng cỏ, rừng bụi và sa mạc",
+                                diet: "Cỏ, lá cây và thực vật thấp",
+                                conservationStatus: "Ít quan tâm"
+                            },
+                            {
+                                name: "Koala",
+                                description: "Koala là loài thú có túi sống trên cây, đặc hữu của Australia. Chúng dành phần lớn thời gian trên cây bạch đàn và chủ yếu ăn lá cây này, mặc dù lá bạch đàn có độc với hầu hết các loài động vật khác.",
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Koala_climbing_tree.jpg/800px-Koala_climbing_tree.jpg",
+                                scientificName: "Phascolarctos cinereus",
+                                habitat: "Rừng bạch đàn ở phía đông và nam Australia",
+                                diet: "Chủ yếu ăn lá bạch đàn",
+                                conservationStatus: "Sắp bị đe dọa"
+                            }
+                        ]
+                    },
+                    {
+                        name: "New Zealand",
+                        flag: "https://flagcdn.com/w320/nz.png",
+                        animals: [
+                            {
+                                name: "Kiwi",
+                                description: "Kiwi là loài chim không bay đặc hữu của New Zealand, thuộc chi Apteryx và họ Apterygidae. Chúng là biểu tượng quốc gia của New Zealand và người dân nước này thường được gọi là 'Kiwis'.",
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/TeTuatahianui.jpg/800px-TeTuatahianui.jpg",
+                                scientificName: "Apteryx",
+                                habitat: "Rừng ẩm ướt, đồng cỏ và bụi rậm",
+                                diet: "Giun đất, côn trùng, ấu trùng, hạt và quả mọng",
+                                conservationStatus: "Nguy cấp"
+                            },
+                            {
+                                name: "Cá heo Hector",
+                                description: "Cá heo Hector là loài cá heo nhỏ nhất thế giới và là loài đặc hữu của vùng biển ven bờ New Zealand. Chúng có đặc điểm nhận dạng là thân hình nhỏ gọn và vây lưng tròn đặc trưng.",
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/HectorDolphin.jpg/800px-HectorDolphin.jpg",
+                                scientificName: "Cephalorhynchus hectori",
+                                habitat: "Vùng biển nông ven bờ New Zealand",
+                                diet: "Cá nhỏ và mực",
+                                conservationStatus: "Nguy cấp"
+                            }
+                        ]
+                    },
+                    {
+                        name: "Papua New Guinea",
+                        flag: "https://flagcdn.com/w320/pg.png",
+                        animals: [
+                            {
+                                name: "Chim thiên đường",
+                                description: "Chim thiên đường là nhóm các loài chim nổi tiếng với bộ lông rực rỡ và các nghi thức cầu hôn phức tạp. Chúng chủ yếu sống ở Papua New Guinea và các đảo lân cận.",
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Paradisaea_raggiana_-_Lightmatter.jpg/800px-Paradisaea_raggiana_-_Lightmatter.jpg",
+                                scientificName: "Paradisaeidae",
+                                habitat: "Rừng nhiệt đới và rừng mây",
+                                diet: "Quả, hạt, côn trùng và động vật nhỏ",
+                                conservationStatus: "Ít quan tâm đến Nguy cấp (tùy loài)"
+                            },
+                            {
+                                name: "Chuột túi cây",
+                                description: "Chuột túi cây là loài thú có túi sống trên cây, phân bố ở Papua New Guinea và Australia. Chúng có đuôi dài để giữ thăng bằng và bàn chân thích nghi với việc leo trèo.",
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Dendrolagus_matschiei_-_Karlsruhe_Zoo_01.jpg/800px-Dendrolagus_matschiei_-_Karlsruhe_Zoo_01.jpg",
+                                scientificName: "Dendrolagus",
+                                habitat: "Rừng nhiệt đới và rừng mây",
+                                diet: "Lá cây, quả, hoa và một số động vật không xương sống",
+                                conservationStatus: "Sắp nguy cấp đến Nguy cấp (tùy loài)"
+                            }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // Quiz data
+        const quizData = [
+            {
+                question: "Loài động vật nào là động vật có vú lớn nhất trên cạn?",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Elephas_maximus_indicus.jpg/1200px-Elephas_maximus_indicus.jpg",
+                options: ["Voi châu Phi", "Hà mã", "Tê giác trắng", "Hươu cao cổ"],
+                correctAnswer: 0
+            },
+            {
+                question: "Loài động vật nào có thể nhảy cao gấp 6 lần chiều cao của chúng?",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Kangaroos_at_Lucky_Bay%2C_Western_Australia.jpg/1024px-Kangaroos_at_Lucky_Bay%2C_Western_Australia.jpg",
+                options: ["Sư tử", "Kangaroo", "Báo", "Khỉ"],
+                correctAnswer: 1
+            },
+            {
+                question: "Loài động vật nào có thể quay đầu 270 độ?",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Athene_noctua_%28cropped%29.jpg/800px-Athene_noctua_%28cropped%29.jpg",
+                options: ["Cú", "Đại bàng", "Kiwi", "Chim cánh cụt"],
+                correctAnswer: 0
+            },
+            {
+                question: "Loài động vật nào có thể sống lâu nhất?",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Green_Sea_Turtle_underwater.jpg/1024px-Green_Sea_Turtle_underwater.jpg",
+                options: ["Voi", "Rùa biển", "Cá voi", "Đại bàng"],
+                correctAnswer: 1
+            },
+            {
+                question: "Loài động vật nào là loài chạy nhanh nhất trên cạn?",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Cheetah_at_Cincinnati_Zoo.jpg/1200px-Cheetah_at_Cincinnati_Zoo.jpg",
+                options: ["Báo đốm", "Sư tử", "Ngựa", "Linh dương"],
+                correctAnswer: 0
+            }
+        ];
+
+        // DOM Elements
+        const navbar = document.querySelector('.navbar');
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const continentCards = document.querySelectorAll('.continent-card');
+        const countriesModal = document.getElementById('countries-modal');
+        const closeCountriesModal = document.getElementById('close-countries-modal');
+        const continentTitle = document.getElementById('continent-title');
+        const countriesList = document.getElementById('countries-list');
+        const animalsList = document.getElementById('animals-list');
+        const backToCountries = document.getElementById('back-to-countries');
+        const animalDetailModal = document.getElementById('animal-detail-modal');
+        const closeAnimalDetail = document.getElementById('close-animal-detail');
+        const favoritesBtn = document.getElementById('favorites-btn');
+        const mobileFavoritesBtn = document.getElementById('mobile-favorites-btn');
+        const favoritesDrawer = document.getElementById('favorites-drawer');
+        const closeFavorites = document.getElementById('close-favorites');
+        const favoritesList = document.getElementById('favorites-list');
+        const noFavorites = document.getElementById('no-favorites');
+        const clearFavoritesContainer = document.getElementById('clear-favorites-container');
+        const clearFavorites = document.getElementById('clear-favorites');
+        const favoritesCount = document.getElementById('favorites-count');
+        const mobileFavoritesCount = document.getElementById('mobile-favorites-count');
+        const startQuizBtn = document.getElementById('start-quiz-btn');
+        const quizStart = document.getElementById('quiz-start');
+        const quizQuestions = document.getElementById('quiz-questions');
+        const quizResults = document.getElementById('quiz-results');
+        const questionNumber = document.getElementById('question-number');
+        const progressBarFill = document.getElementById('progress-bar-fill');
+        const timeLeft = document.getElementById('time-left');
+        const questionImage = document.getElementById('question-image').querySelector('img');
+        const questionText = document.getElementById('question-text');
+        const quizOptions = document.getElementById('quiz-options');
+        const nextButton = document.getElementById('next-button');
+        const nextQuestionBtn = document.getElementById('next-question-btn');
+        const quizScore = document.getElementById('quiz-score');
+        const quizFeedback = document.getElementById('quiz-feedback');
+        const retryQuizBtn = document.getElementById('retry-quiz-btn');
+        const currentYear = document.getElementById('current-year');
+
+        // Set current year in footer
+        currentYear.textContent = new Date().getFullYear();
+
+        // Initialize favorites from localStorage
+        let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+        updateFavoritesUI();
+
+        // Event Listeners
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Theme Toggle
+        themeToggle.addEventListener('click', toggleDarkMode);
+        mobileThemeToggle.addEventListener('click', toggleDarkMode);
+
+        function toggleDarkMode() {
+            const isDark = document.body.classList.toggle('dark');
+            
+            if (isDark) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                mobileThemeToggle.innerHTML = '<i class="fas fa-sun"></i><span>Chế độ sáng</span>';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                mobileThemeToggle.innerHTML = '<i class="fas fa-moon"></i><span>Chế độ tối</span>';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.body.classList.add('dark');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            mobileThemeToggle.innerHTML = '<i class="fas fa-sun"></i><span>Chế độ sáng</span>';
+        }
+
+        // Mobile Menu
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('hidden');
+            mobileMenuBtn.innerHTML = isOpen ? '<i class="fas fa-bars"></i>' : '<i class="fas fa-times"></i>';
+        });
+
+        // Continent Cards
+        continentCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const continent = card.dataset.continent;
+                openCountriesModal(continent);
+            });
+        });
+
+        // Close Countries Modal
+        closeCountriesModal.addEventListener('click', () => {
+            countriesModal.style.display = 'none';
+        });
+
+        // Back to Countries
+        backToCountries.addEventListener('click', () => {
+            animalsList.classList.add('hidden');
+            countriesList.classList.remove('hidden');
+            backToCountries.classList.add('hidden');
+        });
+
+        // Close Animal Detail
+        closeAnimalDetail.addEventListener('click', () => {
+            animalDetailModal.style.display = 'none';
+        });
+
+        // Favorites Drawer
+        favoritesBtn.addEventListener('click', toggleFavoritesDrawer);
+        mobileFavoritesBtn.addEventListener('click', toggleFavoritesDrawer);
+        closeFavorites.addEventListener('click', () => {
+            favoritesDrawer.classList.remove('open');
+        });
+
+        // Clear Favorites
+        clearFavorites.addEventListener('click', () => {
+            favorites = [];
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoritesUI();
+        });
+
+        // Quiz
+        startQuizBtn.addEventListener('click', startQuiz);
+        nextQuestionBtn.addEventListener('click', nextQuestion);
+        retryQuizBtn.addEventListener('click', startQuiz);
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                countriesModal.style.display = 'none';
+                animalDetailModal.style.display = 'none';
+            }
+        });
+
+        // Functions
+        function openCountriesModal(continent) {
+            const continentData = continentsData[continent];
+            
+            if (!continentData) return;
+            
+            continentTitle.textContent = continentData.name;
+            countriesList.innerHTML = '';
+            animalsList.innerHTML = '';
+            
+            continentData.countries.forEach(country => {
+                const countryCard = document.createElement('div');
+                countryCard.className = 'country-card';
+                countryCard.innerHTML = `
+                    <div class="flag-container">
+                        <img src="${country.flag}" alt="${country.name}" class="flag-img">
+                    </div>
+                    <h3 class="font-medium">${country.name}</h3>
+                `;
+                
+                countryCard.addEventListener('click', () => {
+                    showAnimals(country);
+                });
+                
+                countriesList.appendChild(countryCard);
+            });
+            
+            countriesModal.style.display = 'block';
+            animalsList.classList.add('hidden');
+            countriesList.classList.remove('hidden');
+            backToCountries.classList.add('hidden');
+        }
+
+        function showAnimals(country) {
+            animalsList.innerHTML = '';
+            
+            if (country.animals.length === 0) {
+                animalsList.innerHTML = `
+                    <div class="text-center py-12 col-span-3">
+                        <p class="text-gray-500 dark:text-gray-400">Không có dữ liệu động vật cho quốc gia này.</p>
+                    </div>
+                `;
+            } else {
+                country.animals.forEach(animal => {
+                    const animalCard = document.createElement('div');
+                    animalCard.className = 'animal-card';
+                    
+                    const isFavorite = favorites.some(fav => fav.name === animal.name);
+                    
+                    animalCard.innerHTML = `
+                        <div class="animal-img-container">
+                            <img src="${animal.imageUrl}" alt="${animal.name}" class="animal-img">
+                            <div class="animal-overlay"></div>
+                            <button class="favorite-btn ${isFavorite ? 'active' : ''}" data-name="${animal.name}">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="info-btn">
+                                <i class="fas fa-info"></i>
+                            </button>
+                        </div>
+                        <div class="animal-content">
+                            <h3 class="animal-title">${animal.name}</h3>
+                            <p class="animal-description">${animal.description}</p>
+                        </div>
+                    `;
+                    
+                    const favoriteBtn = animalCard.querySelector('.favorite-btn');
+                    favoriteBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        toggleFavorite(animal);
+                        favoriteBtn.classList.toggle('active');
+                    });
+                    
+                    const infoBtn = animalCard.querySelector('.info-btn');
+                    infoBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        showAnimalDetail(animal);
+                    });
+                    
+                    animalCard.addEventListener('click', () => {
+                        showAnimalDetail(animal);
+                    });
+                    
+                    animalsList.appendChild(animalCard);
+                });
+            }
+            
+            continentTitle.textContent = country.name;
+            animalsList.classList.remove('hidden');
+            countriesList.classList.add('hidden');
+            backToCountries.classList.remove('hidden');
+        }
+
+        function showAnimalDetail(animal) {
+            document.getElementById('detail-animal-img').src = animal.imageUrl;
+            document.getElementById('detail-animal-name').textContent = animal.name;
+            document.getElementById('detail-animal-description').textContent = animal.description;
+            document.getElementById('detail-animal-habitat').textContent = animal.habitat || "Đang cập nhật thông tin về môi trường sống của loài này.";
+            document.getElementById('detail-animal-diet').textContent = animal.diet || "Đang cập nhật thông tin về chế độ ăn của loài này.";
+            document.getElementById('detail-animal-scientific').textContent = animal.scientificName || "Đang cập nhật";
+            
+            const conservationStatus = animal.conservationStatus || "Chưa xác định";
+            document.getElementById('detail-animal-conservation').textContent = conservationStatus;
+            
+            const statusIndicator = document.getElementById('conservation-status-indicator');
+            if (conservationStatus === "Nguy cấp") {
+                statusIndicator.className = "h-3 w-3 rounded-full mr-2 bg-red-500";
+            } else if (conservationStatus === "Sắp nguy cấp") {
+                statusIndicator.className = "h-3 w-3 rounded-full mr-2 bg-orange-500";
+            } else if (conservationStatus === "Sắp bị đe dọa") {
+                statusIndicator.className = "h-3 w-3 rounded-full mr-2 bg-yellow-500";
+            } else if (conservationStatus === "Ít quan tâm") {
+                statusIndicator.className = "h-3 w-3 rounded-full mr-2 bg-green-500";
+            } else {
+                statusIndicator.className = "h-3 w-3 rounded-full mr-2 bg-gray-400";
+            }
+            
+            document.getElementById('learn-more-link').href = `https://www.google.com/search?q=${encodeURIComponent(animal.name)}`;
+            
+            animalDetailModal.style.display = 'block';
+        }
+
+        function toggleFavorite(animal) {
+            const index = favorites.findIndex(fav => fav.name === animal.name);
+            
+            if (index === -1) {
+                favorites.push(animal);
+            } else {
+                favorites.splice(index, 1);
+            }
+            
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoritesUI();
+        }
+
+        function updateFavoritesUI() {
+            favoritesList.innerHTML = '';
+            
+            if (favorites.length === 0) {
+                noFavorites.style.display = 'flex';
+                clearFavoritesContainer.classList.add('hidden');
+                favoritesCount.classList.add('hidden');
+                mobileFavoritesCount.classList.add('hidden');
+            } else {
+                noFavorites.style.display = 'none';
+                clearFavoritesContainer.classList.remove('hidden');
+                favoritesCount.textContent = favorites.length;
+                favoritesCount.classList.remove('hidden');
+                mobileFavoritesCount.textContent = favorites.length;
+                mobileFavoritesCount.classList.remove('hidden');
+                
+                favorites.forEach(animal => {
+                    const favoriteItem = document.createElement('div');
+                    favoriteItem.className = 'favorite-item';
+                    favoriteItem.innerHTML = `
+                        <div class="favorite-item-img">
+                            <img src="${animal.imageUrl}" alt="${animal.name}">
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <h3 class="font-medium">${animal.name}</h3>
+                                <button class="text-gray-400 hover:text-red-500 remove-favorite" data-name="${animal.name}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2 mt-1">${animal.description}</p>
+                        </div>
+                    `;
+                    
+                    const removeBtn = favoriteItem.querySelector('.remove-favorite');
+                    removeBtn.addEventListener('click', () => {
+                        toggleFavorite(animal);
+                    });
+                    
+                    favoriteItem.addEventListener('click', (e) => {
+                        if (!e.target.closest('.remove-favorite')) {
+                            showAnimalDetail(animal);
+                        }
+                    });
+                    
+                    favoritesList.appendChild(favoriteItem);
+                });
+            }
+        }
+
+        function toggleFavoritesDrawer() {
+            favoritesDrawer.classList.toggle('open');
+            updateFavoritesUI();
+        }
+
+        // Quiz Functions
+        let currentQuestion = 0;
+        let score = 0;
+        let quizTimer;
+
+        function startQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            quizStart.classList.add('hidden');
+            quizResults.classList.add('hidden');
+            quizQuestions.classList.remove('hidden');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const question = quizData[currentQuestion];
+            questionNumber.textContent = `Câu hỏi ${currentQuestion + 1}/${quizData.length}`;
+            progressBarFill.style.width = `${((currentQuestion + 1) / quizData.length) * 100}%`;
+            questionImage.src = question.image;
+            questionText.textContent = question.question;
+            
+            quizOptions.innerHTML = '';
+            question.options.forEach((option, index) => {
+                const optionButton = document.createElement('button');
+                optionButton.className = 'quiz-option';
+                optionButton.textContent = option;
+                optionButton.dataset.index = index;
+                optionButton.addEventListener('click', selectAnswer);
+                quizOptions.appendChild(optionButton);
+            });
+            
+            nextButton.classList.add('hidden');
+            startTimer();
+        }
+
+        function startTimer() {
+            let seconds = 15;
+            timeLeft.textContent = `${seconds}s`;
+            
+            clearInterval(quizTimer);
+            quizTimer = setInterval(() => {
+                seconds--;
+                timeLeft.textContent = `${seconds}s`;
+                
+                if (seconds <= 5) {
+                    timeLeft.classList.add('text-red-500');
+                } else {
+                    timeLeft.classList.remove('text-red-500');
+                }
+                
+                if (seconds <= 0) {
+                    clearInterval(quizTimer);
+                    showCorrectAnswer();
+                }
+            }, 1000);
+        }
+
+        function selectAnswer(e) {
+            clearInterval(quizTimer);
+            
+            const selectedIndex = parseInt(e.target.dataset.index);
+            const correctIndex = quizData[currentQuestion].correctAnswer;
+            
+            const options = quizOptions.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.removeEventListener('click', selectAnswer);
+            });
+            
+            if (selectedIndex === correctIndex) {
+                e.target.classList.add('correct');
+                score++;
+            } else {
+                e.target.classList.add('incorrect');
+                options[correctIndex].classList.add('correct');
+            }
+            
+            nextButton.classList.remove('hidden');
+        }
+
+        function showCorrectAnswer() {
+            const correctIndex = quizData[currentQuestion].correctAnswer;
+            const options = quizOptions.querySelectorAll('.quiz-option');
+            
+            options.forEach((option, index) => {
+                option.removeEventListener('click', selectAnswer);
+                if (index === correctIndex) {
+                    option.classList.add('correct');
+                }
+            });
+            
+            nextButton.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizQuestions.classList.add('hidden');
+            quizResults.classList.remove('hidden');
+            quizScore.textContent = `${score}/${quizData.length}`;
+            
+            if (score === quizData.length) {
+                quizFeedback.textContent = "Tuyệt vời! Bạn đã trả lời đúng tất cả các câu hỏi!";
+            } else if (score >= quizData.length / 2) {
+                quizFeedback.textContent = "Khá tốt! Bạn đã trả lời đúng hơn một nửa số câu hỏi.";
+            } else {
+                quizFeedback.textContent = "Hãy thử lại! Bạn có thể làm tốt hơn.";
+            }
+        }
+    </script>
+</body>
+</html>
