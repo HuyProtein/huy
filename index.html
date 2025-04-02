@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -1005,7 +1006,839 @@
 
     </style>
 </head>
-<body class="antialiased"> <div class="overlay fixed inset-0 z-[-1]"></div>
+<body class="antialiased"> 
+<!-- Modal chi tiết tin tức -->
+<div id="article-modal" class="modal">
+    <div class="modal-container">
+        <button class="close-button" data-modal-id="article-modal" aria-label="Đóng cửa sổ">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-content-area">
+            <div class="article-header">
+                <div class="article-category mb-2">
+                    <span id="article-category-badge" class="badge badge-green">Bảo tồn</span>
+                    <span id="article-date" class="text-sm text-gray-500 dark:text-gray-400 ml-2">12/04/2023</span>
+                </div>
+                <h2 id="article-title" class="text-2xl md:text-3xl font-bold mb-4 text-gray-800 dark:text-gray-200">
+                    Nỗ lực bảo tồn hổ đang mang lại kết quả tích cực
+                </h2>
+            </div>
+            
+            <div class="article-image-container mb-6">
+                <img id="article-image" src="https://placehold.co/1200x600/10b981/FFFFFF?text=Bảo+tồn+hổ" 
+                     alt="Hình ảnh bài viết" class="w-full h-64 md:h-96 object-cover rounded-lg"/>
+            </div>
+            
+            <div class="article-content prose prose-lg max-w-none dark:prose-invert">
+                <div id="article-content">
+                    <p>Sau nhiều thập kỷ suy giảm đáng báo động, số lượng hổ hoang dã trên toàn cầu đã bắt đầu tăng lên nhờ vào các nỗ lực bảo tồn tích cực từ nhiều quốc gia và tổ chức bảo tồn quốc tế.</p>
+                    
+                    <p>Theo báo cáo mới nhất từ Quỹ Quốc tế Bảo vệ Thiên nhiên (WWF), số lượng hổ hoang dã đã tăng từ khoảng 3,200 cá thể vào năm 2010 lên đến hơn 4,500 cá thể vào năm 2022. Đây là một dấu hiệu đáng khích lệ cho thấy các nỗ lực bảo tồn đang phát huy hiệu quả.</p>
+                    
+                    <h3 class="text-xl font-bold mt-6 mb-3 text-gray-800 dark:text-gray-200">Các yếu tố góp phần vào thành công</h3>
+                    
+                    <p>Nhiều yếu tố đã góp phần vào sự phục hồi của quần thể hổ hoang dã:</p>
+                    
+                    <p><strong>1. Tăng cường chống săn bắt trái phép:</strong> Các quốc gia như Ấn Độ, Nepal và Nga đã tăng cường các biện pháp chống săn bắt trái phép, với các đội tuần tra được trang bị tốt hơn và hình phạt nghiêm khắc hơn đối với những kẻ săn trộm.</p>
+                    
+                    <p><strong>2. Bảo vệ và phục hồi môi trường sống:</strong> Việc mở rộng các khu bảo tồn và kết nối các môi trường sống bị phân mảnh đã giúp hổ có thêm không gian để sinh sống và săn mồi.</p>
+                    
+                    <p><strong>3. Giảm xung đột giữa người và hổ:</strong> Các chương trình giáo dục cộng đồng và hỗ trợ sinh kế thay thế đã giúp giảm xung đột giữa người dân địa phương và hổ.</p>
+                    
+                    <p><strong>4. Hợp tác quốc tế:</strong> Sáng kiến Bảo tồn Hổ Toàn cầu (GTI) đã tạo ra một nền tảng cho 13 quốc gia có hổ hợp tác trong các nỗ lực bảo tồn.</p>
+                </div>
+            </div>
+            
+            <div class="article-footer mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="text-gray-700 dark:text-gray-300 font-medium">Thẻ:</span>
+                    <div id="article-tags" class="flex flex-wrap gap-2">
+                        <span class="badge badge-gray">hổ</span>
+                        <span class="badge badge-gray">bảo tồn</span>
+                        <span class="badge badge-gray">động vật hoang dã</span>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center">
+                        <span class="text-gray-700 dark:text-gray-300 font-medium mr-2">Chia sẻ:</span>
+                        <div class="flex space-x-2">
+                            <button class="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                            <button class="p-2 bg-blue-400 text-white rounded-full hover:bg-blue-500 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button class="p-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors">
+                                <i class="fas fa-envelope"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button id="back-to-news" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                        <i class="fas fa-arrow-left mr-1"></i>Quay lại
+                    </button>
+                </div>
+                
+                <div class="mt-8">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-200">Bài viết liên quan</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="related-articles">
+                        <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                            <div class="h-32 overflow-hidden">
+                                <img src="https://placehold.co/400x200/3b82f6/FFFFFF?text=Loài+mới" alt="Bài viết liên quan" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-3">
+                                <h4 class="font-medium text-sm text-gray-800 dark:text-gray-200 line-clamp-2">Phát hiện loài ếch mới tại rừng Amazon</h4>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">05/03/2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Thêm CSS cho modal chi tiết tin tức -->
+<style>
+    /* Modal chi tiết tin tức */
+    .article-header {
+        margin-bottom: 1.5rem;
+    }
+    
+    .article-image-container {
+        border-radius: 0.5rem;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .article-content {
+        color: #374151;
+        line-height: 1.7;
+    }
+    
+    .dark .article-content {
+        color: #d1d5db;
+    }
+    
+    .article-content h3 {
+        color: #111827;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .dark .article-content h3 {
+        color: #f3f4f6;
+    }
+    
+    .article-content p {
+        margin-bottom: 1rem;
+    }
+    
+    .article-content strong {
+        color: #111827;
+        font-weight: 600;
+    }
+    
+    .dark .article-content strong {
+        color: #f3f4f6;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .article-image-container {
+            height: 200px;
+        }
+        
+        #related-articles {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+    
+    /* Line clamp utility */
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
+
+<!-- JavaScript để xử lý hiển thị chi tiết tin tức -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Dữ liệu mẫu cho các bài viết
+        const articleData = {
+            "conservation-tigers": {
+                title: "Nỗ lực bảo tồn hổ đang mang lại kết quả tích cực",
+                category: "Bảo tồn",
+                categoryClass: "badge-green",
+                date: "12/04/2023",
+                image: "https://placehold.co/1200x600/10b981/FFFFFF?text=Bảo+tồn+hổ",
+                content: `
+                    <p>Sau nhiều thập kỷ suy giảm đáng báo động, số lượng hổ hoang dã trên toàn cầu đã bắt đầu tăng lên nhờ vào các nỗ lực bảo tồn tích cực từ nhiều quốc gia và tổ chức bảo tồn quốc tế.</p>
+                    
+                    <p>Theo báo cáo mới nhất từ Quỹ Quốc tế Bảo vệ Thiên nhiên (WWF), số lượng hổ hoang dã đã tăng từ khoảng 3,200 cá thể vào năm 2010 lên đến hơn 4,500 cá thể vào năm 2022. Đây là một dấu hiệu đáng khích lệ cho thấy các nỗ lực bảo tồn đang phát huy hiệu quả.</p>
+                    
+                    <h3 class="text-xl font-bold mt-6 mb-3 text-gray-800 dark:text-gray-200">Các yếu tố góp phần vào thành công</h3>
+                    
+                    <p>Nhiều yếu tố đã góp phần vào sự phục hồi của quần thể hổ hoang dã:</p>
+                    
+                    <p><strong>1. Tăng cường chống săn bắt trái phép:</strong> Các quốc gia như Ấn Độ, Nepal và Nga đã tăng cường các biện pháp chống săn bắt trái phép, với các đội tuần tra được trang bị tốt hơn và hình phạt nghiêm khắc hơn đối với những kẻ săn trộm.</p>
+                    
+                    <p><strong>2. Bảo vệ và phục hồi môi trường sống:</strong> Việc mở rộng các khu bảo tồn và kết nối các môi trường sống bị phân mảnh đã giúp hổ có thêm không gian để sinh sống và săn mồi.</p>
+                    
+                    <p><strong>3. Giảm xung đột giữa người và hổ:</strong> Các chương trình giáo dục cộng đồng và hỗ trợ sinh kế thay thế đã giúp giảm xung đột giữa người dân địa phương và hổ.</p>
+                    
+                    <p><strong>4. Hợp tác quốc tế:</strong> Sáng kiến Bảo tồn Hổ Toàn cầu (GTI) đã tạo ra một nền tảng cho 13 quốc gia có hổ hợp tác trong các nỗ lực bảo tồn.</p>
+                    
+                    <h3 class="text-xl font-bold mt-6 mb-3 text-gray-800 dark:text-gray-200">Thách thức vẫn còn</h3>
+                    
+                    <p>Mặc dù đã có những tiến bộ đáng kể, hổ vẫn đối mặt với nhiều thách thức nghiêm trọng:</p>
+                    
+                    <p>- Mất môi trường sống do phát triển cơ sở hạ tầng và nông nghiệp</p>
+                    <p>- Săn bắt trái phép để lấy các bộ phận của hổ cho y học cổ truyền</p>
+                    <p>- Biến đổi khí hậu ảnh hưởng đến các hệ sinh thái</p>
+                    <p>- Giảm số lượng con mồi tự nhiên</p>
+                    
+                    <p>Các chuyên gia bảo tồn nhấn mạnh rằng, mặc dù đã có những dấu hiệu tích cực, nhưng vẫn cần tiếp tục và mở rộng các nỗ lực bảo tồn để đảm bảo sự tồn tại lâu dài của loài hổ trong tự nhiên.</p>
+                `,
+                tags: ["hổ", "bảo tồn", "động vật hoang dã", "săn bắt trái phép", "WWF"]
+            },
+            "discovery-frog": {
+                title: "Phát hiện loài ếch mới tại rừng Amazon",
+                category: "Khám phá",
+                categoryClass: "badge-blue",
+                date: "05/03/2023",
+                image: "https://placehold.co/1200x600/3b82f6/FFFFFF?text=Loài+mới",
+                content: `
+                    <p>Các nhà khoa học vừa phát hiện một loài ếch mới với màu sắc rực rỡ chưa từng được ghi nhận trước đây tại rừng Amazon, Brazil. Phát hiện này một lần nữa khẳng định rừng Amazon là kho báu đa dạng sinh học của Trái Đất.</p>
+                    
+                    <p>Loài ếch mới được đặt tên khoa học là <em>Dendrobates amazonica</em>, thuộc họ ếch độc màu sắc (Dendrobatidae). Đặc điểm nổi bật của loài này là màu xanh dương đậm với các đốm vàng rực trên lưng, một sự kết hợp màu sắc chưa từng thấy ở bất kỳ loài ếch nào khác trong họ này.</p>
+                    
+                    <h3 class="text-xl font-bold mt-6 mb-3 text-gray-800 dark:text-gray-200">Đặc điểm và môi trường sống</h3>
+                    
+                    <p>Loài ếch mới có kích thước nhỏ, chỉ dài khoảng 2-3 cm, nhưng lại sở hữu một trong những loại độc tố mạnh nhất trong thế giới động vật. Các nhà khoa học ước tính rằng chỉ một lượng nhỏ độc tố từ da của loài ếch này có thể gây nguy hiểm cho con người.</p>
+                    
+                    <p>Môi trường sống của <em>Dendrobates amazonica</em> là các khu vực ẩm ướt trong tầng thấp của rừng mưa nhiệt đới, thường được tìm thấy gần các dòng suối nhỏ. Chúng sống chủ yếu trên các tán lá cây thấp và kiếm ăn bằng các loài côn trùng nhỏ.</p>
+                    
+                    <h3 class="text-xl font-bold mt-6 mb-3 text-gray-800 dark:text-gray-200">Ý nghĩa của phát hiện</h3>
+                    
+                    <p>Tiến sĩ Carlos Mendez, trưởng nhóm nghiên cứu, cho biết: "Phát hiện này không chỉ bổ sung thêm một loài mới vào danh sách đa dạng sinh học của Amazon, mà còn cung cấp cơ hội nghiên cứu các hợp chất độc tố mới có thể có giá trị trong y học."</p>
+                    
+                    <p>Các nghiên cứu sơ bộ cho thấy độc tố của loài ếch này có thể có tác dụng giảm đau mạnh, và các nhà khoa học đang tiến hành nghiên cứu sâu hơn về tiềm năng y học của chúng.</p>
+                `,
+                tags: ["ếch", "loài mới", "Amazon", "đa dạng sinh học", "độc tố"]
+            },
+            "research-dolphins": {
+                title: "Nghiên cứu mới về trí thông minh của cá heo",
+                category: "Nghiên cứu",
+                categoryClass: "badge-purple",
+                date: "18/02/2023",
+                image: "https://placehold.co/1200x600/8b5cf6/FFFFFF?text=Nghiên+cứu",
+                content: `
+                    <p>Một nghiên cứu mới được công bố trên tạp chí Nature đã tiết lộ những khám phá đáng kinh ngạc về trí thông minh của cá heo, cho thấy chúng có khả năng nhận thức và giải quyết vấn đề phức tạp ngang với các loài linh trưởng cao cấp.</p>
+                    
+                    <p>Nghiên cứu kéo dài 5 năm do các nhà khoa học từ Đại học California thực hiện đã theo dõi và kiểm tra khả năng nhận thức của hơn 30 cá thể cá heo mũi chai (Tursiops truncatus) trong môi trường tự nhiên và trong điều kiện kiểm soát.</p>
+                    
+                    <h3 class="text-xl font-bold mt-6 mb-3 text-gray-800 dark:text-gray-200">Khả năng nhận thức bản thân</h3>
+                    
+                    <p>Một trong những phát hiện quan trọng nhất của nghiên cứu là xác nhận cá heo có khả năng nhận thức bản thân ở mức độ cao. Trong thí nghiệm với gương, cá heo không chỉ nhận ra hình ảnh phản chiếu của chính mình mà còn chủ động sử dụng gương để kiểm tra các phần cơ thể mà chúng không thể nhìn thấy trực tiếp.</p>
+                    
+                    <p>"Đây là mức độ nhận thức bản thân chỉ được tìm thấy ở một số loài linh trưởng, voi và một vài loài chim thông minh," Tiến sĩ Sarah Johnson, đồng tác giả nghiên cứu cho biết.</p>
+                    
+                    <h3 class="text-xl font-bold mt-6 mb-3 text-gray-800 dark:text-gray-200">Giải quyết vấn đề và sử dụng công cụ</h3>
+                    
+                    <p>Nghiên cứu cũng ghi nhận khả năng giải quyết vấn đề phức tạp của cá heo. Trong một thí nghiệm, các nhà nghiên cứu đã thiết kế một hộp đựng thức ăn có cơ chế mở phức tạp. Đáng ngạc nhiên, cá heo đã nhanh chóng học cách mở hộp và thậm chí còn truyền dạy kỹ năng này cho các cá thể khác trong nhóm.</p>
+                `,
+                tags: ["cá heo", "trí thông minh", "nhận thức", "nghiên cứu", "động vật biển"]
+            },
+            "conservation-amazon": {
+                title: "Tình trạng phá rừng Amazon đạt mức báo động",
+                category: "Bảo tồn",
+                categoryClass: "badge-red",
+                date: "22/01/2023",
+                image: "https://placehold.co/1200x600/ef4444/FFFFFF?text=Rừng+Amazon",
+                content: `
+                    <p>Dữ liệu vệ tinh mới nhất cho thấy tốc độ phá rừng Amazon đã tăng 25% trong năm qua, đe dọa nghiêm trọng đến đa dạng sinh học và vai trò của "lá phổi xanh" của Trái Đất.</p>
+                    
+                    <p>Theo báo cáo từ Viện Nghiên cứu Không gian Quốc gia Brazil (INPE), khoảng 10,781 km² rừng Amazon đã bị phá hủy trong 12 tháng qua, tương đương với diện tích của Lebanon. Đây là mức tăng đáng báo động so với năm trước và là mức cao nhất trong 15 năm qua.</p>
+                    
+                    <h3 class="text-xl font-bold mt-6 mb-3 text-gray-800 dark:text-gray-200">Nguyên nhân chính</h3>
+                    
+                    <p>Các chuyên gia chỉ ra một số nguyên nhân chính dẫn đến tình trạng này:</p>
+                    
+                    <p><strong>1. Mở rộng nông nghiệp:</strong> Việc mở rộng đất nông nghiệp, đặc biệt là cho chăn nuôi gia súc và trồng đậu nành, là nguyên nhân hàng đầu của nạn phá rừng.</p>
+                    
+                    <p><strong>2. Khai thác gỗ bất hợp pháp:</strong> Hoạt động khai thác gỗ trái phép vẫn diễn ra mạnh mẽ, đặc biệt là ở các khu vực xa xôi, khó kiểm soát.</p>
+                    
+                    <p><strong>3. Phát triển cơ sở hạ tầng:</strong> Việc xây dựng đường sá, đập thủy điện và các dự án phát triển khác đã mở đường cho việc phá rừng sâu hơn vào các khu vực trước đây khó tiếp cận.</p>
+                    
+                    <p><strong>4. Suy giảm thực thi pháp luật:</strong> Sự cắt giảm ngân sách cho các cơ quan bảo vệ môi trường và thay đổi chính sách đã làm suy yếu nỗ lực bảo vệ rừng.</p>
+                `,
+                tags: ["rừng Amazon", "phá rừng", "biến đổi khí hậu", "đa dạng sinh học", "bảo tồn"]
+            },
+            "research-birds": {
+                title: "Biến đổi khí hậu thay đổi mô hình di cư của chim",
+                category: "Nghiên cứu",
+                categoryClass: "badge-yellow",
+                date: "10/01/2023",
+                image: "https://placehold.co/1200x600/f59e0b/FFFFFF?text=Di+cư+động+vật",
+                content: `
+                    <p>Các nhà khoa học phát hiện nhiều loài chim di cư đang thay đổi lịch trình và tuyến đường di cư do tác động của biến đổi khí hậu, gây ra những hậu quả tiềm tàng cho hệ sinh thái toàn cầu.</p>
+                    
+                    <p>Nghiên cứu được công bố trên tạp chí Science đã phân tích dữ liệu từ hơn 50 năm về 220 loài chim di cư, cho thấy nhiều loài đang di cư sớm hơn vào mùa xuân và muộn hơn vào mùa thu, trong khi một số loài khác đã thay đổi hoàn toàn tuyến đường di cư truyền thống.</p>
+                    
+                    <h3 class="text-xl font-bold mt-6 mb-3 text-gray-800 dark:text-gray-200">Những thay đổi chính</h3>
+                    
+                    <p>Nghiên cứu đã ghi nhận một số thay đổi đáng chú ý:</p>
+                    
+                    <p><strong>1. Thời gian di cư:</strong> Trung bình, các loài chim đang di cư sớm hơn 6,4 ngày vào mùa xuân so với 50 năm trước. Một số loài như chim én đã di cư sớm hơn đến 2 tuần.</p>
+                    
+                    <p><strong>2. Tuyến đường di cư:</strong> Nhiều loài chim đang thay đổi tuyến đường di cư, di chuyển xa hơn về phía bắc hoặc không di cư hoàn toàn ở một số khu vực có mùa đông ấm hơn.</p>
+                    
+                    <p><strong>3. Điểm dừng chân:</strong> Các điểm dừng chân truyền thống đang mất đi tầm quan trọng khi chim tìm kiếm các khu vực mới có nguồn thức ăn phong phú hơn.</p>
+                `,
+                tags: ["chim di cư", "biến đổi khí hậu", "nghiên cứu", "sinh thái học", "thích nghi"]
+            },
+            "discovery-marine": {
+                title: "Khám phá các loài sinh vật kỳ lạ ở vùng biển sâu",
+                category: "Khám phá",
+                categoryClass: "badge-blue",
+                date: "05/12/2022",
+                image: "https://placehold.co/1200x600/22c55e/FFFFFF?text=Sinh+vật+biển+sâu",
+                content: `
+                    <p>Cuộc thám hiểm đáy biển mới đã phát hiện hơn 30 loài sinh vật chưa từng được biết đến, sống ở độ sâu hơn 3000m, mở ra cánh cửa mới cho khoa học về sự sống trong môi trường khắc nghiệt.</p>
+                    
+                    <p>Đoàn thám hiểm quốc tế sử dụng tàu ngầm không người lái (ROV) đã khám phá vùng biển sâu ở Thái Bình Dương, gần quần đảo Galapagos. Trong số các sinh vật mới được phát hiện có nhiều loài cá, giáp xác, sao biển và giun biển với những đặc điểm thích nghi đáng kinh ngạc với môi trường áp suất cao, thiếu ánh sáng và nhiệt độ thấp.</p>
+                    
+                    <h3 class="text-xl font-bold mt-6 mb-3 text-gray-800 dark:text-gray-200">Những phát hiện nổi bật</h3>
+                    
+                    <p>Một số sinh vật đáng chú ý trong cuộc thám hiểm bao gồm:</p>
+                    
+                    <p><strong>1. Cá "ma":</strong> Một loài cá trong suốt với cấu trúc xương có thể nhìn thấy qua da, có khả năng phát sáng sinh học để thu hút con mồi trong bóng tối.</p>
+                    
+                    <p><strong>2. Sao biển "Medusa":</strong> Một loài sao biển với hàng trăm xúc tu mảnh như tóc, có thể bắt các sinh vật nhỏ trôi nổi trong nước.</p>
+                    
+                    <p><strong>3. Mực khổng lồ:</strong> Một loài mực với chiều dài ước tính khoảng 5m, có mắt đặc biệt lớn để thu thập ánh sáng yếu ở độ sâu.</p>
+                `,
+                tags: ["sinh vật biển sâu", "khám phá", "đại dương", "loài mới", "đa dạng sinh học"]
+            }
+        };
+        
+        // Lấy tất cả các liên kết "Đọc tiếp"
+        const readMoreLinks = document.querySelectorAll('.news-item a');
+        
+        // Thêm sự kiện click cho các liên kết "Đọc tiếp"
+        readMoreLinks.forEach((link, index) => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Xác định bài viết dựa trên index hoặc data attribute
+                let articleId;
+                const newsItem = link.closest('.news-item');
+                const category = newsItem.dataset.category;
+                
+                if (category === 'conservation' && index === 0) {
+                    articleId = 'conservation-tigers';
+                } else if (category === 'discovery' && index === 0) {
+                    articleId = 'discovery-frog';
+                } else if (category === 'research' && index === 0) {
+                    articleId = 'research-dolphins';
+                } else if (category === 'conservation' && index === 1) {
+                    articleId = 'conservation-amazon';
+                } else if (category === 'research' && index === 1) {
+                    articleId = 'research-birds';
+                } else if (category === 'discovery' && index === 1) {
+                    articleId = 'discovery-marine';
+                } else {
+                    // Mặc định mở bài viết về hổ nếu không tìm thấy
+                    articleId = 'conservation-tigers';
+                }
+                
+                showArticleDetail(articleId);
+            });
+        });
+        
+        // Hàm hiển thị chi tiết bài viết
+        function showArticleDetail(articleId) {
+            const article = articleData[articleId];
+            if (!article) return;
+            
+            // Cập nhật nội dung modal
+            document.getElementById('article-category-badge').className = `badge ${article.categoryClass}`;
+            document.getElementById('article-category-badge').textContent = article.category;
+            document.getElementById('article-date').textContent = article.date;
+            document.getElementById('article-title').textContent = article.title;
+            document.getElementById('article-image').src = article.image;
+            document.getElementById('article-image').alt = article.title;
+            document.getElementById('article-content').innerHTML = article.content;
+            
+            // Cập nhật thẻ tags
+            const tagsContainer = document.getElementById('article-tags');
+            tagsContainer.innerHTML = '';
+            article.tags.forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'badge badge-gray';
+                tagElement.textContent = tag;
+                tagsContainer.appendChild(tagElement);
+            });
+            
+            // Cập nhật bài viết liên quan
+            updateRelatedArticles(articleId);
+            
+            // Mở modal
+            openModal('article-modal');
+        }
+        
+        // Hàm cập nhật bài viết liên quan
+        function updateRelatedArticles(currentArticleId) {
+            const relatedContainer = document.getElementById('related-articles');
+            relatedContainer.innerHTML = '';
+            
+            // Lấy danh sách bài viết (trừ bài viết hiện tại)
+            const relatedArticles = Object.entries(articleData)
+                .filter(([id]) => id !== currentArticleId)
+                .slice(0, 3); // Lấy tối đa 3 bài viết liên quan
+            
+            relatedArticles.forEach(([id, article]) => {
+                const articleElement = document.createElement('div');
+                articleElement.className = 'bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer';
+                articleElement.innerHTML = `
+                    <div class="h-32 overflow-hidden">
+                        <img src="${article.image}" alt="${article.title}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-3">
+                        <h4 class="font-medium text-sm text-gray-800 dark:text-gray-200 line-clamp-2">${article.title}</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">${article.date}</p>
+                    </div>
+                `;
+                
+                // Thêm sự kiện click để mở bài viết liên quan
+                articleElement.addEventListener('click', () => {
+                    showArticleDetail(id);
+                });
+                
+                relatedContainer.appendChild(articleElement);
+            });
+        }
+        
+        // Xử lý nút "Quay lại"
+        document.getElementById('back-to-news').addEventListener('click', () => {
+            closeModal('article-modal');
+        });
+        
+        // Hàm mở modal
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            let overlay = modal.querySelector('.modal-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'modal-overlay';
+                overlay.onclick = () => closeModal(modalId);
+                modal.insertBefore(overlay, modal.firstChild);
+            }
+            
+            document.body.classList.add('body-no-scroll');
+            modal.classList.add('open');
+        }
+        
+        // Hàm đóng modal
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal && modal.classList.contains('open')) {
+                modal.classList.remove('open');
+                
+                // Chỉ bỏ khóa cuộn nếu không còn modal nào mở
+                if (!document.querySelector('.modal.open')) {
+                    document.body.classList.remove('body-no-scroll');
+                }
+            }
+        }
+        
+        // Xử lý nút đóng modal
+        document.querySelectorAll('.close-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const modalId = button.dataset.modalId;
+                if (modalId) closeModal(modalId);
+            });
+        });
+    });
+</script>
+<!-- Mục lục điều hướng cải tiến -->
+<nav id="table-of-contents" class="toc-container">
+    <div class="toc-header">
+        <div class="toc-logo">
+            <img src="https://placehold.co/40x40/10b981/FFFFFF?text=W" alt="Logo" class="toc-logo-img">
+            <h3>Wildlife</h3>
+        </div>
+        <button id="toc-toggle" aria-label="Ẩn/Hiện mục lục">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+    </div>
+    <ul class="toc-list">
+        <li>
+            <a href="#hero-section" class="toc-link">
+                <div class="toc-icon"><i class="fas fa-home"></i></div>
+                <span class="toc-text">Trang chủ</span>
+            </a>
+        </li>
+        <li>
+            <a href="#about-section" class="toc-link">
+                <div class="toc-icon"><i class="fas fa-info-circle"></i></div>
+                <span class="toc-text">Giới thiệu</span>
+            </a>
+        </li>
+        <li>
+            <a href="#gallery-section" class="toc-link">
+                <div class="toc-icon"><i class="fas fa-images"></i></div>
+                <span class="toc-text">Thư viện hình ảnh</span>
+            </a>
+        </li>
+        <li>
+            <a href="#news-section" class="toc-link">
+                <div class="toc-icon"><i class="fas fa-newspaper"></i></div>
+                <span class="toc-text">Tin tức & Bài viết</span>
+            </a>
+        </li>
+        <li>
+            <a href="#contact-section" class="toc-link">
+                <div class="toc-icon"><i class="fas fa-envelope"></i></div>
+                <span class="toc-text">Liên hệ</span>
+            </a>
+        </li>
+    </ul>
+    
+        <button id="toc-mobile-toggle" class="toc-mobile-button">
+            <i class="fas fa-compass"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Thêm CSS cho mục lục cải tiến -->
+<style>
+    /* Mục lục cải tiến */
+    .toc-container {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 220px;
+        background-color: white;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        z-index: 100;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    
+ 
+    
+    .toc-container.collapsed {
+        width: 60px;
+    }
+    
+    .toc-header {
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+    }
+    
+ 
+    .toc-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: opacity 0.3s ease;
+    }
+    
+    .toc-container.collapsed .toc-logo h3 {
+        opacity: 0;
+        width: 0;
+        overflow: hidden;
+    }
+    
+    .toc-logo-img {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+    
+    .toc-logo h3 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #111827;
+        margin: 0;
+        transition: opacity 0.2s, width 0.2s;
+    }
+    
+  
+    #toc-toggle {
+        background: none;
+        border: none;
+        color: #6b7280;
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.2s;
+    }
+    
+    #toc-toggle:hover {
+        background-color: #f3f4f6;
+        color: #111827;
+    }
+    
+    .toc-container.collapsed #toc-toggle i {
+        transform: rotate(180deg);
+    }
+    
+    .toc-list {
+        list-style: none;
+        padding: 0.5rem 0;
+        margin: 0;
+        overflow-y: auto;
+        flex-grow: 1;
+    }
+    
+    .toc-link {
+        display: flex;
+        align-items: center;
+        padding: 0.625rem 1rem;
+        color: #4b5563;
+        text-decoration: none;
+        transition: all 0.2s;
+        border-left: 3px solid transparent;
+        margin: 0.125rem 0;
+    }
+    
+  
+    
+    .toc-link:hover, .toc-link.active {
+        background-color: rgba(16, 185, 129, 0.1);
+        color: var(--primary-color, #10b981);
+        border-left-color: var(--primary-color, #10b981);
+    }
+    
+  
+    .toc-icon {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(16, 185, 129, 0.1);
+        color: var(--primary-color, #10b981);
+        border-radius: 8px;
+        margin-right: 0.75rem;
+        transition: all 0.2s;
+    }
+    
+    
+    .toc-link:hover .toc-icon, .toc-link.active .toc-icon {
+        background-color: var(--primary-color, #10b981);
+        color: white;
+    }
+    
+    .toc-text {
+        transition: opacity 0.2s, width 0.2s;
+        white-space: nowrap;
+    }
+    
+    .toc-container.collapsed .toc-text {
+        opacity: 0;
+        width: 0;
+        overflow: hidden;
+    }
+    
+    .toc-footer {
+        padding: 1rem;
+        border-top: 1px solid rgba(229, 231, 235, 0.5);
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+   
+    .toc-mobile-button {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 99;
+        background-color: var(--primary-color, #10b981);
+        color: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .toc-mobile-button:hover {
+        background-color: var(--secondary-color, #065f46);
+        transform: translateY(-2px);
+    }
+    
+    /* Main content adjustment */
+    body {
+        padding-left: 220px;
+        transition: padding-left 0.3s ease;
+    }
+    
+    body.toc-collapsed {
+        padding-left: 60px;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 1024px) {
+        .toc-container {
+            transform: translateX(-100%);
+            width: 280px;
+        }
+        
+        .toc-container.open {
+            transform: translateX(0);
+        }
+        
+        .toc-container.collapsed {
+            transform: translateX(-100%);
+        }
+        
+        body {
+            padding-left: 0;
+        }
+        
+        body.toc-collapsed {
+            padding-left: 0;
+        }
+        
+        .toc-mobile-button {
+            display: flex;
+        }
+    }
+</style>
+
+<!-- Thêm JavaScript cho mục lục cải tiến -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // DOM Elements - Mục lục
+        const tocContainer = document.getElementById('table-of-contents');
+        const tocToggle = document.getElementById('toc-toggle');
+        const tocMobileToggle = document.getElementById('toc-mobile-toggle');
+        const tocLinks = document.querySelectorAll('.toc-link');
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        // Toggle mục lục
+        function toggleToc() {
+            tocContainer.classList.toggle('collapsed');
+            body.classList.toggle('toc-collapsed');
+        }
+        
+        // Mở mục lục trên mobile
+        function openTocMobile() {
+            tocContainer.classList.add('open');
+            tocContainer.classList.remove('collapsed');
+        }
+        
+        // Đóng mục lục trên mobile khi nhấp vào liên kết
+        function closeTocMobile() {
+            if (window.innerWidth <= 1024) {
+                tocContainer.classList.remove('open');
+            }
+        }
+      
+        
+        // Highlight mục lục khi cuộn
+        function highlightTocOnScroll() {
+            const scrollPosition = window.scrollY;
+            
+            // Lấy tất cả các section
+            const sections = document.querySelectorAll('section[id], div[id]');
+            
+            // Tìm section hiện tại
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            // Highlight mục lục tương ứng
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href').substring(1);
+                if (href === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Event Listeners - Mục lục
+        tocToggle.addEventListener('click', toggleToc);
+        tocMobileToggle.addEventListener('click', openTocMobile);
+   
+        
+        tocLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    closeTocMobile();
+                }
+            });
+        });
+        
+        // Xử lý sự kiện cuộn trang
+        window.addEventListener('scroll', highlightTocOnScroll);
+        
+        // Kiểm tra kích thước màn hình khi tải trang
+        function checkScreenSize() {
+            if (window.innerWidth <= 1024) {
+                tocContainer.classList.remove('collapsed');
+                tocContainer.classList.remove('open');
+                body.classList.remove('toc-collapsed');
+            } else {
+                tocContainer.classList.remove('open');
+            }
+        }
+        
+        // Kiểm tra kích thước màn hình khi thay đổi
+        window.addEventListener('resize', checkScreenSize);
+        
+        
+        // Khởi tạo
+        checkScreenSize();
+        highlightTocOnScroll();
+       
+    });
+</script>
+<div class="overlay fixed inset-0 z-[-1]"></div>
 
     <nav id="navbar" class="navbar p-4 text-gray-800 dark:text-gray-200">
         <div class="container mx-auto flex justify-between items-center">
@@ -1240,7 +2073,838 @@
                  </button>
             </div>
         </section>
+<!-- Thêm đoạn code này vào trước thẻ đóng </main> trong file index.html -->
 
+<!-- Thư viện Hình ảnh -->
+<section id="gallery-section" class="mb-16">
+    <h2 class="text-3xl font-bold mb-8 text-center text-gray-800 dark:text-gray-200">Thư viện Hình ảnh</h2>
+    
+    <div class="mb-6 flex flex-wrap justify-center gap-2">
+        <button class="gallery-filter-btn active" data-filter="all">Tất cả</button>
+        <button class="gallery-filter-btn" data-filter="mammals">Thú có vú</button>
+        <button class="gallery-filter-btn" data-filter="birds">Chim</button>
+        <button class="gallery-filter-btn" data-filter="reptiles">Bò sát</button>
+        <button class="gallery-filter-btn" data-filter="marine">Sinh vật biển</button>
+    </div>
+    
+    <div class="gallery-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <!-- Thú có vú -->
+        <div class="gallery-item mammals" data-category="mammals">
+            <div class="gallery-image-container">
+                <img src="https://placehold.co/600x400/f59e0b/FFFFFF?text=Sư+tử" alt="Sư tử" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-info">
+                        <h3 class="gallery-title">Sư tử</h3>
+                        <p class="gallery-location">Châu Phi</p>
+                    </div>
+                    <button class="gallery-zoom-btn" aria-label="Phóng to">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="gallery-item mammals" data-category="mammals">
+            <div class="gallery-image-container">
+                <img src="https://placehold.co/600x400/f97316/FFFFFF?text=Hổ+Bengal" alt="Hổ Bengal" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-info">
+                        <h3 class="gallery-title">Hổ Bengal</h3>
+                        <p class="gallery-location">Ấn Độ</p>
+                    </div>
+                    <button class="gallery-zoom-btn" aria-label="Phóng to">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="gallery-item mammals" data-category="mammals">
+            <div class="gallery-image-container">
+                <img src="https://placehold.co/600x400/dc2626/FFFFFF?text=Kangaroo+đỏ" alt="Kangaroo đỏ" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-info">
+                        <h3 class="gallery-title">Kangaroo đỏ</h3>
+                        <p class="gallery-location">Úc</p>
+                    </div>
+                    <button class="gallery-zoom-btn" aria-label="Phóng to">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chim -->
+        <div class="gallery-item birds" data-category="birds">
+            <div class="gallery-image-container">
+                <img src="https://placehold.co/600x400/eab308/FFFFFF?text=Đại+bàng+đầu+trắng" alt="Đại bàng đầu trắng" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-info">
+                        <h3 class="gallery-title">Đại bàng đầu trắng</h3>
+                        <p class="gallery-location">Bắc Mỹ</p>
+                    </div>
+                    <button class="gallery-zoom-btn" aria-label="Phóng to">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="gallery-item birds" data-category="birds">
+            <div class="gallery-image-container">
+                <img src="https://placehold.co/600x400/84cc16/FFFFFF?text=Chim+cánh+cụt" alt="Chim cánh cụt" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-info">
+                        <h3 class="gallery-title">Chim cánh cụt</h3>
+                        <p class="gallery-location">Nam Cực</p>
+                    </div>
+                    <button class="gallery-zoom-btn" aria-label="Phóng to">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bò sát -->
+        <div class="gallery-item reptiles" data-category="reptiles">
+            <div class="gallery-image-container">
+                <img src="https://placehold.co/600x400/22c55e/FFFFFF?text=Cá+sấu" alt="Cá sấu" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-info">
+                        <h3 class="gallery-title">Cá sấu</h3>
+                        <p class="gallery-location">Florida</p>
+                    </div>
+                    <button class="gallery-zoom-btn" aria-label="Phóng to">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="gallery-item reptiles" data-category="reptiles">
+            <div class="gallery-image-container">
+                <img src="https://placehold.co/600x400/14b8a6/FFFFFF?text=Rắn+Anaconda" alt="Rắn Anaconda" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-info">
+                        <h3 class="gallery-title">Rắn Anaconda</h3>
+                        <p class="gallery-location">Amazon</p>
+                    </div>
+                    <button class="gallery-zoom-btn" aria-label="Phóng to">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sinh vật biển -->
+        <div class="gallery-item marine" data-category="marine">
+            <div class="gallery-image-container">
+                <img src="https://placehold.co/600x400/0ea5e9/FFFFFF?text=Cá+voi+lưng+gù" alt="Cá voi lưng gù" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-info">
+                        <h3 class="gallery-title">Cá voi lưng gù</h3>
+                        <p class="gallery-location">Đại Tây Dương</p>
+                    </div>
+                    <button class="gallery-zoom-btn" aria-label="Phóng to">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="gallery-item marine" data-category="marine">
+            <div class="gallery-image-container">
+                <img src="https://placehold.co/600x400/3b82f6/FFFFFF?text=Cá+mập+trắng" alt="Cá mập trắng" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-info">
+                        <h3 class="gallery-title">Cá mập trắng</h3>
+                        <p class="gallery-location">Nam Phi</p>
+                    </div>
+                    <button class="gallery-zoom-btn" aria-label="Phóng to">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="gallery-item marine" data-category="marine">
+            <div class="gallery-image-container">
+                <img src="https://placehold.co/600x400/6366f1/FFFFFF?text=Bạch+tuộc" alt="Bạch tuộc" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-info">
+                        <h3 class="gallery-title">Bạch tuộc</h3>
+                        <p class="gallery-location">Thái Bình Dương</p>
+                    </div>
+                    <button class="gallery-zoom-btn" aria-label="Phóng to">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="gallery-item mammals" data-category="mammals">
+            <div class="gallery-image-container">
+                <img src="https://placehold.co/600x400/8b5cf6/FFFFFF?text=Voi+châu+Phi" alt="Voi châu Phi" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-info">
+                        <h3 class="gallery-title">Voi châu Phi</h3>
+                        <p class="gallery-location">Kenya</p>
+                    </div>
+                    <button class="gallery-zoom-btn" aria-label="Phóng to">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-center mt-8">
+        <button id="load-more-gallery" class="px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-semibold transition duration-300">
+            <i class="fas fa-images mr-2"></i>Xem thêm hình ảnh
+        </button>
+    </div>
+</section>
+
+<!-- Modal xem ảnh lớn -->
+<div id="gallery-modal" class="gallery-modal">
+    <div class="gallery-modal-content">
+        <button class="gallery-modal-close" aria-label="Đóng">
+            <i class="fas fa-times"></i>
+        </button>
+        <img id="gallery-modal-img" src="/placeholder.svg" alt="Ảnh lớn">
+        <div class="gallery-modal-caption">
+            <h3 id="gallery-modal-title"></h3>
+            <p id="gallery-modal-location"></p>
+        </div>
+        <button class="gallery-modal-prev" aria-label="Ảnh trước">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="gallery-modal-next" aria-label="Ảnh sau">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Tin tức và Bài viết -->
+<section id="news-section" class="mb-16">
+    <h2 class="text-3xl font-bold mb-8 text-center text-gray-800 dark:text-gray-200">Tin tức & Bài viết</h2>
+    
+    <div class="mb-6 flex flex-wrap justify-center gap-2">
+        <button class="news-filter-btn active" data-filter="all">Tất cả</button>
+        <button class="news-filter-btn" data-filter="conservation">Bảo tồn</button>
+        <button class="news-filter-btn" data-filter="discovery">Khám phá</button>
+        <button class="news-filter-btn" data-filter="research">Nghiên cứu</button>
+    </div>
+    
+    <div class="news-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Bài viết 1 -->
+        <article class="news-item conservation" data-category="conservation">
+            <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2">
+                <div class="news-image-container h-48 overflow-hidden">
+                    <img src="https://placehold.co/800x400/10b981/FFFFFF?text=Bảo+tồn+hổ" alt="Bảo tồn hổ" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-2">
+                        <span class="badge badge-green mr-2">Bảo tồn</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">12/04/2023</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-200">Nỗ lực bảo tồn hổ đang mang lại kết quả tích cực</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Số lượng hổ hoang dã trên toàn cầu đã tăng lên sau nhiều thập kỷ suy giảm, nhờ vào các nỗ lực bảo tồn tích cực.</p>
+                    <a href="#" class="inline-flex items-center text-emerald-600 dark:text-emerald-400 hover:underline">
+                        Đọc tiếp <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </article>
+        
+        <!-- Bài viết 2 -->
+        <article class="news-item discovery" data-category="discovery">
+            <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2">
+                <div class="news-image-container h-48 overflow-hidden">
+                    <img src="https://placehold.co/800x400/3b82f6/FFFFFF?text=Loài+mới" alt="Loài mới" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-2">
+                        <span class="badge badge-blue mr-2">Khám phá</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">05/03/2023</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-200">Phát hiện loài ếch mới tại rừng Amazon</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Các nhà khoa học vừa phát hiện một loài ếch mới với màu sắc rực rỡ chưa từng được ghi nhận trước đây tại rừng Amazon.</p>
+                    <a href="#" class="inline-flex items-center text-emerald-600 dark:text-emerald-400 hover:underline">
+                        Đọc tiếp <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </article>
+        
+        <!-- Bài viết 3 -->
+        <article class="news-item research" data-category="research">
+            <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2">
+                <div class="news-image-container h-48 overflow-hidden">
+                    <img src="https://placehold.co/800x400/8b5cf6/FFFFFF?text=Nghiên+cứu" alt="Nghiên cứu" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-2">
+                        <span class="badge badge-purple mr-2">Nghiên cứu</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">18/02/2023</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-200">Nghiên cứu mới về trí thông minh của cá heo</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Nghiên cứu mới cho thấy cá heo có khả năng nhận diện bản thân trong gương và giải quyết vấn đề phức tạp ngang với linh trưởng.</p>
+                    <a href="#" class="inline-flex items-center text-emerald-600 dark:text-emerald-400 hover:underline">
+                        Đọc tiếp <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </article>
+        
+        <!-- Bài viết 4 -->
+        <article class="news-item conservation" data-category="conservation">
+            <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2">
+                <div class="news-image-container h-48 overflow-hidden">
+                    <img src="https://placehold.co/800x400/ef4444/FFFFFF?text=Rừng+Amazon" alt="Rừng Amazon" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-2">
+                        <span class="badge badge-red mr-2">Khẩn cấp</span>
+                        <span class="badge badge-green ml-1">Bảo tồn</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400 ml-2">22/01/2023</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-200">Tình trạng phá rừng Amazon đạt mức báo động</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Dữ liệu vệ tinh mới nhất cho thấy tốc độ phá rừng Amazon đã tăng 25% trong năm qua, đe dọa nghiêm trọng đến đa dạng sinh học.</p>
+                    <a href="#" class="inline-flex items-center text-emerald-600 dark:text-emerald-400 hover:underline">
+                        Đọc tiếp <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </article>
+        
+        <!-- Bài viết 5 -->
+        <article class="news-item research" data-category="research">
+            <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2">
+                <div class="news-image-container h-48 overflow-hidden">
+                    <img src="https://placehold.co/800x400/f59e0b/FFFFFF?text=Di+cư+động+vật" alt="Di cư động vật" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-2">
+                        <span class="badge badge-yellow mr-2">Nghiên cứu</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">10/01/2023</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-200">Biến đổi khí hậu thay đổi mô hình di cư của chim</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Các nhà khoa học phát hiện nhiều loài chim di cư đang thay đổi lịch trình và tuyến đường di cư do tác động của biến đổi khí hậu.</p>
+                    <a href="#" class="inline-flex items-center text-emerald-600 dark:text-emerald-400 hover:underline">
+                        Đọc tiếp <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </article>
+        
+        <!-- Bài viết 6 -->
+        <article class="news-item discovery" data-category="discovery">
+            <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2">
+                <div class="news-image-container h-48 overflow-hidden">
+                    <img src="https://placehold.co/800x400/22c55e/FFFFFF?text=Sinh+vật+biển+sâu" alt="Sinh vật biển sâu" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-2">
+                        <span class="badge badge-blue mr-2">Khám phá</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">05/12/2022</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-200">Khám phá các loài sinh vật kỳ lạ ở vùng biển sâu</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Cuộc thám hiểm đáy biển mới đã phát hiện hơn 30 loài sinh vật chưa từng được biết đến, sống ở độ sâu hơn 3000m.</p>
+                    <a href="#" class="inline-flex items-center text-emerald-600 dark:text-emerald-400 hover:underline">
+                        Đọc tiếp <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </div>
+    
+    <div class="text-center mt-8">
+        <button id="load-more-news" class="px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-semibold transition duration-300">
+            <i class="fas fa-newspaper mr-2"></i>Xem thêm bài viết
+        </button>
+    </div>
+</section>
+
+<!-- Thêm CSS cho thư viện hình ảnh và tin tức -->
+<style>
+    /* Gallery Filter Buttons */
+    .gallery-filter-btn, .news-filter-btn {
+        padding: 0.5rem 1rem;
+        background-color: #f3f4f6;
+        color: #4b5563;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .dark .gallery-filter-btn, .dark .news-filter-btn {
+        background-color: #374151;
+        color: #d1d5db;
+    }
+    
+    .gallery-filter-btn:hover, .news-filter-btn:hover {
+        background-color: #e5e7eb;
+    }
+    
+    .dark .gallery-filter-btn:hover, .dark .news-filter-btn:hover {
+        background-color: #4b5563;
+    }
+    
+    .gallery-filter-btn.active, .news-filter-btn.active {
+        background-color: var(--primary-color, #10b981);
+        color: white;
+    }
+    
+    .dark .gallery-filter-btn.active, .dark .news-filter-btn.active {
+        background-color: var(--secondary-color, #065f46);
+    }
+    
+    /* Gallery Items */
+    .gallery-item {
+        animation: fadeIn 0.5s ease-out forwards;
+        opacity: 0;
+        transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:nth-child(1) { animation-delay: 0.05s; }
+    .gallery-item:nth-child(2) { animation-delay: 0.1s; }
+    .gallery-item:nth-child(3) { animation-delay: 0.15s; }
+    .gallery-item:nth-child(4) { animation-delay: 0.2s; }
+    .gallery-item:nth-child(5) { animation-delay: 0.25s; }
+    .gallery-item:nth-child(6) { animation-delay: 0.3s; }
+    .gallery-item:nth-child(7) { animation-delay: 0.35s; }
+    .gallery-item:nth-child(8) { animation-delay: 0.4s; }
+    
+    .gallery-image-container {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .gallery-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .gallery-item:hover .gallery-image {
+        transform: scale(1.1);
+    }
+    
+    .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 1rem;
+    }
+    
+    .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+    }
+    
+    .gallery-info {
+        color: white;
+    }
+    
+    .gallery-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+    
+    .gallery-location {
+        font-size: 0.875rem;
+        opacity: 0.8;
+    }
+    
+    .gallery-zoom-btn {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        background-color: rgba(255, 255, 255, 0.8);
+        color: #4b5563;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        border: none;
+    }
+    
+    .gallery-zoom-btn:hover {
+        background-color: white;
+    }
+    
+    /* Gallery Modal */
+    .gallery-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        overflow: hidden;
+    }
+    
+    .gallery-modal.open {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.3s ease-out;
+    }
+    
+    .gallery-modal-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+        margin: auto;
+    }
+    
+    #gallery-modal-img {
+        max-width: 100%;
+        max-height: 80vh;
+        display: block;
+        border: 2px solid white;
+        border-radius: 0.25rem;
+    }
+    
+    .gallery-modal-caption {
+        color: white;
+        text-align: center;
+        padding: 1rem 0;
+    }
+    
+    #gallery-modal-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+    
+    #gallery-modal-location {
+        font-size: 1rem;
+        opacity: 0.8;
+    }
+    
+    .gallery-modal-close {
+        position: absolute;
+        top: -2rem;
+        right: 0;
+        color: white;
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+    
+    .gallery-modal-close:hover {
+        color: #ef4444;
+    }
+    
+    .gallery-modal-prev,
+    .gallery-modal-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        border: none;
+    }
+    
+    .gallery-modal-prev {
+        left: -4rem;
+    }
+    
+    .gallery-modal-next {
+        right: -4rem;
+    }
+    
+    .gallery-modal-prev:hover,
+    .gallery-modal-next:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* News Items */
+    .news-item {
+        animation: fadeIn 0.5s ease-out forwards;
+        opacity: 0;
+    }
+    
+    .news-item:nth-child(1) { animation-delay: 0.05s; }
+    .news-item:nth-child(2) { animation-delay: 0.1s; }
+    .news-item:nth-child(3) { animation-delay: 0.15s; }
+    .news-item:nth-child(4) { animation-delay: 0.2s; }
+    .news-item:nth-child(5) { animation-delay: 0.25s; }
+    .news-item:nth-child(6) { animation-delay: 0.3s; }
+    
+    .news-image-container img {
+        transition: transform 0.5s ease;
+    }
+    
+    .news-item:hover .news-image-container img {
+        transform: scale(1.05);
+    }
+    
+    /* Badge Purple */
+    .badge-purple {
+        background-color: #e9d5ff;
+        color: #7e22ce;
+    }
+    
+    .dark .badge-purple {
+        background-color: #7e22ce;
+        color: #e9d5ff;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .gallery-modal-prev,
+        .gallery-modal-next {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+        
+        .gallery-modal-prev {
+            left: 1rem;
+        }
+        
+        .gallery-modal-next {
+            right: 1rem;
+        }
+        
+        .gallery-image-container {
+            height: 180px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .gallery-filter-btn, .news-filter-btn {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.875rem;
+        }
+    }
+</style>
+
+<!-- Thêm JavaScript cho thư viện hình ảnh và tin tức -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // DOM Elements
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const galleryFilterBtns = document.querySelectorAll('.gallery-filter-btn');
+        const newsItems = document.querySelectorAll('.news-item');
+        const newsFilterBtns = document.querySelectorAll('.news-filter-btn');
+        const galleryModal = document.getElementById('gallery-modal');
+        const galleryModalImg = document.getElementById('gallery-modal-img');
+        const galleryModalTitle = document.getElementById('gallery-modal-title');
+        const galleryModalLocation = document.getElementById('gallery-modal-location');
+        const galleryModalClose = document.querySelector('.gallery-modal-close');
+        const galleryModalPrev = document.querySelector('.gallery-modal-prev');
+        const galleryModalNext = document.querySelector('.gallery-modal-next');
+        const loadMoreGallery = document.getElementById('load-more-gallery');
+        const loadMoreNews = document.getElementById('load-more-news');
+        
+        // State
+        let currentGalleryIndex = 0;
+        let visibleGalleryItems = [];
+        
+        // Gallery Filter
+        galleryFilterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                galleryFilterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                // Filter gallery items
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Update visible items for modal navigation
+                updateVisibleGalleryItems();
+            });
+        });
+        
+        // News Filter
+        newsFilterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                newsFilterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                // Filter news items
+                newsItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Update visible gallery items for modal navigation
+        function updateVisibleGalleryItems() {
+            visibleGalleryItems = Array.from(galleryItems).filter(
+                item => item.style.display !== 'none'
+            );
+        }
+        
+        // Initialize visible items
+        updateVisibleGalleryItems();
+        
+        // Open Gallery Modal
+        galleryItems.forEach(item => {
+            const zoomBtn = item.querySelector('.gallery-zoom-btn');
+            if (zoomBtn) {
+                zoomBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openGalleryModal(item);
+                });
+            }
+            
+            // Also open modal when clicking on the image container
+            item.querySelector('.gallery-image-container').addEventListener('click', () => {
+                openGalleryModal(item);
+            });
+        });
+        
+        // Open Gallery Modal Function
+        function openGalleryModal(item) {
+            const img = item.querySelector('.gallery-image');
+            const title = item.querySelector('.gallery-title');
+            const location = item.querySelector('.gallery-location');
+            
+            galleryModalImg.src = img.src;
+            galleryModalImg.alt = img.alt;
+            galleryModalTitle.textContent = title.textContent;
+            galleryModalLocation.textContent = location.textContent;
+            
+            // Find index of current item in visible items
+            currentGalleryIndex = visibleGalleryItems.indexOf(item);
+            
+            // Add open class to show modal
+            galleryModal.classList.add('open');
+            document.body.classList.add('body-no-scroll');
+        }
+        
+        // Close Gallery Modal
+        galleryModalClose.addEventListener('click', closeGalleryModal);
+        galleryModal.addEventListener('click', (e) => {
+            if (e.target === galleryModal) {
+                closeGalleryModal();
+            }
+        });
+        
+        function closeGalleryModal() {
+            galleryModal.classList.remove('open');
+            document.body.classList.remove('body-no-scroll');
+        }
+        
+        // Navigate Gallery Modal
+        galleryModalPrev.addEventListener('click', () => {
+            if (visibleGalleryItems.length <= 1) return;
+            
+            currentGalleryIndex = (currentGalleryIndex - 1 + visibleGalleryItems.length) % visibleGalleryItems.length;
+            updateGalleryModal();
+        });
+        
+        galleryModalNext.addEventListener('click', () => {
+            if (visibleGalleryItems.length <= 1) return;
+            
+            currentGalleryIndex = (currentGalleryIndex + 1) % visibleGalleryItems.length;
+            updateGalleryModal();
+        });
+        
+        // Update Gallery Modal Content
+        function updateGalleryModal() {
+            const item = visibleGalleryItems[currentGalleryIndex];
+            const img = item.querySelector('.gallery-image');
+            const title = item.querySelector('.gallery-title');
+            const location = item.querySelector('.gallery-location');
+            
+            // Add a small animation
+            galleryModalImg.style.opacity = '0';
+            setTimeout(() => {
+                galleryModalImg.src = img.src;
+                galleryModalImg.alt = img.alt;
+                galleryModalTitle.textContent = title.textContent;
+                galleryModalLocation.textContent = location.textContent;
+                galleryModalImg.style.opacity = '1';
+            }, 200);
+        }
+        
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (!galleryModal.classList.contains('open')) return;
+            
+            if (e.key === 'Escape') {
+                closeGalleryModal();
+            } else if (e.key === 'ArrowLeft') {
+                galleryModalPrev.click();
+            } else if (e.key === 'ArrowRight') {
+                galleryModalNext.click();
+            }
+        });
+        
+        // Load More Gallery (Placeholder functionality)
+        loadMoreGallery.addEventListener('click', () => {
+            loadMoreGallery.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Đang tải...';
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                loadMoreGallery.innerHTML = '<i class="fas fa-check-circle mr-2"></i>Đã tải tất cả';
+                loadMoreGallery.disabled = true;
+                loadMoreGallery.classList.add('bg-gray-400');
+                loadMoreGallery.classList.remove('hover:bg-emerald-600');
+            }, 1500);
+        });
+        
+        // Load More News (Placeholder functionality)
+        loadMoreNews.addEventListener('click', () => {
+            loadMoreNews.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Đang tải...';
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                loadMoreNews.innerHTML = '<i class="fas fa-check-circle mr-2"></i>Đã tải tất cả';
+                loadMoreNews.disabled = true;
+                loadMoreNews.classList.add('bg-gray-400');
+                loadMoreNews.classList.remove('hover:bg-emerald-600');
+            }, 1500);
+        });
+    });
+</script>
     </main>
 
    
@@ -1270,10 +2934,7 @@
                         <ul class="space-y-2">
                             <li><a href="#" class="text-gray-300 hover:text-white">Trang chủ</a></li>
                             <li><a href="#" class="text-gray-300 hover:text-white">Động vật theo châu lục</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white">Bảo tồn</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white">Tổ chức bảo tồn</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white">Thư viện ảnh</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white">Liên hệ</a></li>
+            
                         </ul>
                     </div>
                     <div>
@@ -2094,5 +3755,541 @@
          });
 
     </script>
+<!-- Chatbot Container -->
+<div id="wildlife-chatbot" class="chatbot-container">
+  <!-- Chat Button -->
+  <button id="chat-toggle-btn" class="chat-toggle-btn">
+    <i class="fas fa-comment"></i>
+    <span>Hỏi về Động vật</span>
+  </button>
+
+  <!-- Chat Window -->
+  <div id="chat-window" class="chat-window">
+    <div class="chat-header">
+      <div class="chat-title">
+        <div class="chat-avatar">
+          <img src="https://placehold.co/32x32/10b981/FFFFFF?text=WB" alt="Wildlife Bot" onerror="this.src='https://placehold.co/32x32/10b981/FFFFFF?text=WB'">
+        </div>
+        <span>Trợ lý Động vật Hoang dã</span>
+      </div>
+      <div class="chat-controls">
+        <button id="minimize-btn" class="control-btn" aria-label="Thu nhỏ">
+          <i class="fas fa-minus"></i>
+        </button>
+        <button id="close-btn" class="control-btn" aria-label="Đóng">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <div id="chat-messages" class="chat-messages">
+      <div class="message bot-message">
+        <div class="message-content">
+          Xin chào! Tôi là trợ lý ảo về động vật hoang dã. Bạn có thể hỏi tôi bất kỳ câu hỏi nào về các loài động vật, môi trường sống của chúng, hoặc các vấn đề bảo tồn. Tôi rất vui được giúp đỡ bạn!
+        </div>
+      </div>
+    </div>
+    <div class="chat-input-container">
+      <form id="chat-form">
+        <input 
+          type="text" 
+          id="chat-input" 
+          placeholder="Hỏi về động vật hoang dã..." 
+          autocomplete="off"
+        >
+        <button type="submit" id="send-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+      <div class="chat-info">
+        <i class="fas fa-info-circle"></i>
+        <span>Bot trả lời các câu hỏi về động vật hoang dã</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Thêm CSS cho chatbot -->
+<style>
+  /* Chatbot Styles */
+  .chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  /* Chat Toggle Button */
+  .chat-toggle-btn {
+    background-color: var(--primary-color, #10b981);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  }
+
+  .chat-toggle-btn:hover {
+    background-color: var(--secondary-color, #065f46);
+    transform: translateY(-2px);
+  }
+
+  /* Chat Window */
+  .chat-window {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 350px;
+    height: 500px;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+  }
+
+  .chat-window.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  .chat-window.minimized {
+    height: 60px;
+    overflow: hidden;
+  }
+
+  /* Chat Header */
+  .chat-header {
+    background-color: var(--primary-color, #10b981);
+    color: white;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .chat-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+  }
+
+  .chat-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid white;
+  }
+
+  .chat-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .chat-controls {
+    display: flex;
+    gap: 5px;
+  }
+
+  .control-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .control-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Chat Messages */
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: #f8f9fa;
+  }
+
+  .dark .chat-messages {
+    background-color: #2d3748;
+  }
+
+  .message {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    position: relative;
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .user-message {
+    background-color: var(--primary-color, #10b981);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+
+  .bot-message {
+    background-color: white;
+    color: #333;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .bot-message {
+    background-color: #4a5568;
+    color: #e2e8f0;
+  }
+
+  /* Chat Input */
+  .chat-input-container {
+    padding: 12px;
+    border-top: 1px solid #e2e8f0;
+    background-color: white;
+  }
+
+  .dark .chat-input-container {
+    background-color: #2d3748;
+    border-top-color: #4a5568;
+  }
+
+  #chat-form {
+    display: flex;
+    gap: 8px;
+  }
+
+  #chat-input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.2s;
+  }
+
+  .dark #chat-input {
+    background-color: #4a5568;
+    border-color: #4a5568;
+    color: white;
+  }
+
+  #chat-input:focus {
+    border-color: var(--primary-color, #10b981);
+  }
+
+  #send-btn {
+    background-color: var(--primary-color, #10b981);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  #send-btn:hover {
+    background-color: var(--secondary-color, #065f46);
+  }
+
+  #send-btn:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+  }
+
+  .chat-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #6b7280;
+    padding-left: 5px;
+  }
+
+  .dark .chat-info {
+    color: #9ca3af;
+  }
+
+  /* Typing Indicator */
+  .typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 14px;
+    background-color: white;
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+  }
+
+  .dark .typing-indicator {
+    background-color: #4a5568;
+  }
+
+  .typing-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #9ca3af;
+    border-radius: 50%;
+    animation: typingAnimation 1.4s infinite ease-in-out;
+  }
+
+  .typing-dot:nth-child(1) { animation-delay: 0s; }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typingAnimation {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-5px); }
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 480px) {
+    .chat-window {
+      width: calc(100% - 40px);
+      right: 20px;
+      bottom: 80px;
+    }
+
+    .chat-toggle-btn span {
+      display: none;
+    }
+
+    .chat-toggle-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      justify-content: center;
+      padding: 0;
+    }
+  }
+
+  /* Dark Mode Support */
+  .dark .chat-window {
+    background-color: #1f2937;
+    color: #f3f4f6;
+  }
+
+  .dark #chat-input::placeholder {
+    color: #9ca3af;
+  }
+</style>
+
+<!-- Thêm JavaScript cho chatbot -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // DOM Elements
+    const chatToggleBtn = document.getElementById('chat-toggle-btn');
+    const chatWindow = document.getElementById('chat-window');
+    const minimizeBtn = document.getElementById('minimize-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatHeader = document.querySelector('.chat-header');
+
+    // State
+    let isOpen = false;
+    let isMinimized = false;
+    let isWaitingForResponse = false;
+
+    // Mẫu câu trả lời cho bot (sử dụng khi không có API)
+    const sampleResponses = {
+      "default": "Xin lỗi, tôi không có thông tin về câu hỏi này. Bạn có thể hỏi về các loài động vật cụ thể hoặc vấn đề bảo tồn không?",
+      "sư tử": "Sư tử (Panthera leo) là loài mèo lớn thuộc họ Mèo (Felidae). Chúng sống chủ yếu ở châu Phi, là loài săn mồi đỉnh cao và được mệnh danh là 'vua của muôn thú'. Sư tử đực có bờm lớn, sống theo bầy đàn do sư tử cái lãnh đạo. Tình trạng bảo tồn: Sắp nguy cấp (VU).",
+      "voi": "Voi là động vật có vú lớn nhất sống trên cạn, thuộc họ Voi (Elephantidae). Có hai loài chính: voi châu Phi và voi châu Á. Chúng có trí thông minh cao, sống theo đàn với cấu trúc xã hội phức tạp. Voi đang đối mặt với nguy cơ tuyệt chủng do săn bắn lấy ngà và mất môi trường sống.",
+      "hổ": "Hổ (Panthera tigris) là loài mèo lớn nhất thế giới, nổi tiếng với bộ lông vằn đặc trưng. Chúng sống chủ yếu ở châu Á, là loài săn mồi đỉnh cao. Hiện nay, hổ đang trong tình trạng nguy cấp (EN) do săn trộm và mất môi trường sống. Chỉ còn khoảng 3,900 cá thể trong tự nhiên.",
+      "gấu trúc": "Gấu trúc lớn (Ailuropoda melanoleuca) là loài gấu đặc hữu của Trung Quốc, nổi tiếng với bộ lông đen trắng đặc trưng. Chúng ăn chủ yếu là tre (chiếm 99% khẩu phần). Tình trạng bảo tồn đã được cải thiện từ Nguy cấp (EN) xuống Sắp nguy cấp (VU) nhờ nỗ lực bảo tồn.",
+      "bảo tồn": "Bảo tồn động vật hoang dã là việc bảo vệ các loài động vật và môi trường sống tự nhiên của chúng. Các mối đe dọa chính bao gồm: mất môi trường sống, săn bắt trái phép, biến đổi khí hậu và ô nhiễm. Bạn có thể đóng góp bằng cách hỗ trợ các tổ chức bảo tồn, giảm thiểu rác thải và nâng cao nhận thức cộng đồng.",
+      "kangaroo": "Kangaroo là loài thú có túi đặc trưng của Australia. Loài phổ biến nhất là Kangaroo đỏ - loài thú có túi lớn nhất thế giới. Chúng di chuyển bằng cách nhảy và có thể đạt tốc độ 70 km/h. Kangaroo cái có túi trên bụng để nuôi con non. Tình trạng bảo tồn: Ít quan tâm (LC).",
+      "koala": "Koala (Phascolarctos cinereus) là loài thú có túi sống ở Australia, nổi tiếng với vẻ ngoài giống gấu nhỏ. Chúng sống trên cây bạch đàn và ăn lá bạch đàn - thức ăn có độc với hầu hết động vật khác. Koala đang trong tình trạng Sắp nguy cấp (VU) do mất môi trường sống và biến đổi khí hậu."
+    };
+
+    // Hàm kiểm tra từ khóa trong câu hỏi
+    function findKeywordInQuestion(question) {
+      question = question.toLowerCase();
+      for (const keyword in sampleResponses) {
+        if (keyword !== 'default' && question.includes(keyword)) {
+          return keyword;
+        }
+      }
+      return 'default';
+    }
+
+    // Hàm thêm tin nhắn vào chat
+    function addMessage(content, isUser = false) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+      
+      const messageContent = document.createElement('div');
+      messageContent.className = 'message-content';
+      messageContent.textContent = content;
+      
+      messageDiv.appendChild(messageContent);
+      chatMessages.appendChild(messageDiv);
+      
+      // Cuộn xuống tin nhắn mới nhất
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Hiển thị typing indicator
+    function showTypingIndicator() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'typing-indicator';
+      typingDiv.id = 'typing-indicator';
+      
+      for (let i = 0; i < 3; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'typing-dot';
+        typingDiv.appendChild(dot);
+      }
+      
+      chatMessages.appendChild(typingDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Ẩn typing indicator
+    function hideTypingIndicator() {
+      const typingIndicator = document.getElementById('typing-indicator');
+      if (typingIndicator) {
+        typingIndicator.remove();
+      }
+    }
+
+    // Xử lý gửi tin nhắn
+    async function handleSendMessage(e) {
+      if (e) e.preventDefault();
+      
+      const message = chatInput.value.trim();
+      if (!message || isWaitingForResponse) return;
+      
+      // Thêm tin nhắn người dùng vào chat
+      addMessage(message, true);
+      chatInput.value = '';
+      
+      // Hiển thị đang nhập
+      isWaitingForResponse = true;
+      showTypingIndicator();
+      
+      // Mô phỏng độ trễ phản hồi
+      setTimeout(() => {
+        // Ẩn đang nhập
+        hideTypingIndicator();
+        
+        // Tìm từ khóa trong câu hỏi
+        const keyword = findKeywordInQuestion(message);
+        const response = sampleResponses[keyword];
+        
+        // Thêm phản hồi của bot
+        addMessage(response);
+        isWaitingForResponse = false;
+      }, 1500);
+    }
+
+    // Mở/đóng chat
+    function toggleChat() {
+      if (isMinimized) {
+        isMinimized = false;
+        chatWindow.classList.remove('minimized');
+      } else {
+        isOpen = !isOpen;
+        chatWindow.classList.toggle('open', isOpen);
+      }
+    }
+
+    // Thu nhỏ chat
+    function minimizeChat(e) {
+      e.stopPropagation();
+      isMinimized = true;
+      chatWindow.classList.add('minimized');
+    }
+
+    // Đóng chat
+    function closeChat(e) {
+      e.stopPropagation();
+      isOpen = false;
+      chatWindow.classList.remove('open');
+    }
+
+    // Event Listeners
+    chatToggleBtn.addEventListener('click', toggleChat);
+    minimizeBtn.addEventListener('click', minimizeChat);
+    closeBtn.addEventListener('click', closeChat);
+    chatForm.addEventListener('submit', handleSendMessage);
+    chatHeader.addEventListener('click', () => {
+      if (isMinimized) {
+        isMinimized = false;
+        chatWindow.classList.remove('minimized');
+      }
+    });
+
+    // Kiểm tra input để enable/disable nút gửi
+    chatInput.addEventListener('input', () => {
+      sendBtn.disabled = chatInput.value.trim() === '' || isWaitingForResponse;
+    });
+
+    // Kiểm tra dark mode
+    function checkDarkMode() {
+      const isDarkMode = document.body.classList.contains('dark');
+      document.getElementById('wildlife-chatbot').classList.toggle('dark', isDarkMode);
+    }
+
+    // Kiểm tra dark mode ban đầu
+    checkDarkMode();
+
+    // Theo dõi thay đổi dark mode
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.attributeName === 'class') {
+          checkDarkMode();
+        }
+      });
+    });
+
+    observer.observe(document.body, { attributes: true });
+  });
+</script>
 </body>
 </html>
