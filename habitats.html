@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Môi trường sống của Động vật Hoang dã</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="Khám phá các môi trường sống đa dạng nơi động vật hoang dã sinh sống. Từ rừng nhiệt đới đến sa mạc khô cằn, mỗi hệ sinh thái đều có những đặc điểm riêng.">
+</head>
+<body>
+<style>
+/* Styles for Habitats Page */
+
+/* Habitat Hero Section */
+.habitat-hero {
+    background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+    color: white;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.habitat-hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.habitat-hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: 0.2s;
+}
+
+/* Habitat Map Section */
+.habitat-map-section {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.map-container {
+    position: relative;
+    margin-top: 40px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+.world-map {
+    width: 100%;
+    display: block;
+}
+
+.map-legend {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.map-legend h3 {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.map-legend ul {
+    list-style: none;
+}
+
+.map-legend li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    font-size: 0.875rem;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 8px;
+    border-radius: 3px;
+}
+
+/* Habitat Filters */
+.habitat-filters-section {
+    padding: 40px 0;
+    background-color: var(--light-gray);
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.filter-button {
+    padding: 10px 20px;
+    background-color: white;
+    border: 1px solid var(--light-gray);
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-button:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.filter-button.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Habitats List */
+.habitats-list-section {
+    padding: 60px 0;
+    background-color: white;
+}
+
+.habitat-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    margin-bottom: 40px;
+    background-color: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.habitat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.habitat-image {
+    height: 100%;
+    overflow: hidden;
+}
+
+.habitat-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.habitat-card:hover .habitat-image img {
+    transform: scale(1.05);
+}
+
+.habitat-info {
+    padding: 30px;
+}
+
+.habitat-info h3 {
+    font-size: 1.75rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.habitat-info p {
+    margin-bottom: 20px;
+    color: var(--gray-color);
+}
+
+.habitat-locations {
+    margin-bottom: 25px;
+}
+
+.habitat-locations h4 {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.habitat-locations ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+}
+
+.habitat-locations li {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px;
+    color: var(--gray-color);
+    font-size: 1.1rem;
+}
+
+/* Habitat Statistics */
+.habitat-statistics-section {
+    padding: 80px 0;
+    background-color: var(--light-gray);
+}
+
+.chart-placeholder {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 40px;
+}
+
+.chart-placeholder h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.chart-image {
+    margin-bottom: 20px;
+}
+
+.chart-image img {
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
+.chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+}
+
+.legend-label {
+    font-size: 0.875rem;
+}
+
+.habitat-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.fact-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    gap: 20px;
+}
+
+.fact-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.fact-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.fact-content p {
+    color: var(--gray-color);
+    font-size: 0.95rem;
+}
+
+/* Conservation Call to Action */
+.conservation-cta {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x1080') no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.cta-content p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.outline-button.light {
+    color: white;
+    border-color: white;
+}
+
+.outline-button.light:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Styles for Habitats Page */
+@media (max-width: 991px) {
+    .habitat-hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .habitat-card {
+        grid-template-columns: 1fr;
+    }
+    
+    .habitat-image {
+        height: 300px;
+    }
+    
+    .map-legend {
+        position: static;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .filter-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-button {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-content h2 {
+        font-size: 2rem;
+    }
+    
+    .fact-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .habitat-hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .habitat-info {
+        padding: 20px;
+    }
+    
+    .habitat-info h3 {
+        font-size: 1.5rem;
+    }
+}
+</style>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" class="logo-text">WildLife</a>
+            </div>
+
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Trang chủ</a></li>
+                    <li><a href="animals.html" class="nav-link">Các loài động vật</a></li>
+                    <li><a href="habitats.html" class="nav-link active">Môi trường sống</a></li>
+                    <li><a href="conservation.html" class="nav-link">Bảo tồn</a></li>
+                    <li><a href="explore.html" class="nav-link">Góc khám phá</a></li>
+                    <li><a href="news.html" class="nav-link">Tin tức</a></li>
+                    <li><a href="contact.html" class="nav-link">Liên hệ</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-button" id="mobile-menu-button">
+                <span class="menu-icon"></span>
+            </button>
+
+            <div class="mobile-menu" id="mobile-menu">
+                <ul class="mobile-nav-list">
+                    <li><a href="index.html" class="mobile-nav-link">Trang chủ</a></li>
+                    <li><a href="animals.html" class="mobile-nav-link">Các loài động vật</a></li>
+                    <li><a href="habitats.html" class="mobile-nav-link active">Môi trường sống</a></li>
+                    <li><a href="conservation.html" class="mobile-nav-link">Bảo tồn</a></li>
+                    <li><a href="explore.html" class="mobile-nav-link">Góc khám phá</a></li>
+                    <li><a href="news.html" class="mobile-nav-link">Tin tức</a></li>
+                    <li><a href="contact.html" class="mobile-nav-link">Liên hệ</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="habitat-hero">
+            <div class="container">
+                <div class="habitat-hero-content">
+                    <h1>Môi trường sống của Động vật Hoang dã</h1>
+                    <p class="hero-description">
+                        Khám phá các môi trường sống đa dạng nơi động vật hoang dã sinh sống. Từ rừng nhiệt đới đến sa mạc khô cằn,
+                        mỗi hệ sinh thái đều có những đặc điểm riêng và là nơi sinh sống của nhiều loài động vật khác nhau.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Habitat Map Section -->
+        <section class="habitat-map-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Bản đồ phân bố môi trường sống</h2>
+                    <p>Khám phá sự phân bố của các môi trường sống chính trên toàn cầu</p>
+                </div>         
+<div id="habitat-map"></div>
+         </div>
+        </section>
+
+        <!-- Habitat Filters -->
+        <section class="habitat-filters-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Khám phá các môi trường sống</h2>
+                    <p>Lọc theo loại môi trường sống để tìm hiểu thêm</p>
+                </div>
+                <div id="habitat-filters"></div>
+            </div>
+        </section>
+
+        <!-- Habitats List -->
+        <section class="habitats-list-section">
+            <div class="container">
+                <div id="habitats-list"></div>
+            </div>
+        </section>
+
+        <!-- Habitat Statistics -->
+        <section class="habitat-statistics-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Thống kê về môi trường sống</h2>
+                    <p>Phân bố các loài động vật theo môi trường sống</p>
+                </div>
+                <div id="habitat-distribution-chart"></div>
+                <div class="habitat-facts">
+                    <div class="fact-card">
+                        <div class="fact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <div class="fact-content">
+                            <h3>Rừng nhiệt đới</h3>
+                            <p>Chiếm chưa đến 7% diện tích bề mặt Trái Đất nhưng chứa hơn 50% các loài động thực vật trên thế giới.</p>
+                        </div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="fact-content">
+                            <h3>Rạn san hô</h3>
+                            <p>Chiếm chưa đến 1% đáy biển nhưng là nơi sinh sống của khoảng 25% các loài sinh vật biển.</p>
+                        </div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+                            </svg>
+                        </div>
+                        <div class="fact-content">
+                            <h3>Đất ngập nước</h3>
+                            <p>Đóng vai trò quan trọng trong việc lọc nước, ngăn lũ lụt và là nơi sinh sống của hơn 100,000 loài động vật.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conservation Call to Action -->
+        <section class="conservation-cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Bảo vệ môi trường sống là bảo vệ động vật hoang dã</h2>
+                    <p>Mỗi môi trường sống đều đóng vai trò quan trọng trong việc duy trì sự cân bằng sinh thái và đa dạng sinh học của Trái Đất. Hãy cùng chúng tôi bảo vệ những ngôi nhà tự nhiên này.</p>
+                    <div class="cta-buttons">
+                        <a href="conservation.html" class="button primary-button">Tìm hiểu về bảo tồn</a>
+                        <a href="resources/volunteer.html" class="button outline-button">Tham gia hoạt động</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>Về chúng tôi</h3>
+                    <p>
+                        Trang web cung cấp thông tin về các loài động vật hoang dã, môi trường sống và các nỗ lực bảo tồn, nhằm
+                        nâng cao nhận thức và thúc đẩy hành động bảo vệ thiên nhiên.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Liên kết nhanh</h3>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="animals.html">Các loài động vật</a></li>
+                        <li><a href="habitats.html">Môi trường sống</a></li>
+                        <li><a href="conservation.html">Bảo tồn</a></li>
+                        <li><a href="explore.html">Góc khám phá</a></li>
+                        <li><a href="news.html">Tin tức & Sự kiện</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-resources">
+                    <h3>Tài nguyên</h3>
+                    <ul>
+                        <li><a href="resources/education.html">Tài liệu giáo dục</a></li>
+                        <li><a href="resources/research.html">Nghiên cứu khoa học</a></li>
+                        <li><a href="resources/organizations.html">Tổ chức bảo tồn</a></li>
+                        <li><a href="resources/volunteer.html">Cơ hội tình nguyện</a></li>
+                        <li><a href="resources/donate.html">Ủng hộ bảo tồn</a></li>
+                        <li><a href="resources/faq.html">Câu hỏi thường gặp</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Liên hệ</h3>
+                    <ul>
+                        <li class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>Tầng 4 Mường Thanh,Thị xã Hoàng Mai,Nghệ An</span>
+                        </li>
+                        <li class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <span>(+84)0964509848</span>
+                        </li>
+                        <li class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <span>dhuyy007@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="current-year"></span> Wildlife - Khám phá thế giới Động vật Hoang dã. Tất cả các quyền được bảo
+                    lưu.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="habitats.js"></script>
+</body>
+</html>
