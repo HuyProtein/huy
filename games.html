@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trò chơi & Câu đố - Khám phá thế giới Động vật Hoang dã</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <h1>Trò chơi & Câu đố</h1>
+            <p>Học hỏi về động vật hoang dã qua các trò chơi thú vị và câu đố hấp dẫn. Phù hợp cho mọi lứa tuổi, từ trẻ em đến người lớn.</p>
+        </header>
+
+        <!-- Tabs danh mục -->
+        <div class="tabs">
+            <div class="tabs-list">
+                <button class="tab-button active" data-category="all">Tất cả</button>
+                <button class="tab-button" data-category="quiz">Câu đố</button>
+                <button class="tab-button" data-category="puzzle">Ghép hình</button>
+                <button class="tab-button" data-category="memory">Ghi nhớ</button>
+                <button class="tab-button" data-category="coloring">Tô màu</button>
+                <button class="tab-button" data-category="word">Tìm từ</button>
+            </div>
+        </div>
+
+        <!-- Danh sách trò chơi -->
+        <div class="games-grid" id="games-container">
+            <!-- Các thẻ game sẽ được thêm vào đây bằng JavaScript -->
+        </div>
+
+        <!-- Dialog hiển thị trò chơi -->
+        <div class="game-dialog" id="game-dialog">
+            <div class="dialog-content">
+                <div class="dialog-header">
+                    <h2 id="dialog-title">Tên trò chơi</h2>
+                    <p id="dialog-description">Mô tả trò chơi</p>
+                    <button class="close-button" id="close-dialog">&times;</button>
+                </div>
+                <div class="dialog-body" id="dialog-body">
+                    <!-- Nội dung trò chơi sẽ được thêm vào đây bằng JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Phần giới thiệu các trò chơi giáo dục -->
+        <section class="info-section">
+            <div class="section-header">
+                <h2>Học hỏi qua trò chơi</h2>
+                <p>Trò chơi là một cách tuyệt vời để học hỏi về động vật hoang dã và môi trường sống của chúng. Chúng tôi thiết kế các trò chơi vừa giáo dục vừa giải trí, phù hợp cho mọi lứa tuổi.</p>
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="icon-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>
+                    </div>
+                    <h3>Phát triển kiến thức</h3>
+                    <p>Các trò chơi của chúng tôi giúp người chơi học hỏi về đặc điểm, hành vi và môi trường sống của động vật hoang dã một cách thú vị.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M6 12h4"></path><path d="M14 12h4"></path></svg>
+                    </div>
+                    <h3>Giải trí lành mạnh</h3>
+                    <p>Chơi game không chỉ là giải trí, mà còn là cách để thư giãn và phát triển các kỹ năng như tư duy logic, trí nhớ và sự tập trung.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                    </div>
+                    <h3>Nâng cao nhận thức</h3>
+                    <p>Thông qua trò chơi, chúng tôi muốn nâng cao nhận thức về tầm quan trọng của việc bảo tồn động vật hoang dã và môi trường tự nhiên.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phần dành cho giáo viên và phụ huynh -->
+        <section class="resources-section">
+            <div class="section-header">
+                <h2>Dành cho giáo viên & phụ huynh</h2>
+                <p>Chúng tôi cung cấp các tài nguyên và hướng dẫn để giúp giáo viên và phụ huynh sử dụng trò chơi như một công cụ giáo dục hiệu quả.</p>
+            </div>
+
+            <div class="resources-cards">
+                <div class="resource-card">
+                    <h3>Tài liệu hướng dẫn cho giáo viên</h3>
+                    <p>Các tài liệu và kế hoạch bài giảng để tích hợp trò chơi vào chương trình học</p>
+                    <ul>
+                        <li>Kế hoạch bài giảng theo chủ đề và cấp lớp</li>
+                        <li>Hoạt động mở rộng và thảo luận</li>
+                        <li>Tài liệu đánh giá và theo dõi tiến độ</li>
+                        <li>Hướng dẫn tổ chức hoạt động nhóm</li>
+                    </ul>
+                    <a href="/explore/education/teachers" class="button outline-button">Xem tài liệu</a>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Hướng dẫn cho phụ huynh</h3>
+                    <p>Cách sử dụng trò chơi để hỗ trợ việc học tập của trẻ tại nhà</p>
+                    <ul>
+                        <li>Hướng dẫn sử dụng trò chơi theo độ tuổi</li>
+                        <li>Hoạt động bổ sung để thực hiện cùng con</li>
+                        <li>Mẹo khuyến khích học tập qua trò chơi</li>
+                        <li>Tài liệu bổ sung về động vật hoang dã</li>
+                    </ul>
+                    <a href="/explore/education/parents" class="button outline-button">Xem hướng dẫn</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Canvas cho hiệu ứng pháo hoa -->
+    <canvas id="confetti-canvas" width="400" height="400"></canvas>
+
+    <script src="games.js"></script>
+</body>
+</html>
+
