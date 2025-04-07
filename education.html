@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài liệu giáo dục - Wildlife</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" class="logo-text">WildLife</a>
+            </div>
+
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Trang chủ</a></li>
+                    <li><a href="animals.html" class="nav-link">Các loài động vật</a></li>
+                    <li><a href="habitats.html" class="nav-link">Môi trường sống</a></li>
+                    <li><a href="conservation.html" class="nav-link">Bảo tồn</a></li>
+                    <li><a href="explore.html" class="nav-link">Góc khám phá</a></li>
+                    <li><a href="contact.html" class="nav-link">Liên hệ</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-button" id="mobile-menu-button">
+                <span class="menu-icon"></span>
+            </button>
+
+            <div class="mobile-menu" id="mobile-menu">
+                <ul class="mobile-nav-list">
+                    <li><a href="index.html" class="mobile-nav-link">Trang chủ</a></li>
+                    <li><a href="animals.html" class="mobile-nav-link">Các loài động vật</a></li>
+                    <li><a href="habitats.html" class="mobile-nav-link">Môi trường sống</a></li>
+                    <li><a href="conservation.html" class="mobile-nav-link">Bảo tồn</a></li>
+                    <li><a href="explore.html" class="mobile-nav-link">Góc khám phá</a></li>
+                    <li><a href="contact.html" class="mobile-nav-link">Liên hệ</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header education-header">
+            <div class="container">
+                <h1>Tài liệu giáo dục</h1>
+                <p class="page-description">
+                    Khám phá các tài liệu giáo dục về động vật hoang dã và bảo tồn thiên nhiên
+                </p>
+            </div>
+        </div>
+
+        <section class="education-intro-section">
+            <div class="container">
+                <div class="education-intro">
+                    <div class="education-intro-content">
+                        <h2>Giáo dục về động vật hoang dã</h2>
+                        <p>
+                            Chúng tôi tin rằng giáo dục là chìa khóa để bảo vệ các loài động vật hoang dã và môi trường sống của chúng. Thông qua việc cung cấp các tài liệu giáo dục chất lượng cao, chúng tôi hy vọng sẽ truyền cảm hứng cho thế hệ tiếp theo của các nhà bảo tồn và nâng cao nhận thức về tầm quan trọng của đa dạng sinh học.
+                        </p>
+                        <p>
+                            Các tài liệu giáo dục của chúng tôi được thiết kế cho nhiều đối tượng khác nhau, từ học sinh tiểu học đến sinh viên đại học và người lớn. Chúng bao gồm các kế hoạch bài học, hoạt động thực hành, tài liệu đọc, video và nhiều hơn nữa.
+                        </p>
+                    </div>
+                    <div class="education-intro-image">
+                        <img src="/placeholder.svg?height=400&width=600" alt="Giáo dục về động vật hoang dã" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="education-resources-section">
+            <div class="container">
+                <h2 class="section-title">Tài liệu theo cấp độ</h2>
+                
+                <div class="education-level-tabs">
+                    <button class="tab-button active" data-tab="primary">Tiểu học</button>
+                    <button class="tab-button" data-tab="secondary">Trung học</button>
+                    <button class="tab-button" data-tab="university">Đại học</button>
+                    <button class="tab-button" data-tab="teacher">Giáo viên</button>
+                </div>
+                
+                <div class="education-tab-content">
+                    <div class="tab-pane active" id="primary">
+                        <div class="resources-grid">
+                            <div class="resource-card">
+                                <div class="resource-image">
+                                    <img src="/placeholder.svg?height=200&width=300" alt="Khám phá thế giới động vật" loading="lazy">
+                                </div>
+                                <div class="resource-content">
+                                    <h3>Khám phá thế giới động vật</h3>
+                                    <p>Bộ tài liệu giới thiệu các loài động vật và môi trường sống của chúng cho học sinh tiểu học.</p>
+                                    <a href="#" class="button secondary-button">Tải xuống PDF</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-image">
+                                    <img src="/placeholder.svg?height=200&width=300" alt="Hoạt động thủ công về động vật" loading="lazy">
+                                </div>
+                                <div class="resource-content">
+                                    <h3>Hoạt động thủ công về động vật</h3>
+                                    <p>Các hoạt động thủ công giúp học sinh tiểu học tìm hiểu về các loài động vật một cách sáng tạo.</p>
+                                    <a href="#" class="button secondary-button">Tải xuống PDF</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-image">
+                                    <img src="/placeholder.svg?height=200&width=300" alt="Trò chơi học tập về động vật" loading="lazy">
+                                </div>
+                                <div class="resource-content">
+                                    <h3>Trò chơi học tập về động vật</h3>
+                                    <p>Bộ trò chơi giáo dục giúp học sinh tiểu học học về động vật hoang dã một cách vui nhộn.</p>
+                                    <a href="#" class="button secondary-button">Tải xuống PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="secondary">
+                        <div class="resources-grid">
+                            <div class="resource-card">
+                                <div class="resource-image">
+                                    <img src="/placeholder.svg?height=200&width=300" alt="Đa dạng sinh học và hệ sinh thái" loading="lazy">
+                                </div>
+                                <div class="resource-content">
+                                    <h3>Đa dạng sinh học và hệ sinh thái</h3>
+                                    <p>Tài liệu giáo dục về đa dạng sinh học và các hệ sinh thái cho học sinh trung học.</p>
+                                    <a href="#" class="button secondary-button">Tải xuống PDF</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-image">
+                                    <img src="/placeholder.svg?height=200&width=300" alt="Bảo tồn động vật hoang dã" loading="lazy">
+                                </div>
+                                <div class="resource-content">
+                                    <h3>Bảo tồn động vật hoang dã</h3>
+                                    <p>Tài liệu về các nỗ lực bảo tồn động vật hoang dã và vai trò của con người.</p>
+                                    <a href="#" class="button secondary-button">Tải xuống PDF</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-image">
+                                    <img src="/placeholder.svg?height=200&width=300" alt="Dự án nghiên cứu sinh học" loading="lazy">
+                                </div>
+                                <div class="resource-content">
+                                    <h3>Dự án nghiên cứu sinh học</h3>
+                                    <p>Hướng dẫn thực hiện các dự án nghiên cứu sinh học về động vật hoang dã cho học sinh trung học.</p>
+                                    <a href="#" class="button secondary-button">Tải xuống PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="university">
+                        <div class="resources-grid">
+                            <div class="resource-card">
+                                <div class="resource-image">
+                                    <img src="/placeholder.svg?height=200&width=300" alt="Sinh thái học bảo tồn" loading="lazy">
+                                </div>
+                                <div class="resource-content">
+                                    <h3>Sinh thái học bảo tồn</h3>
+                                    <p>Tài liệu học tập về sinh thái học bảo tồn và các phương pháp nghiên cứu cho sinh viên đại học.</p>
+                                    <a href="#" class="button secondary-button">Tải xuống PDF</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-image">
+                                    <img src="/placeholder.svg?height=200&width=300" alt="Phương pháp nghiên cứu động vật hoang dã" loading="lazy">
+                                </div>
+                                <div class="resource-content">
+                                    <h3>Phương pháp nghiên cứu động vật hoang dã</h3>
+                                    <p>Hướng dẫn về các phương pháp nghiên cứu động vật hoang dã trong tự nhiên.</p>
+                                    <a href="#" class="button secondary-button">Tải xuống PDF</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-image">
+                                    <img src="/placeholder.svg?height=200&width=300" alt="Chính sách bảo tồn quốc tế" loading="lazy">
+                                </div>
+                                <div class="resource-content">
+                                    <h3>Chính sách bảo tồn quốc tế</h3>
+                                    <p>Tài liệu về các chính sách và hiệp định bảo tồn quốc tế và tác động của chúng.</p>
+                                    <a href="#" class="button secondary-button">Tải xuống PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="teacher">
+                        <div class="resources-grid">
+                            <div class="resource-card">
+                                <div class="resource-image">
+                                    <img src="/placeholder.svg?height=200&width=300" alt="Kế hoạch bài giảng về động vật hoang dã" loading="lazy">
+                                </div>
+                                <div class="resource-content">
+                                    <h3>Kế hoạch bài giảng về động vật hoang dã</h3>
+                                    <p>Bộ kế hoạch bài giảng về động vật hoang dã và bảo tồn cho giáo viên các cấp.</p>
+                                    <a href="#" class="button secondary-button">Tải xuống PDF</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-image">
+                                    <img src="/placeholder.svg?height=200&width=300" alt="Hoạt động ngoài trời về thiên nhiên" loading="lazy">
+                                </div>
+                                <div class="resource-content">
+                                    <h3>Hoạt động ngoài trời về thiên nhiên</h3>
+                                    <p>Hướng dẫn tổ chức các hoạt động ngoài trời để học sinh tìm hiểu về thiên nhiên.</p>
+                                    <a href="#" class="button secondary-button">Tải xuống PDF</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-image">
+                                    <img src="/placeholder.svg?height=200&width=300" alt="Tài liệu đánh giá kiến thức về động vật" loading="lazy">
+                                </div>
+                                <div class="resource-content">
+                                    <h3>Tài liệu đánh giá kiến thức về động vật</h3>
+                                    <p>Bộ công cụ đánh giá kiến thức của học sinh về động vật hoang dã và bảo tồn.</p>
+                                    <a href="#" class="button secondary-button">Tải xuống PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="education-videos-section">
+            <div class="container">
+                <h2 class="section-title">Video giáo dục</h2>
+                <p class="section-description">
+                    Khám phá bộ sưu tập video giáo dục về động vật hoang dã và bảo tồn
+                </p>
+                
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="/placeholder.svg?height=200&width=350" alt="Giới thiệu về các loài động vật có vú" loading="lazy">
+                            <div class="play-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>Giới thiệu về các loài động vật có vú</h3>
+                            <p>Video giáo dục về đặc điểm và sự đa dạng của các loài động vật có vú.</p>
+                            <span class="video-duration">12:45</span>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="/placeholder.svg?height=200&width=350" alt="Khám phá rừng nhiệt đới" loading="lazy">
+                            <div class="play-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>Khám phá rừng nhiệt đới</h3>
+                            <p>Hành trình khám phá hệ sinh thái phong phú của rừng nhiệt đới và các loài động vật sống trong đó.</p>
+                            <span class="video-duration">18:30</span>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="/placeholder.svg?height=200&width=350" alt="Bảo tồn động vật biển" loading="lazy">
+                            <div class="play-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>Bảo tồn động vật biển</h3>
+                            <p>Tìm hiểu về các nỗ lực bảo tồn động vật biển và tầm quan trọng của đại dương.</p>
+                            <span class="video-duration">15:20</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <a href="#" class="button primary-button">Xem thêm video</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="education-contact-section">
+            <div class="container">
+                <div class="education-contact">
+                    <div class="education-contact-content">
+                        <h2>Yêu cầu tài liệu giáo dục</h2>
+                        <p>
+                            Bạn là giáo viên hoặc nhà giáo dục đang tìm kiếm tài liệu giáo dục cụ thể về động vật hoang dã? Hãy liên hệ với chúng tôi để được hỗ trợ. Chúng tôi có thể cung cấp tài liệu tùy chỉnh phù hợp với nhu cầu giảng dạy của bạn.
+                        </p>
+                        <a href="../contact.html" class="button primary-button">Liên hệ với chúng tôi</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>Về chúng tôi</h3>
+                    <p>
+                        Trang web cung cấp thông tin về các loài động vật hoang dã, môi trường sống và các nỗ lực bảo tồn, nhằm
+                        nâng cao nhận thức và thúc đẩy hành động bảo vệ thiên nhiên.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Liên kết nhanh</h3>
+                    <ul>
+                        <li><a href="../index.html">Trang chủ</a></li>
+                        <li><a href="../animals.html">Các loài động vật</a></li>
+                        <li><a href="../habitats.html">Môi trường sống</a></li>
+                        <li><a href="../conservation.html">Bảo tồn</a></li>
+                        <li><a href="../explore.html">Góc khám phá</a></li>
+                        <li><a href="../news.html">Tin tức & Sự kiện</a></li>
+                        <li><a href="../contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-resources">
+                    <h3>Tài nguyên</h3>
+                    <ul>
+                        <li><a href="education.html">Tài liệu giáo dục</a></li>
+                        <li><a href="research.html">Nghiên cứu khoa học</a></li>
+                        <li><a href="organizations.html">Tổ chức bảo tồn</a></li>
+                        <li><a href="volunteer.html">Cơ hội tình nguyện</a></li>
+                        <li><a href="donate.html">Ủng hộ bảo tồn</a></li>
+                        <li><a href="faq.html">Câu hỏi thường gặp</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Liên hệ</h3>
+                    <ul>
+                        <li class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>123 Đường Thiên Nhiên, Quận Bảo Tồn, TP. Hồ Chí Minh, Việt Nam</span>
+                        </li>
+                        <li class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <span>(+84) 28 1234 5678</span>
+                        </li>
+                        <li class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <span>info@wildlife.vn</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="current-year"></span> Wildlife - Khám phá thế giới Động vật Hoang dã. Tất cả các quyền được bảo
+                    lưu.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/education.js"></script>
+</body>
+</html>
+
