@@ -398,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Giả lập hiển thị bản đồ
         mapContainer.innerHTML = `
             <div class="map-container">
-                <img src="https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-a380-51f7-ad63-cd5404f6c8d8/raw?se=2025-04-07T19%3A13%3A55Z&sp=r&sv=2024-08-04&sr=b&scid=2df38daf-efad-55a9-baf5-6233b611c977&skoid=dfdaf859-26f6-4fed-affc-1befb5ac1ac2&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-07T06%3A08%3A23Z&ske=2025-04-08T06%3A08%3A23Z&sks=b&skv=2024-08-04&sig=3yNoU/ZMcaIKAHzYjehgpnSfnDFcLS8YmHRqnHgzrgc%3D" alt="Bản đồ phân bố môi trường sống" class="world-map">
+                <img src="https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-ac0c-51f7-938f-e04aa2fb8c31/raw?se=2025-04-07T19%3A13%3A55Z&sp=r&sv=2024-08-04&sr=b&scid=0fa018ba-bd55-55e3-ab8d-0efb2031709e&skoid=dfdaf859-26f6-4fed-affc-1befb5ac1ac2&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-07T06%3A08%3A27Z&ske=2025-04-08T06%3A08%3A27Z&sks=b&skv=2024-08-04&sig=OIUKkElIe7yfu5jiOgGEmkMe8iK1mKgH64/BFt4j7Jw%3D" alt="Bản đồ phân bố môi trường sống" class="world-map">
                 
                 <div class="map-legend">
                     <h3>Chú thích</h3>
