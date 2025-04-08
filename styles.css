@@ -258,8 +258,8 @@ p {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
-  color: white;
+  background-image: url("https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BB1msG0V?w=0&h=0&q=60&m=6&f=jpg&u=t");
+ 
   padding: 80px 0 0;
   position: relative;
   overflow: hidden;
