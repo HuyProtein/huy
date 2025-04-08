@@ -206,8 +206,8 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(to right, #2e7d32, #388e3c);
-            color: white;
+          
+            color: black;
             padding-top: 80px;
             padding-bottom: 120px;
             position: relative;
@@ -2096,11 +2096,11 @@
 
 <!-- Chatbot Container -->
 <div id="wildlife-chatbot" class="chatbot-container">
-  <!-- Chat Button -->
-  <button id="chat-toggle-btn" class="chat-toggle-btn">
-    <i class="fas fa-comment"></i>
-    <span>Hỏi về Động vật</span>
-  </button>
+    <!-- Chat Button -->
+    <button id="chat-toggle-btn" class="chat-toggle-btn">
+      <i class="fas fa-messenger"></i>
+      <span>Gửi vấn đề</span>
+    </button>
 
   <!-- Chat Window -->
   <div id="chat-window" class="chat-window">
@@ -2109,7 +2109,7 @@
         <div class="chat-avatar">
           <img src="https://placehold.co/32x32/10b981/FFFFFF?text=WB" alt="Wildlife Bot" onerror="this.src='https://placehold.co/32x32/10b981/FFFFFF?text=WB'">
         </div>
-        <span>Trợ lý Động vật Hoang dã</span>
+        <span>Trợ lí động vật</span>
       </div>
       <div class="chat-controls">
         <button id="minimize-btn" class="control-btn" aria-label="Thu nhỏ">
@@ -2455,7 +2455,7 @@
   }
 </style>
 
-<!-- Thêm JavaScript cho chatbot -->
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
@@ -2609,23 +2609,7 @@
       sendBtn.disabled = chatInput.value.trim() === '' || isWaitingForResponse;
     });
 
-    // Kiểm tra dark mode
-    function checkDarkMode() {
-      const isDarkMode = document.body.classList.contains('dark');
-      document.getElementById('wildlife-chatbot').classList.toggle('dark', isDarkMode);
-    }
-
-    // Kiểm tra dark mode ban đầu
-    checkDarkMode();
-
-    // Theo dõi thay đổi dark mode
-    const observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        if (mutation.attributeName === 'class') {
-          checkDarkMode();
-        }
-      });
-    });
+    
 
     observer.observe(document.body, { attributes: true });
   });
