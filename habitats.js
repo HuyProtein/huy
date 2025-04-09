@@ -398,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Giả lập hiển thị bản đồ
         mapContainer.innerHTML = `
             <div class="map-container">
-                <img src="https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-ac0c-51f7-938f-e04aa2fb8c31/raw?se=2025-04-07T19%3A13%3A55Z&sp=r&sv=2024-08-04&sr=b&scid=0fa018ba-bd55-55e3-ab8d-0efb2031709e&skoid=dfdaf859-26f6-4fed-affc-1befb5ac1ac2&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-07T06%3A08%3A27Z&ske=2025-04-08T06%3A08%3A27Z&sks=b&skv=2024-08-04&sig=OIUKkElIe7yfu5jiOgGEmkMe8iK1mKgH64/BFt4j7Jw%3D" alt="Bản đồ phân bố môi trường sống" class="world-map">
+                <img src="bando.png" class="world-map">
                 
                 <div class="map-legend">
                     <h3>Chú thích</h3>
@@ -538,7 +538,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="chart-placeholder">
                 <h3>Biểu đồ phân bố động vật theo môi trường sống</h3>
                 <div class="chart-image">
-                    <img src="https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-8088-51f7-8687-d59642ad4a9e/raw?se=2025-04-07T18%3A50%3A41Z&sp=r&sv=2024-08-04&sr=b&scid=7852b474-de54-5838-b26d-5c4001da00ea&skoid=dfdaf859-26f6-4fed-affc-1befb5ac1ac2&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-07T06%3A06%3A17Z&ske=2025-04-08T06%3A06%3A17Z&sks=b&skv=2024-08-04&sig=jU0Kcl9ESFNc7wcWBsKsRbqg6%2BRRVlOFe5/yzJ314hA%3D" alt="Biểu đồ phân bố động vật">
+                    <img src="bieudo.png" alt="Biểu đồ phân bố động vật">
                 </div>
                 <div class="chart-legend">
                     ${chartData.labels.map((label, index) => `
