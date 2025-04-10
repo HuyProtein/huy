@@ -7,16 +7,478 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <style>
+        /* Take Action Page Styles */
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.page-header {
+  margin-bottom: 3rem;
+}
+
+.page-header h1 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.page-description {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  color: var(--gray-color);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Hero Section */
+.take-action-hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BB1msG0V?w=0&h=0&q=60&m=6&f=jpg&u=t');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 80px 40px;
+  border-radius: var(--border-radius);
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.take-action-hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.take-action-hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.take-action-hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* Ways to Help Section */
+.ways-to-help-section {
+  margin-bottom: 60px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-header h2 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.section-header p {
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--gray-color);
+}
+
+/* Tabs */
+.action-tabs {
+  margin-top: 40px;
+}
+
+.tab-header {
+  display: flex;
+  background-color: var(--light-gray);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.tab {
+  padding: 15px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  flex: 1;
+  text-align: center;
+}
+
+.tab.active {
+  background-color: white;
+  color: var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tab-content {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+}
+
+.tab-pane {
+  display: none;
+  padding: 30px;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+/* Action Cards */
+.action-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.action-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 30px;
+  box-shadow: var(--box-shadow);
+}
+
+.action-icon {
+  width: 64px;
+  height: 64px;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.action-card h3 {
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.action-list {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.action-list li {
+  margin-bottom: 10px;
+  color: var(--gray-color);
+}
+
+/* Donate Section */
+.donate-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.donate-info h3,
+.donate-form h3 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.donate-list,
+.donate-options {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 20px 0;
+}
+
+.donate-list li,
+.donate-options li {
+  margin-bottom: 10px;
+  color: var(--gray-color);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.donation-amounts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.donation-amount {
+  padding: 10px 15px;
+  background-color: white;
+  border: 1px solid var(--light-gray);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.donation-amount:hover,
+.donation-amount.active {
+  background-color: var(--primary-light);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--light-gray);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: var(--transition);
+  background-color: white;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Volunteer Section */
+.volunteer-section {
+  margin-top: 30px;
+}
+
+.volunteer-section h3 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.volunteer-opportunities {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 30px 0;
+}
+
+.volunteer-opportunity {
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 25px;
+  box-shadow: var(--box-shadow);
+}
+
+.volunteer-opportunity h4 {
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.volunteer-tasks {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-top: 15px;
+}
+
+.volunteer-tasks li {
+  margin-bottom: 8px;
+  color: var(--gray-color);
+}
+
+/* Advocate Section */
+.advocate-section {
+  margin-top: 30px;
+}
+
+.advocate-section h3 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.advocacy-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 30px 0;
+}
+
+.advocacy-action {
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 25px;
+  box-shadow: var(--box-shadow);
+}
+
+.advocacy-action h4 {
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.current-campaigns {
+  background-color: var(--primary-light);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  margin-top: 30px;
+}
+
+.campaign-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.campaign-list li {
+  margin-bottom: 12px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.campaign-list li:before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+}
+
+.campaign-link {
+  color: var(--primary-color);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.campaign-link:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* Join Us Section */
+.join-us-section {
+  background-color: var(--primary-light);
+  border-radius: var(--border-radius);
+  padding: 60px 40px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.join-us-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.join-us-content h2 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.join-us-content p {
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.join-us-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Button Styles */
+.button {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.primary-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.primary-button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .donate-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .donate-form {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-header h1 {
+    font-size: 2rem;
+  }
+  
+  .take-action-hero {
+    padding: 60px 20px;
+  }
+  
+  .take-action-hero h2 {
+    font-size: 2rem;
+  }
+  
+  .tab-header {
+    flex-wrap: wrap;
+  }
+  
+  .tab {
+    flex: 0 0 50%;
+  }
+  
+  .volunteer-opportunities,
+  .advocacy-actions {
+    grid-template-columns: 1fr;
+  }
+  
+  .join-us-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .py-12 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .action-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .donation-amounts {
+    flex-direction: column;
+  }
+}
+    </style>
+    <header class="main-header">
         <div class="container">
             <div class="logo">
-                <a href="index.html">WildLife</a>
+                <a href="index.html" class="logo-text">WildLife</a>
             </div>
+            
 
             <nav class="main-nav">
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">Trang chủ</a></li>
-                    <li><a href="animals.html" class="nav-link active">Các loài động vật</a></li>
+                    <li><a href="animals.html" class="nav-link">Các loài động vật</a></li>
                     <li><a href="habitats.html" class="nav-link">Môi trường sống</a></li>
                     <li><a href="conservation.html" class="nav-link">Bảo tồn</a></li>
                     <li><a href="explore.html" class="nav-link">Góc khám phá</a></li>
@@ -236,7 +698,7 @@
                                 </div>
                                 
                                 <div class="volunteer-cta">
-                                    <a href="../contact.html" class="button primary-button">Đăng ký làm tình nguyện viên</a>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -301,56 +763,7 @@
                 </div>
             </div>
             
-            <!-- Success Stories -->
-            <div class="success-stories-section">
-                <div class="section-header">
-                    <h2>Câu chuyện thành công</h2>
-                    <p>
-                        Những câu chuyện này cho thấy rằng mỗi hành động đều có thể tạo nên sự khác biệt. Hãy cùng tham gia và tạo nên câu chuyện thành công tiếp theo!
-                    </p>
-                </div>
-                
-                <div class="success-stories-grid">
-                    <div class="success-story-card">
-                        <div class="story-image">
-                            <img src="../images/success-story-1.jpg" alt="Câu chuyện thành công">
-                        </div>
-                        <div class="story-content">
-                            <h3>Phục hồi quần thể hổ ở Ấn Độ</h3>
-                            <p>
-                                Ấn Độ đã thành công trong việc tăng số lượng hổ hoang dã từ khoảng 1,400 cá thể vào năm 2006 lên hơn 3,000 cá thể vào năm 2022 nhờ vào nỗ lực bảo tồn toàn diện.
-                            </p>
-                            <a href="#" class="read-more">Đọc thêm</a>
-                        </div>
-                    </div>
-                    
-                    <div class="success-story-card">
-                        <div class="story-image">
-                            <img src="../images/success-story-2.jpg" alt="Câu chuyện thành công">
-                        </div>
-                        <div class="story-content">
-                            <h3>Bảo vệ rùa biển tại Costa Rica</h3>
-                            <p>
-                                Nhờ vào nỗ lực của các tình nguyện viên và cộng đồng địa phương, số lượng rùa biển đến làm tổ tại Costa Rica đã tăng đáng kể trong 10 năm qua.
-                            </p>
-                            <a href="#" class="read-more">Đọc thêm</a>
-                        </div>
-                    </div>
-                    
-                    <div class="success-story-card">
-                        <div class="story-image">
-                            <img src="../images/success-story-3.jpg" alt="Câu chuyện thành công">
-                        </div>
-                        <div class="story-content">
-                            <h3>Phục hồi quần thể đại bàng đầu trắng</h3>
-                            <p>
-                                Đại bàng đầu trắng, biểu tượng quốc gia của Hoa Kỳ, đã được cứu khỏi bờ vực tuyệt chủng nhờ vào các nỗ lực bảo tồn và cấm sử dụng thuốc trừ sâu DDT.
-                            </p>
-                            <a href="#" class="read-more">Đọc thêm</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
             
             <!-- Join Us -->
             <div class="join-us-section">
@@ -464,3 +877,6 @@
             </div>
         </div>
     </footer>
+    <script src="page-interactions.js"></script>
+    </body>
+    </html>
