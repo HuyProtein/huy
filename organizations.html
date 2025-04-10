@@ -7,6 +7,293 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <style>
+        .habitat-hero {
+    background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+    color: white;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.habitat-hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.habitat-hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.5s ease forwards;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+.main-header {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c5f2d;
+    text-decoration: none;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #2c5f2d;
+}
+
+.mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Main Content Styles */
+.page-header {
+    padding: 120px 0 60px;
+    background: #f8f9fa;
+    text-align: center;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #2c5f2d;
+    font-size: 32px;
+}
+
+/* Organizations Grid */
+.organizations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.organization-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.organization-card:hover {
+    transform: translateY(-5px);
+}
+
+.organization-logo img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    padding: 20px;
+}
+
+.organization-content {
+    padding: 20px;
+}
+
+.organization-content h3 {
+    color: #2c5f2d;
+    margin-bottom: 15px;
+}
+
+.organization-focus {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+/* Button Styles */
+.button {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.primary-button {
+    background: #2c5f2d;
+    color: white;
+}
+
+.primary-button:hover {
+    background: #1e401f;
+}
+
+.secondary-button {
+    background: #f8f9fa;
+    color: #2c5f2d;
+    border: 2px solid #2c5f2d;
+}
+
+.secondary-button:hover {
+    background: #2c5f2d;
+    color: white;
+}
+
+/* Support Section */
+.support-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.support-text {
+    flex: 1;
+}
+
+.support-image img {
+    width: 100%;
+    border-radius: 10px;
+    max-width: 500px;
+}
+
+.support-list {
+    margin: 20px 0;
+    list-style: none;
+}
+
+.support-list li {
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.support-list li::before {
+    content: "•";
+    color: #2c5f2d;
+    position: absolute;
+    left: 0;
+}
+
+/* Footer Styles */
+
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.footer-about p {
+    margin: 15px 0;
+}
+
+
+
+.footer-links ul,
+.footer-resources ul {
+    list-style: none;
+}
+
+.footer-links a,
+.footer-resources a {
+    color: white;
+    text-decoration: none;
+    line-height: 2;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.contact-item svg {
+    flex-shrink: 0;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .nav-list {
+        display: none;
+    }
+    
+    .mobile-menu-button {
+        display: block;
+    }
+    
+    .support-content {
+        flex-direction: column;
+    }
+    
+    .organizations-intro {
+        flex-direction: column;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+.back-to-top.show {
+    opacity: 1;
+}
+    </style>
     <header class="main-header">
         <div class="container">
             <div class="logo">
@@ -16,7 +303,7 @@
             <nav class="main-nav">
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">Trang chủ</a></li>
-                    <li><a href="animals.html" class="nav-link active">Các loài động vật</a></li>
+                    <li><a href="animals.html" class="nav-link">Các loài động vật</a></li>
                     <li><a href="habitats.html" class="nav-link">Môi trường sống</a></li>
                     <li><a href="conservation.html" class="nav-link">Bảo tồn</a></li>
                     <li><a href="explore.html" class="nav-link">Góc khám phá</a></li>
@@ -47,14 +334,17 @@
     </header>
 
     <main>
-        <div class="page-header organizations-header">
+         <!-- Page Header -->
+         <section class="habitat-hero">
             <div class="container">
-                <h1>Tổ chức bảo tồn</h1>
-                <p class="page-description">
-                    Khám phá các tổ chức đang nỗ lực bảo vệ động vật hoang dã và môi trường sống của chúng
-                </p>
+                <div class="habitat-hero-content">
+                    <p> </p>
+                    <p>   </p>
+                    <h1>Tổ chức bảo tồn</h1>
+                    <p >Khám phá các tổ chức đang nỗ lực bảo vệ động vật hoang dã và môi trường sống của chúng</p>
             </div>
-        </div>
+        </section>
+       
 
         <section class="organizations-intro-section">
             <div class="container">
@@ -69,7 +359,7 @@
                         </p>
                     </div>
                     <div class="organizations-intro-image">
-                        <img src="/placeholder.svg?height=400&width=600" alt="Tổ chức bảo tồn động vật hoang dã" loading="lazy">
+                        <img src="https://media.thuonghieucongluan.vn/uploads/2018_01_22/16-to-chuc-tham-gia-ki-vao-thu-keu-goi-1516606713.png" alt="Tổ chức bảo tồn động vật hoang dã" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -82,7 +372,7 @@
                 <div class="organizations-grid">
                     <div class="organization-card">
                         <div class="organization-logo">
-                            <img src="/placeholder.svg?height=150&width=150" alt="WWF Logo" loading="lazy">
+                            <img src="https://mcg.com.vn/wp-content/uploads/2016/06/wwf-01.jpg" alt="WWF Logo" loading="lazy">
                         </div>
                         <div class="organization-content">
                             <h3>Quỹ Quốc tế Bảo vệ Thiên nhiên (WWF)</h3>
@@ -104,7 +394,7 @@
                     
                     <div class="organization-card">
                         <div class="organization-logo">
-                            <img src="/placeholder.svg?height=150&width=150" alt="IUCN Logo" loading="lazy">
+                            <img src="https://static.ybox.vn/2021/4/2/1617676512103-Emily%20In%20Paris.png" alt="IUCN Logo" loading="lazy">
                         </div>
                         <div class="organization-content">
                             <h3>Liên minh Bảo tồn Thiên nhiên Quốc tế (IUCN)</h3>
@@ -126,7 +416,7 @@
                     
                     <div class="organization-card">
                         <div class="organization-logo">
-                            <img src="/placeholder.svg?height=150&width=150" alt="WCS Logo" loading="lazy">
+                            <img src="https://static.ybox.vn/2019/2/4/1551289095793-11.jpg" alt="WCS Logo" loading="lazy">
                         </div>
                         <div class="organization-content">
                             <h3>Hiệp hội Bảo tồn Động vật Hoang dã (WCS)</h3>
@@ -156,7 +446,7 @@
                 <div class="organizations-grid">
                     <div class="organization-card">
                         <div class="organization-logo">
-                            <img src="/placeholder.svg?height=150&width=150" alt="VCF Logo" loading="lazy">
+                            <img src="https://vietnature.org/uploads/about/logo/tnvlogo.png" alt="VCF Logo" loading="lazy">
                         </div>
                         <div class="organization-content">
                             <h3>Trung tâm Bảo tồn Thiên nhiên Việt (VCF)</h3>
@@ -178,7 +468,7 @@
                     
                     <div class="organization-card">
                         <div class="organization-logo">
-                            <img src="/placeholder.svg?height=150&width=150" alt="SVW Logo" loading="lazy">
+                            <img src="https://vitabox.vn/wp-content/uploads/2022/05/1557709718969-SVW-LOGO-GREEN-01-300x158.png" alt="SVW Logo" loading="lazy">
                         </div>
                         <div class="organization-content">
                             <h3>Tổ chức Bảo vệ Động vật Hoang dã Việt Nam (SVW)</h3>
@@ -200,7 +490,7 @@
                     
                     <div class="organization-card">
                         <div class="organization-logo">
-                            <img src="/placeholder.svg?height=150&width=150" alt="PanNature Logo" loading="lazy">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxpFGZ10fBWpAiKDtUZeyJ8kRb0b2x_t8hYw&s" alt="PanNature Logo" loading="lazy">
                         </div>
                         <div class="organization-content">
                             <h3>Trung tâm Con người và Thiên nhiên (PanNature)</h3>
@@ -254,61 +544,13 @@
                         <a href="../donate.html" class="button primary-button">Tìm hiểu thêm về cách ủng hộ</a>
                     </div>
                     <div class="support-image">
-                        <img src="/placeholder.svg?height=400&width=600" alt="Hỗ trợ bảo tồn động vật hoang dã" loading="lazy">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNiZigT0kqnF7UUihrUwo2yzR-8z9US1qdEQ&s" alt="Hỗ trợ bảo tồn động vật hoang dã" loading="lazy">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="success-stories-section">
-            <div class="container">
-                <h2 class="section-title">Câu chuyện thành công</h2>
-                <p class="section-description">
-                    Những câu chuyện thành công từ các tổ chức bảo tồn động vật hoang dã
-                </p>
-                
-                <div class="success-stories-slider">
-                    <div class="success-story">
-                        <div class="story-image">
-                            <img src="/placeholder.svg?height=300&width=500" alt="Phục hồi quần thể hổ Đông Dương" loading="lazy">
-                        </div>
-                        <div class="story-content">
-                            <h3>Phục hồi quần thể hổ Đông Dương</h3>
-                            <p>
-                                Nhờ nỗ lực của WWF và các đối tác địa phương, quần thể hổ Đông Dương ở một số khu vực của Việt Nam đã bắt đầu phục hồi. Các biện pháp chống săn bắt trái phép, bảo vệ môi trường sống và giáo dục cộng đồng đã giúp tăng số lượng hổ trong tự nhiên.
-                            </p>
-                            <a href="#" class="story-link">Đọc thêm</a>
-                        </div>
-                    </div>
-                    
-                    <div class="success-story">
-                        <div class="story-image">
-                            <img src="/placeholder.svg?height=300&width=500" alt="Bảo vệ tê tê Java" loading="lazy">
-                        </div>
-                        <div class="story-content">
-                            <h3>Bảo vệ tê tê Java</h3>
-                            <p>
-                                Tổ chức Bảo vệ Động vật Hoang dã Việt Nam (SVW) đã thực hiện một dự án thành công để bảo vệ tê tê Java, một trong những loài bị buôn bán trái phép nhiều nhất thế giới. Dự án đã cứu hộ và tái thả hàng trăm cá thể tê tê vào tự nhiên.
-                            </p>
-                            <a href="#" class="story-link">Đọc thêm</a>
-                        </div>
-                    </div>
-                    
-                    <div class="success-story">
-                        <div class="story-image">
-                            <img src="/placeholder.svg?height=300&width=500" alt="Phục hồi rừng ngập mặn" loading="lazy">
-                        </div>
-                        <div class="story-content">
-                            <h3>Phục hồi rừng ngập mặn</h3>
-                            <p>
-                                Trung tâm Con người và Thiên nhiên (PanNature) đã thực hiện một dự án phục hồi rừng ngập mặn ở đồng bằng sông Cửu Long, tạo ra môi trường sống quan trọng cho nhiều loài động vật hoang dã và giúp bảo vệ cộng đồng ven biển khỏi tác động của biến đổi khí hậu.
-                            </p>
-                            <a href="#" class="story-link">Đọc thêm</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+       
     </main>
 
     <footer class="main-footer">
@@ -350,13 +592,13 @@
                 <div class="footer-links">
                     <h3>Liên kết nhanh</h3>
                     <ul>
-                        <li><a href="../index.html">Trang chủ</a></li>
-                        <li><a href="../animals.html">Các loài động vật</a></li>
-                        <li><a href="../habitats.html">Môi trường sống</a></li>
-                        <li><a href="../conservation.html">Bảo tồn</a></li>
-                        <li><a href="../explore.html">Góc khám phá</a></li>
-                        <li><a href="../news.html">Tin tức & Sự kiện</a></li>
-                        <li><a href="../contact.html">Liên hệ</a></li>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="animals.html">Các loài động vật</a></li>
+                        <li><a href="habitats.html">Môi trường sống</a></li>
+                        <li><a href="conservation.html">Bảo tồn</a></li>
+                        <li><a href="explore.html">Góc khám phá</a></li>
+                        <li><a href="news.html">Tin tức & Sự kiện</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
                     </ul>
                 </div>
 
@@ -377,24 +619,23 @@
                     <ul>
                         <li class="contact-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c  stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                 <circle cx="12" cy="10" r="3"></circle>
                             </svg>
-                            <span>123 Đường Thiên Nhiên, Quận Bảo Tồn, TP. Hồ Chí Minh, Việt Nam</span>
+                            <span>Tầng 4 Mường Thanh,Thị xã Hoàng Mai,Nghệ An</span>
                         </li>
                         <li class="contact-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                             </svg>
-                            <span>(+84) 28 1234 5678</span>
+                            <span>(+84)0964509848</span>
                         </li>
                         <li class="contact-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                                 <polyline points="22,6 12,13 2,6"></polyline>
                             </svg>
-                            <span>info@wildlife.vn</span>
+                            <span>dhuyy007@gmail.com</span>
                         </li>
                     </ul>
                 </div>
