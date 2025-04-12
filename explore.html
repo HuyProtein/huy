@@ -7,6 +7,166 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <style> 
+     
+/* Hero Section */
+.habitat-hero {
+    background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+    color: white;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.habitat-hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.habitat-hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: 0.2s;
+}
+
+/* === Educational Resources === */
+.educational-resources-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: calc(var(--spacing-unit) * 2); margin-top: calc(var(--spacing-unit) * 2.5);
+}
+.educational-resource-card {
+    background-color: var(--card-bg); padding: calc(var(--spacing-unit) * 1.8);
+    border-radius: var(--border-radius); box-shadow: var(--box-shadow-light);
+    display: flex; flex-direction: column;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    border-left: 5px solid var(--primary-color); /* Left accent border */
+}
+.educational-resource-card:hover { transform: translateY(-5px); box-shadow: var(--box-shadow-strong); }
+.educational-resource-card h3 { margin-bottom: var(--spacing-unit) * 0.6; color: var(--primary-color); }
+.resource-list { margin: var(--spacing-unit) 0 calc(var(--spacing-unit) * 1.5); padding-left: 0; flex-grow: 1; }
+.resource-list li {
+    margin-bottom: calc(var(--spacing-unit) * 0.6); padding-left: calc(var(--spacing-unit) * 1.5);
+    position: relative; color: var(--text-light);
+}
+
+.educational-resource-card .button { margin-top: auto; align-self: flex-start; }
+/* === Explore Page Specific Styles === */
+
+
+.explore-category-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.explore-category-card:hover {
+    transform: translateY(-5px);
+}
+
+.explore-category-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* Featured Content Section */
+.featured-content-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    background: white;
+    border-radius: var(--border-radius);
+    margin: 30px 0;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+
+.featured-content-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.featured-content-info {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Interactive Experience Section */
+.interactive-experience-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    padding: 60px 0;
+    background: var(--light-gray);
+}
+
+.interactive-experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.interactive-experience-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.check-icon {
+    width: 24px;
+    height: 24px;
+    background: var(--primary-color);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+    background-color: var(--primary-color);
+}
+
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .featured-content-item {
+        grid-template-columns: 1fr;
+    }
+    
+    .interactive-experience-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .interactive-experience-image {
+        order: -1;
+    }
+}
+
+@media (max-width: 480px) {
+    .habitat-hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+}
+
+    </style>
     <header class="main-header">
         <div class="container">
             <div class="logo">
@@ -16,7 +176,7 @@
             <nav class="main-nav">
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">Trang chủ</a></li>
-                    <li><a href="animals.html" class="nav-link active">Các loài động vật</a></li>
+                    <li><a href="animals.html" class="nav-link">Các loài động vật</a></li>
                     <li><a href="habitats.html" class="nav-link">Môi trường sống</a></li>
                     <li><a href="conservation.html" class="nav-link">Bảo tồn</a></li>
                     <li><a href="explore.html" class="nav-link">Góc khám phá</a></li>
@@ -47,26 +207,21 @@
     </header>
 
     <main>
-        <div class="container py-12">
-            <div class="page-header text-center">
-                <h1>Góc khám phá</h1>
-                <p class="page-description">
-                    Khám phá thế giới động vật hoang dã qua hình ảnh, video, bản đồ tương tác và nhiều hoạt động thú vị khác. Hãy
-                    bắt đầu cuộc phiêu lưu của bạn ngay hôm nay!
-                </p>
-            </div>
-
-            <!-- Hero Section -->
-            <div class="explore-hero">
-                <div class="explore-hero-content">
-                    <h2>Khám phá thế giới tự nhiên</h2>
-                    <p>
-                        Hãy bắt đầu hành trình khám phá vẻ đẹp và sự kỳ diệu của thế giới động vật hoang dã qua nhiều hoạt động
-                        tương tác thú vị.
-                    </p>
-                    <a href="#explore-categories" class="button primary-button">Bắt đầu khám phá</a>
-                </div>
-            </div>
+        
+<!-- Hero Section -->
+<section class="habitat-hero">
+    <div class="container">
+        <div class="habitat-hero-content">
+            <h1>Góc khám phá</h1>
+            <p class="page-description">
+                Khám phá thế giới động vật hoang dã qua hình ảnh, video, bản đồ tương tác và nhiều hoạt động thú vị khác. Hãy
+                bắt đầu cuộc phiêu lưu của bạn ngay hôm nay!
+            </p>
+           
+        </div>
+    </div>
+</section>
+           
 
             <!-- Explore Categories -->
             <div id="explore-categories" class="explore-section">
@@ -75,6 +230,7 @@
                     <p>
                         Chọn một trong các hoạt động dưới đây để bắt đầu cuộc phiêu lưu của bạn vào thế giới động vật hoang dã.
                     </p>
+                    <a href="explore.html" class="button primary-button">Bắt đầu khám phá </a>
                 </div>
 
                 <div class="explore-categories-grid" id="explore-categories-grid">
@@ -89,29 +245,23 @@
                     <p>
                         Khám phá những nội dung hấp dẫn và được yêu thích nhất về động vật hoang dã.
                     </p>
+                    <img src="https://i.makeagif.com/media/6-22-2020/ozdRiB.gif" alt="Mô tả ảnh GIF">
                 </div>
 
-                <div class="featured-content-grid">
-                    <div class="featured-content-item">
-                        <div class="featured-content-image">
-                            <img src="images/featured-video.jpg" alt="Video nổi bật">
-                            <div class="play-button">
-                                <div class="play-icon"></div>
-                            </div>
-                        </div>
+                
                         <div class="featured-content-info">
-                            <h3>Cuộc sống bí ẩn của hổ Đông Dương</h3>
+                            <h3>Những thước phim ngắn về động vật hoang dã</h3>
                             <p>
-                                Khám phá cuộc sống hàng ngày của loài hổ Đông Dương quý hiếm trong môi trường tự nhiên qua video tài
+                                Khám phá cuộc sống hàng ngày của loài động vật trong môi trường tự nhiên qua video tài
                                 liệu độc đáo này.
                             </p>
-                            <a href="explore/videos/tiger-life.html" class="button primary-button">Xem video</a>
+                            <a href="videos.html" class="button primary-button">Xem video</a>
                         </div>
                     </div>
 
                     <div class="featured-content-item">
                         <div class="featured-content-image">
-                            <img src="images/featured-gallery.jpg" alt="Bộ sưu tập ảnh nổi bật">
+                            <img src="https://images.pexels.com/photos/10519044/pexels-photo-10519044.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Bộ sưu tập ảnh nổi bật">
                         </div>
                         <div class="featured-content-info">
                             <h3>Bộ sưu tập ảnh: Vẻ đẹp của thiên nhiên hoang dã</h3>
@@ -119,7 +269,7 @@
                                 Chiêm ngưỡng bộ sưu tập ảnh tuyệt đẹp về động vật hoang dã và môi trường sống tự nhiên của chúng từ các
                                 nhiếp ảnh gia hàng đầu.
                             </p>
-                            <a href="explore/gallery/wildlife-beauty.html" class="button primary-button">Xem bộ sưu tập</a>
+                            <a href="gallery.html" class="button primary-button">Xem bộ sưu tập</a>
                         </div>
                     </div>
                 </div>
@@ -151,10 +301,10 @@
                             <span>Tô màu động vật cho trẻ em</span>
                         </li>
                     </ul>
-                    <a href="explore/games.html" class="button primary-button">Khám phá các hoạt động</a>
+                    <a href="games.html" class="button primary-button">Khám phá các hoạt động</a>
                 </div>
                 <div class="interactive-experience-image">
-                    <img src="images/interactive-experience.jpg" alt="Trải nghiệm tương tác">
+                    <img src="https://i0.wp.com/campingcangio.com/wp-content/uploads/2025/02/example-111.jpg?fit=1024%2C512&ssl=1" alt="Trải nghiệm tương tác">
                 </div>
             </div>
 
@@ -178,7 +328,7 @@
                             <li>Tài liệu đánh giá và theo dõi tiến độ</li>
                             <li>Hướng dẫn tổ chức hoạt động nhóm</li>
                         </ul>
-                        <a href="explore/education/teachers.html" class="button outline-button">Xem tài liệu</a>
+                        <a href="education.html" class="button outline-button">Xem tài liệu</a>
                     </div>
 
                     <div class="educational-resource-card">
@@ -190,7 +340,7 @@
                             <li>Dự án nghiên cứu</li>
                             <li>Câu đố và trò chơi giáo dục</li>
                         </ul>
-                        <a href="explore/education/students.html" class="button outline-button">Xem tài liệu</a>
+                        <a href="education.html" class="button outline-button">Xem tài liệu</a>
                     </div>
 
                     <div class="educational-resource-card">
@@ -202,39 +352,14 @@
                             <li>Hướng dẫn quan sát động vật</li>
                             <li>Trò chơi gia đình</li>
                         </ul>
-                        <a href="explore/education/families.html" class="button outline-button">Xem tài liệu</a>
+                        <a href="education.html" class="button outline-button">Xem tài liệu</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Newsletter Signup -->
-            <div class="newsletter-section">
-                <div class="section-header">
-                    <h2>Đăng ký nhận bản tin</h2>
-                    <p>
-                        Đăng ký để nhận thông tin mới nhất về động vật hoang dã, các hoạt động khám phá và cơ hội tham gia bảo tồn.
-                    </p>
-                </div>
+           
 
-                <div class="newsletter-form">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Họ tên</label>
-                            <input type="text" id="name" placeholder="Nhập họ tên của bạn">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="Nhập địa chỉ email của bạn">
-                        </div>
-                        <div class="form-group checkbox-group">
-                            <input type="checkbox" id="newsletter">
-                            <label for="newsletter">Tôi muốn nhận bản tin hàng tháng</label>
-                        </div>
-                        <button type="submit" class="button primary-button">Đăng ký</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+              
     </main>
 
     <footer class="main-footer">
@@ -289,12 +414,12 @@
                 <div class="footer-resources">
                     <h3>Tài nguyên</h3>
                     <ul>
-                        <li><a href="resources/education.html">Tài liệu giáo dục</a></li>
-                        <li><a href="resources/research.html">Nghiên cứu khoa học</a></li>
-                        <li><a href="resources/organizations.html">Tổ chức bảo tồn</a></li>
-                        <li><a href="resources/volunteer.html">Cơ hội tình nguyện</a></li>
-                        <li><a href="resources/donate.html">Ủng hộ bảo tồn</a></li>
-                        <li><a href="resources/faq.html">Câu hỏi thường gặp</a></li>
+                        <li><a href="education.html">Tài liệu giáo dục</a></li>
+                        <li><a href="research.html">Nghiên cứu khoa học</a></li>
+                        <li><a href="organizations.html">Tổ chức bảo tồn</a></li>
+                        <li><a href="volunteer.html">Cơ hội tình nguyện</a></li>
+                        <li><a href="donate.html">Ủng hộ bảo tồn</a></li>
+                        <li><a href="faq.html">Câu hỏi thường gặp</a></li>
                     </ul>
                 </div>
 
@@ -306,20 +431,20 @@
                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                 <circle cx="12" cy="10" r="3"></circle>
                             </svg>
-                            <span>123 Đường Thiên Nhiên, Quận Bảo Tồn, TP. Hồ Chí Minh, Việt Nam</span>
+                            <span>Tầng 4 Mường Thanh,Thị xã Hoàng Mai,Nghệ An</span>
                         </li>
                         <li class="contact-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                             </svg>
-                            <span>(+84) 28 1234 5678</span>
+                            <span>(+84)0964509848</span>
                         </li>
                         <li class="contact-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                                 <polyline points="22,6 12,13 2,6"></polyline>
                             </svg>
-                            <span>info@wildlife.vn</span>
+                            <span>dhuyy007@gmail.com</span>
                         </li>
                     </ul>
                 </div>
@@ -340,7 +465,7 @@
         </svg>
     </div>
 
-    <script src="js/main.js"></script>
-    <script src="js/explore.js"></script>
+    <script src="main.js"></script>
+    <script src="explore.js"></script>
 </body>
 </html>

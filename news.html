@@ -4,28 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tin tức & Sự kiện | Wildlife</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         /* Reset CSS */
-        .habitat-hero {
-    background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
-    color: white;
-    padding: 80px 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.habitat-hero-content {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.habitat-hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    animation: fadeInUp 0.5s ease forwards;
-}
         * {
             margin: 0;
             padding: 0;
@@ -94,14 +74,6 @@
             font-weight: 700;
             color: var(--dark-color);
             margin-bottom: 10px;
-        }
-
-        .underline {
-            height: 4px;
-            width: 70px;
-            background: var(--primary-color);
-            margin: 0 auto;
-            border-radius: 2px;
         }
 
         /* Header */
@@ -193,32 +165,34 @@
             }
         }
 
-        /* Page Header */
-        .page-header {
-            background-color: #f1f8e9;
-            padding: 60px 0;
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(to right, #1b5e20, #2e7d32);
+            color: white;
+            padding: 80px 0;
             text-align: center;
         }
 
-        .page-header h1 {
+        .hero-section h1 {
             font-size: 2.5rem;
-            color: var(--dark-color);
             margin-bottom: 16px;
         }
 
-        .page-header p {
+        .hero-section p {
             max-width: 800px;
             margin: 0 auto;
-            color: #555;
             font-size: 1.1rem;
         }
 
-        /* News Styles */
+        /* News Section */
+        .news-section {
+            padding: 60px 0;
+        }
+
         .news-container {
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 40px;
-            margin-top: 40px;
         }
 
         .news-main {
@@ -233,6 +207,7 @@
             gap: 30px;
         }
 
+        /* Featured News */
         .featured-news {
             background-color: white;
             border-radius: 12px;
@@ -294,6 +269,7 @@
             line-height: 1.7;
         }
 
+        /* News List */
         .news-list {
             display: flex;
             flex-direction: column;
@@ -746,71 +722,159 @@
             transform: translateY(-5px);
         }
 
-        /* Tooltip/Popup Styles */
-        .tooltip-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .tooltip-content {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-            padding: 15px;
-            z-index: 100;
+        /* News Popup */
+        .news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
-            pointer-events: none;
-            margin-bottom: 15px;
         }
 
-        .tooltip-container:hover .tooltip-content {
+        .news-popup.active {
             opacity: 1;
             visibility: visible;
         }
 
-        .tooltip-content::after {
-            content: '';
+        .popup-content {
+            background-color: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .news-popup.active .popup-content {
+            transform: translateY(0);
+        }
+
+        .popup-header {
+            position: relative;
+            padding: 25px 25px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .popup-close {
             position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            border-width: 8px;
-            border-style: solid;
-            border-color: white transparent transparent transparent;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 10;
         }
 
-        .tooltip-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--dark-color);
+        .popup-close:hover {
+            background-color: #f1f1f1;
+            transform: rotate(90deg);
         }
 
-        .tooltip-text {
-            font-size: 0.9rem;
-            color: #555;
-            line-height: 1.5;
-        }
-
-        .tooltip-image {
-            width: 100%;
-            height: 120px;
-            border-radius: 6px;
-            overflow: hidden;
+        .popup-category {
+            display: inline-block;
+            background-color: #f1f8e9;
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
             margin-bottom: 10px;
         }
 
-        .tooltip-image img {
+        .popup-date {
+            display: inline-block;
+            color: #666;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+
+        .popup-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+            padding-right: 40px;
+        }
+
+        .popup-image {
+            width: 100%;
+            height: 400px;
+        }
+
+        .popup-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .popup-body {
+            padding: 25px;
+        }
+
+        .popup-content-text {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .popup-content-text p {
+            margin-bottom: 20px;
+        }
+
+        .popup-quote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: #666;
+        }
+
+        .popup-quote-author {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 10px;
+            font-style: normal;
+        }
+
+        .popup-key-points {
+            margin: 30px 0;
+        }
+
+        .popup-key-points h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .popup-key-points ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        .popup-key-points li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .popup-footer {
+            padding: 20px 25px;
+            border-top: 1px solid #f0f0f0;
+            text-align: right;
         }
 
         /* Responsive */
@@ -848,15 +912,12 @@
                 padding: 15px;
             }
 
-            .tooltip-content {
-                width: 250px;
-                left: 0;
-                transform: none;
+            .popup-image {
+                height: 250px;
             }
 
-            .tooltip-content::after {
-                left: 20px;
-                transform: none;
+            .popup-title {
+                font-size: 1.5rem;
             }
         }
 
@@ -868,6 +929,11 @@
             .featured-content {
                 padding: 20px;
             }
+        }
+
+        /* Prevent body scroll when popup is open */
+        body.popup-open {
+            overflow: hidden;
         }
     </style>
 </head>
@@ -882,18 +948,22 @@
             <nav class="main-nav">
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">Trang chủ</a></li>
-                    <li><a href="animals.html" class="nav-link active">Các loài động vật</a></li>
+                    <li><a href="animals.html" class="nav-link">Các loài động vật</a></li>
                     <li><a href="habitats.html" class="nav-link">Môi trường sống</a></li>
                     <li><a href="conservation.html" class="nav-link">Bảo tồn</a></li>
                     <li><a href="explore.html" class="nav-link">Góc khám phá</a></li>
-                    <li><a href="news.html" class="nav-link">Tin tức</a></li>
+                    <li><a href="news.html" class="nav-link active">Tin tức</a></li>
                     <li><a href="stories.html" class="nav-link">Câu chuyện</a></li>
                     <li><a href="contact.html" class="nav-link">Liên hệ</a></li>
+                </ul>
             </nav>
-            
 
             <button class="mobile-menu-button" id="mobile-menu-button">
-                <span class="menu-icon"></span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
             </button>
 
             <div class="mobile-menu" id="mobile-menu">
@@ -903,8 +973,8 @@
                     <li><a href="habitats.html" class="mobile-nav-link">Môi trường sống</a></li>
                     <li><a href="conservation.html" class="mobile-nav-link">Bảo tồn</a></li>
                     <li><a href="explore.html" class="mobile-nav-link">Góc khám phá</a></li>
-                    <li><a href="news.html"class="mobile-nav-link">Tin tức</a></li>
-                    <li><a href="stories.html"class="mobile-nav-link">Câu chuyện</a></li>
+                    <li><a href="news.html" class="mobile-nav-link active">Tin tức</a></li>
+                    <li><a href="stories.html" class="mobile-nav-link">Câu chuyện</a></li>
                     <li><a href="contact.html" class="mobile-nav-link">Liên hệ</a></li>
                 </ul>
             </div>
@@ -912,10 +982,9 @@
     </header>
 
     <main>
-        <!-- Page Header -->
-        <section class="habitat-hero">
+        <!-- Hero Section -->
+        <section class="hero-section">
             <div class="container">
-                <div class="habitat-hero-content">
                 <h1>Tin tức & Sự kiện</h1>
                 <p>Cập nhật những thông tin mới nhất về động vật hoang dã, các nỗ lực bảo tồn và sự kiện liên quan trên toàn thế giới</p>
             </div>
@@ -946,19 +1015,7 @@
                                 <p class="featured-excerpt">
                                     Theo báo cáo mới nhất từ Quỹ Quốc tế Bảo vệ Thiên nhiên (WWF), số lượng hổ hoang dã trên toàn cầu đã tăng lên đáng kể, đánh dấu lần đầu tiên sau một thế kỷ suy giảm liên tục. Đây là một dấu hiệu đáng mừng cho nỗ lực bảo tồn loài mèo lớn này.
                                 </p>
-                                <p class="featured-excerpt">
-                                    Báo cáo cho biết số lượng hổ hoang dã hiện nay ước tính khoảng 4,500 cá thể, tăng từ mức 3,200 cá thể vào năm 2015. Sự gia tăng này chủ yếu được ghi nhận ở Ấn Độ, Nepal, Bhutan, Nga và Trung Quốc, nơi các biện pháp bảo vệ nghiêm ngặt đã được thực hiện.
-                                </p>
-                                <div class="tooltip-container">
-                                    <a href="news/tiger-population-increase.html" class="button primary-button">Đọc tiếp</a>
-                                    <div class="tooltip-content">
-                                        <div class="tooltip-image">
-                                            <img src="https://media.vietnamplus.vn/images/ac883ebb7889b1a4222bb1c88021ac113d97491cfe4cbf97cf2f5176fd3f809e316f2ff4bbe05f7060aa79bc0cccb8736641ed2ddc9f78a02d1059a9bc97c4d6/tiger_ranthambore_2810065f.jpg" alt="Bảo tồn hổ">
-                                        </div>
-                                        <h4 class="tooltip-title">Số lượng hổ hoang dã tăng lần đầu tiên sau một thế kỷ</h4>
-                                        <p class="tooltip-text">Bài viết đầy đủ về sự gia tăng số lượng hổ hoang dã trên toàn cầu, các yếu tố góp phần vào thành công này và những thách thức còn tồn tại trong công tác bảo tồn loài mèo lớn đang bị đe dọa này.</p>
-                                    </div>
-                                </div>
+                                <a href="#" class="button primary-button" data-id="1">Đọc tiếp</a>
                             </div>
                         </div>
 
@@ -983,16 +1040,7 @@
                                     <p class="news-excerpt">
                                         Các nhà khoa học vừa phát hiện một loài ếch mới tại rừng Amazon, với khả năng thay đổi màu sắc đặc biệt để ngụy trang. Loài ếch này có thể thay đổi màu từ xanh lá sang nâu đất trong vòng vài phút, giúp chúng tránh được kẻ săn mồi.
                                     </p>
-                                    <div class="tooltip-container">
-                                        <a href="news/new-frog-species.html" class="button outline-button">Đọc thêm</a>
-                                        <div class="tooltip-content">
-                                            <div class="tooltip-image">
-                                                <img src="https://sohanews.sohacdn.com/zoom/700_438/160588918557773824/2022/3/1/photo1646102521240-16461025214541704527809.jpg" alt="Phát hiện loài mới">
-                                            </div>
-                                            <h4 class="tooltip-title">Phát hiện loài ếch mới tại rừng Amazon</h4>
-                                            <p class="tooltip-text">Bài viết chi tiết về loài ếch mới được phát hiện, đặc điểm sinh học độc đáo và ý nghĩa của phát hiện này đối với đa dạng sinh học của rừng Amazon.</p>
-                                        </div>
-                                    </div>
+                                    <a href="#" class="button outline-button" data-id="2">Đọc thêm</a>
                                 </div>
                             </div>
 
@@ -1015,22 +1063,13 @@
                                     <p class="news-excerpt">
                                         Hội nghị quốc tế về bảo tồn động vật hoang dã lần thứ 15 sẽ được tổ chức tại Hà Nội vào tháng 6 năm 2023, với sự tham gia của hơn 50 quốc gia. Hội nghị sẽ tập trung vào các giải pháp bảo tồn đa dạng sinh học.
                                     </p>
-                                    <div class="tooltip-container">
-                                        <a href="news/conservation-conference.html" class="button outline-button">Đọc thêm</a>
-                                        <div class="tooltip-content">
-                                            <div class="tooltip-image">
-                                                <img src="https://icdn.dantri.com.vn/thumb_w/960/b1f4d804b1/2016/11/18/copy-of-dsc-8914-1479468408997.jpg" alt="Hội nghị bảo tồn">
-                                            </div>
-                                            <h4 class="tooltip-title">Hội nghị quốc tế về bảo tồn động vật hoang dã</h4>
-                                            <p class="tooltip-text">Thông tin chi tiết về hội nghị sắp tới, các chủ đề thảo luận chính và ý nghĩa của sự kiện này đối với nỗ lực bảo tồn động vật hoang dã toàn cầu.</p>
-                                        </div>
-                                    </div>
+                                    <a href="#" class="button outline-button" data-id="3">Đọc thêm</a>
                                 </div>
                             </div>
 
                             <div class="news-card">
                                 <div class="news-image">
-                                    <img src="https://cdn.tuoitre.vn/thumb_w/640/471584752817336320/2023/3/3/bien-dong-1677832051459377001655.jpg" alt="Rạn san hô">
+                                    <img src="https://redsvn.net/wp-content/uploads/2020/03/img_5e7d159541965.jpg" alt="Rạn san hô">
                                     <div class="news-category">Môi trường</div>
                                 </div>
                                 <div class="news-content">
@@ -1047,22 +1086,13 @@
                                     <p class="news-excerpt">
                                         Các nhà khoa học ghi nhận sự phục hồi đáng kể của rạn san hô tại vùng biển Nha Trang sau nhiều năm suy giảm do biến đổi khí hậu và hoạt động du lịch quá mức. Đây là tin vui cho hệ sinh thái biển.
                                     </p>
-                                    <div class="tooltip-container">
-                                        <a href="news/coral-reef-recovery.html" class="button outline-button">Đọc thêm</a>
-                                        <div class="tooltip-content">
-                                            <div class="tooltip-image">
-                                                <img src="https://cdn.tuoitre.vn/thumb_w/640/471584752817336320/2023/3/3/bien-dong-1677832051459377001655.jpg" alt="Rạn san hô">
-                                            </div>
-                                            <h4 class="tooltip-title">Rạn san hô lớn nhất Việt Nam đang phục hồi</h4>
-                                            <p class="tooltip-text">Bài viết về quá trình phục hồi của rạn san hô tại Nha Trang, các biện pháp bảo vệ đã được áp dụng và tầm quan trọng của hệ sinh thái san hô đối với đa dạng sinh học biển.</p>
-                                        </div>
-                                    </div>
+                                    <a href="#" class="button outline-button" data-id="4">Đọc thêm</a>
                                 </div>
                             </div>
 
                             <div class="news-card">
                                 <div class="news-image">
-                                    <img src="https://cdnmedia.baotintuc.vn/Upload/c2tvplmdloSDblsn03qN2Q/files/2022/11/14/vuon-quoc-gia-cat-tien-141122.jpg" alt="Vườn quốc gia">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGA4vYQna66iO_NA4RtF73gysjvv7d5ySIOQ&s" alt="Vườn quốc gia">
                                     <div class="news-category">Bảo tồn</div>
                                 </div>
                                 <div class="news-content">
@@ -1079,16 +1109,7 @@
                                     <p class="news-excerpt">
                                         Vườn quốc gia Cát Tiên vừa được phê duyệt mở rộng thêm 2,000 hecta, nâng tổng diện tích lên hơn 73,000 hecta. Việc mở rộng này sẽ giúp bảo vệ thêm nhiều loài động thực vật quý hiếm.
                                     </p>
-                                    <div class="tooltip-container">
-                                        <a href="news/cat-tien-expansion.html" class="button outline-button">Đọc thêm</a>
-                                        <div class="tooltip-content">
-                                            <div class="tooltip-image">
-                                                <img src="https://cdnmedia.baotintuc.vn/Upload/c2tvplmdloSDblsn03qN2Q/files/2022/11/14/vuon-quoc-gia-cat-tien-141122.jpg" alt="Vườn quốc gia">
-                                            </div>
-                                            <h4 class="tooltip-title">Vườn quốc gia Cát Tiên mở rộng diện tích bảo tồn</h4>
-                                            <p class="tooltip-text">Thông tin chi tiết về kế hoạch mở rộng Vườn quốc gia Cát Tiên, các loài động thực vật sẽ được bảo vệ và tác động tích cực đối với công tác bảo tồn đa dạng sinh học.</p>
-                                        </div>
-                                    </div>
+                                    <a href="#" class="button outline-button" data-id="5">Đọc thêm</a>
                                 </div>
                             </div>
                         </div>
@@ -1154,7 +1175,7 @@
                                         <img src="https://media.vietnamplus.vn/images/ac883ebb7889b1a4222bb1c88021ac113d97491cfe4cbf97cf2f5176fd3f809e316f2ff4bbe05f7060aa79bc0cccb8736641ed2ddc9f78a02d1059a9bc97c4d6/tiger_ranthambore_2810065f.jpg" alt="Bảo tồn hổ">
                                     </div>
                                     <div class="popular-post-content">
-                                        <a href="news/tiger-population-increase.html" class="popular-post-title">Số lượng hổ hoang dã tăng lần đầu tiên sau một thế kỷ</a>
+                                        <a href="#" class="popular-post-title" data-id="1">Số lượng hổ hoang dã tăng lần đầu tiên sau một thế kỷ</a>
                                         <div class="popular-post-date">10 Tháng 4, 2023</div>
                                     </div>
                                 </div>
@@ -1163,7 +1184,7 @@
                                         <img src="https://sohanews.sohacdn.com/zoom/700_438/160588918557773824/2022/3/1/photo1646102521240-16461025214541704527809.jpg" alt="Phát hiện loài mới">
                                     </div>
                                     <div class="popular-post-content">
-                                        <a href="news/new-frog-species.html" class="popular-post-title">Phát hiện loài ếch mới tại rừng Amazon</a>
+                                        <a href="#" class="popular-post-title" data-id="2">Phát hiện loài ếch mới tại rừng Amazon</a>
                                         <div class="popular-post-date">15 Tháng 4, 2023</div>
                                     </div>
                                 </div>
@@ -1172,16 +1193,16 @@
                                         <img src="https://icdn.dantri.com.vn/thumb_w/960/b1f4d804b1/2016/11/18/copy-of-dsc-8914-1479468408997.jpg" alt="Hội nghị bảo tồn">
                                     </div>
                                     <div class="popular-post-content">
-                                        <a href="news/conservation-conference.html" class="popular-post-title">Hội nghị quốc tế về bảo tồn động vật hoang dã</a>
+                                        <a href="#" class="popular-post-title" data-id="3">Hội nghị quốc tế về bảo tồn động vật hoang dã</a>
                                         <div class="popular-post-date">05 Tháng 4, 2023</div>
                                     </div>
                                 </div>
                                 <div class="popular-post">
                                     <div class="popular-post-image">
-                                        <img src="https://cdn.tuoitre.vn/thumb_w/640/471584752817336320/2023/3/3/bien-dong-1677832051459377001655.jpg" alt="Rạn san hô">
+                                        <img src="https://redsvn.net/wp-content/uploads/2020/03/img_5e7d159541965.jpg" alt="Rạn san hô">
                                     </div>
                                     <div class="popular-post-content">
-                                        <a href="news/coral-reef-recovery.html" class="popular-post-title">Rạn san hô lớn nhất Việt Nam đang phục hồi</a>
+                                        <a href="#" class="popular-post-title" data-id="4">Rạn san hô lớn nhất Việt Nam đang phục hồi</a>
                                         <div class="popular-post-date">28 Tháng 3, 2023</div>
                                     </div>
                                 </div>
@@ -1224,6 +1245,34 @@
                 </div>
             </div>
         </section>
+
+        <!-- News Popup -->
+        <div class="news-popup" id="news-popup">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <div class="popup-close" id="popup-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </div>
+                    <span class="popup-category" id="popup-category"></span>
+                    <span class="popup-date" id="popup-date"></span>
+                    <h2 class="popup-title" id="popup-title"></h2>
+                </div>
+                <div class="popup-image">
+                    <img src="/placeholder.svg" alt="" id="popup-image">
+                </div>
+                <div class="popup-body">
+                    <div class="popup-content-text" id="popup-content-text">
+                        <!-- Content will be inserted here by JavaScript -->
+                    </div>
+                </div>
+                <div class="popup-footer">
+                    <button class="button primary-button" id="popup-close-btn">Đóng</button>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer class="main-footer">
@@ -1295,7 +1344,7 @@
                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                 <circle cx="12" cy="10" r="3"></circle>
                             </svg>
-                            <span>Tầng 4 Mường Thanh,Thị xã Hoàng Mai,Nghệ An</span>
+                            <span>Tầng 4 Mường Thanh, Thị xã Hoàng Mai, Nghệ An</span>
                         </li>
                         <li class="contact-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1330,6 +1379,130 @@
     </div>
 
     <script>
+        // Dữ liệu tin tức
+        const newsData = [
+            {
+                id: 1,
+                title: "Số lượng hổ hoang dã tăng lần đầu tiên sau một thế kỷ",
+                image: "https://media.vietnamplus.vn/images/ac883ebb7889b1a4222bb1c88021ac113d97491cfe4cbf97cf2f5176fd3f809e316f2ff4bbe05f7060aa79bc0cccb8736641ed2ddc9f78a02d1059a9bc97c4d6/tiger_ranthambore_2810065f.jpg",
+                date: "10 Tháng 4, 2023",
+                category: "Bảo tồn",
+                excerpt: "Theo báo cáo mới nhất từ Quỹ Quốc tế Bảo vệ Thiên nhiên (WWF), số lượng hổ hoang dã trên toàn cầu đã tăng lên đáng kể, đánh dấu lần đầu tiên sau một thế kỷ suy giảm liên tục. Đây là một dấu hiệu đáng mừng cho nỗ lực bảo tồn loài mèo lớn này.",
+                content: [
+                    "Theo báo cáo mới nhất từ Quỹ Quốc tế Bảo vệ Thiên nhiên (WWF), số lượng hổ hoang dã trên toàn cầu đã tăng lên đáng kể, đánh dấu lần đầu tiên sau một thế kỷ suy giảm liên tục. Đây là một dấu hiệu đáng mừng cho nỗ lực bảo tồn loài mèo lớn này.",
+                    "Báo cáo cho biết số lượng hổ hoang dã hiện nay ước tính khoảng 4,500 cá thể, tăng từ mức 3,200 cá thể vào năm 2015. Sự gia tăng này chủ yếu được ghi nhận ở Ấn Độ, Nepal, Bhutan, Nga và Trung Quốc, nơi các biện pháp bảo vệ nghiêm ngặt đã được thực hiện.",
+                    "Đây là một bước ngoặt quan trọng trong nỗ lực bảo tồn loài mèo lớn này, sau nhiều thập kỷ suy giảm do săn bắn trộm, mất môi trường sống và xung đột với con người. Tuy nhiên, các chuyên gia cảnh báo rằng hổ vẫn đang đối mặt với nhiều mối đe dọa nghiêm trọng và cần tiếp tục các nỗ lực bảo vệ."
+                ],
+                quote: {
+                    text: "Sự gia tăng số lượng hổ hoang dã là một minh chứng cho thấy khi chúng ta đầu tư vào bảo tồn với sự cam kết mạnh mẽ, chúng ta có thể đảo ngược xu hướng suy giảm của các loài đang bị đe dọa.",
+                    author: "Marco Lambertini, Tổng Giám đốc WWF International"
+                },
+                keyPoints: [
+                    "Số lượng hổ hoang dã tăng từ 3,200 lên 4,500 cá thể trong vòng 7 năm",
+                    "Ấn Độ, Nepal, Bhutan, Nga và Trung Quốc ghi nhận sự gia tăng đáng kể",
+                    "Chương trình TX2 đóng vai trò quan trọng trong thành công này",
+                    "Mối đe dọa từ săn bắn trộm và mất môi trường sống vẫn còn tồn tại",
+                    "Cần tiếp tục và mở rộng các nỗ lực bảo tồn để duy trì xu hướng tích cực"
+                ]
+            },
+            {
+                id: 2,
+                title: "Phát hiện loài ếch mới tại rừng Amazon",
+                image: "https://sohanews.sohacdn.com/zoom/700_438/160588918557773824/2022/3/1/photo1646102521240-16461025214541704527809.jpg",
+                date: "15 Tháng 4, 2023",
+                category: "Khám phá",
+                excerpt: "Các nhà khoa học vừa phát hiện một loài ếch mới tại rừng Amazon, với khả năng thay đổi màu sắc đặc biệt để ngụy trang. Loài ếch này có thể thay đổi màu từ xanh lá sang nâu đất trong vòng vài phút, giúp chúng tránh được kẻ săn mồi.",
+                content: [
+                    "Các nhà khoa học vừa phát hiện một loài ếch mới tại rừng Amazon, với khả năng thay đổi màu sắc đặc biệt để ngụy trang. Loài ếch này có thể thay đổi màu từ xanh lá sang nâu đất trong vòng vài phút, giúp chúng tránh được kẻ săn mồi.",
+                    "Loài ếch mới được đặt tên khoa học là Boana chromachangus, được phát hiện trong một cuộc khảo sát đa dạng sinh học tại khu vực sâu trong rừng Amazon thuộc Brazil. Đặc điểm nổi bật nhất của loài này là khả năng thay đổi màu sắc nhanh chóng từ xanh lá cây sang nâu đất, giúp chúng ngụy trang hiệu quả trong môi trường sống.",
+                    "Theo các nhà nghiên cứu, khả năng thay đổi màu sắc của loài ếch này khác với hầu hết các loài lưỡng cư khác. Thay vì thay đổi màu sắc theo thời gian dài như tắc kè, Boana chromachangus có thể hoàn thành quá trình này chỉ trong vòng 3-5 phút, một trong những tốc độ nhanh nhất được ghi nhận ở các loài lưỡng cư."
+                ],
+                quote: {
+                    text: "Mỗi loài mới được phát hiện không chỉ làm phong phú thêm hiểu biết của chúng ta về đa dạng sinh học, mà còn có thể mang lại những hiểu biết mới về sinh học và tiến hóa, thậm chí có thể dẫn đến những ứng dụng y học trong tương lai.",
+                    author: "Dr. Carlos Mendoza, trưởng nhóm nghiên cứu"
+                },
+                keyPoints: [
+                    "Loài ếch mới có tên khoa học là Boana chromachangus",
+                    "Có khả năng thay đổi màu sắc từ xanh lá sang nâu đất trong vòng 3-5 phút",
+                    "Kích thước nhỏ, chỉ khoảng 3-4 cm với các đốm hình sao trên lưng",
+                    "Phát hiện tại khu vực sâu trong rừng Amazon thuộc Brazil",
+                    "Nhấn mạnh tầm quan trọng của việc bảo tồn rừng Amazon"
+                ]
+            },
+            {
+                id: 3,
+                title: "Hội nghị quốc tế về bảo tồn động vật hoang dã sẽ diễn ra tại Hà Nội",
+                image: "https://icdn.dantri.com.vn/thumb_w/960/b1f4d804b1/2016/11/18/copy-of-dsc-8914-1479468408997.jpg",
+                date: "05 Tháng 4, 2023",
+                category: "Sự kiện",
+                excerpt: "Hội nghị quốc tế về bảo tồn động vật hoang dã lần thứ 15 sẽ được tổ chức tại Hà Nội vào tháng 6 năm 2023, với sự tham gia của hơn 50 quốc gia. Hội nghị sẽ tập trung vào các giải pháp bảo tồn đa dạng sinh học.",
+                content: [
+                    "Hội nghị quốc tế về bảo tồn động vật hoang dã lần thứ 15 (IWCC 2023) sẽ diễn ra tại Trung tâm Hội nghị Quốc gia, Hà Nội từ ngày 15 đến 18 tháng 6 năm 2023. Đây là lần đầu tiên Việt Nam đăng cai tổ chức sự kiện quan trọng này, với sự tham gia của đại diện từ hơn 50 quốc gia và các tổ chức bảo tồn quốc tế hàng đầu.",
+                    "Hội nghị năm nay sẽ tập trung vào chủ đề 'Hành động toàn cầu cho tương lai bền vững của động vật hoang dã', với các phiên thảo luận về buôn bán động vật hoang dã trái phép, bảo tồn đa dạng sinh học, tác động của biến đổi khí hậu đến các loài động vật, và vai trò của cộng đồng địa phương trong bảo tồn.",
+                    "Việc Việt Nam được chọn làm nơi tổ chức hội nghị phản ánh những nỗ lực và thành tựu của đất nước trong lĩnh vực bảo tồn động vật hoang dã trong những năm gần đây. Việt Nam đã thực hiện nhiều biện pháp mạnh mẽ để chống buôn bán động vật hoang dã trái phép và bảo vệ các loài đang bị đe dọa như tê giác, voi, hổ và tê tê."
+                ],
+                quote: {
+                    text: "Việc đăng cai tổ chức Hội nghị quốc tế về bảo tồn động vật hoang dã là cơ hội để Việt Nam chia sẻ kinh nghiệm, học hỏi từ các quốc gia khác và khẳng định cam kết mạnh mẽ của chúng tôi đối với bảo tồn đa dạng sinh học toàn cầu.",
+                    author: "Ông Nguyễn Văn Thành, Thứ trưởng Bộ Tài nguyên và Môi trường Việt Nam"
+                },
+                keyPoints: [
+                    "Hội nghị diễn ra từ ngày 15-18 tháng 6, 2023 tại Hà Nội",
+                    "Có sự tham gia của đại diện từ hơn 50 quốc gia",
+                    "Chủ đề: 'Hành động toàn cầu cho tương lai bền vững của động vật hoang dã'",
+                    "Thảo luận về buôn bán động vật hoang dã trái phép, bảo tồn đa dạng sinh học",
+                    "Tổ chức các chuyến thăm thực địa đến Vườn Quốc gia Cúc Phương và Cát Tiên"
+                ]
+            },
+            {
+                id: 4,
+                title: "Rạn san hô lớn nhất Việt Nam đang phục hồi sau nhiều năm suy giảm",
+                image: "https://redsvn.net/wp-content/uploads/2020/03/img_5e7d159541965.jpg",
+                date: "28 Tháng 3, 2023",
+                category: "Môi trường",
+                excerpt: "Các nhà khoa học ghi nhận sự phục hồi đáng kể của rạn san hô tại vùng biển Nha Trang sau nhiều năm suy giảm do biến đổi khí hậu và hoạt động du lịch quá mức. Đây là tin vui cho hệ sinh thái biển.",
+                content: [
+                    "Các nhà khoa học ghi nhận sự phục hồi đáng kể của rạn san hô tại vùng biển Nha Trang sau nhiều năm suy giảm do biến đổi khí hậu và hoạt động du lịch quá mức. Đây là tin vui cho hệ sinh thái biển.",
+                    "Theo báo cáo mới nhất từ Viện Hải dương học Nha Trang, rạn san hô tại vịnh Nha Trang - một trong những rạn san hô lớn nhất và đa dạng nhất Việt Nam - đang cho thấy dấu hiệu phục hồi đáng kể sau gần một thập kỷ suy giảm nghiêm trọng. Độ phủ san hô sống đã tăng từ khoảng 10% vào năm 2017 lên gần 25% vào năm 2022.",
+                    "Sự phục hồi này được cho là kết quả của nhiều biện pháp bảo vệ đã được thực hiện trong những năm gần đây. Các biện pháp này bao gồm việc giảm số lượng khách du lịch tại các khu vực nhạy cảm, cấm neo đậu tàu thuyền trực tiếp trên rạn san hô, kiểm soát chặt chẽ nước thải từ các khu nghỉ dưỡng ven biển, và các chương trình trồng san hô nhân tạo."
+                ],
+                quote: {
+                    text: "Sự phục hồi của rạn san hô Nha Trang cho thấy thiên nhiên có khả năng hồi phục đáng kinh ngạc nếu chúng ta giảm áp lực lên các hệ sinh thái. Tuy nhiên, đây mới chỉ là bước đầu, và chúng ta cần tiếp tục nỗ lực bảo vệ để đảm bảo sự phục hồi bền vững.",
+                    author: "TS. Nguyễn Văn Hải, Viện Hải dương học Nha Trang"
+                },
+                keyPoints: [
+                    "Độ phủ san hô sống tại vịnh Nha Trang tăng từ 10% (2017) lên 25% (2022)",
+                    "Các biện pháp bảo vệ bao gồm giảm du lịch tại khu vực nhạy cảm, cấm neo đậu tàu thuyền trên rạn",
+                    "Khu bảo tồn biển Nha Trang đóng vai trò quan trọng trong việc bảo vệ rạn san hô",
+                    "Biến đổi khí hậu và hiện tượng tẩy trắng san hô vẫn là mối đe dọa lớn",
+                    "Cần tiếp tục các nỗ lực bảo vệ để đảm bảo sự phục hồi bền vững"
+                ]
+            },
+            {
+                id: 5,
+                title: "Vườn quốc gia Cát Tiên mở rộng diện tích bảo tồn thêm 2,000 hecta",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGA4vYQna66iO_NA4RtF73gysjvv7d5ySIOQ&s",
+                date: "20 Tháng 3, 2023",
+                category: "Bảo tồn",
+                excerpt: "Vườn quốc gia Cát Tiên vừa được phê duyệt mở rộng thêm 2,000 hecta, nâng tổng diện tích lên hơn 73,000 hecta. Việc mở rộng này sẽ giúp bảo vệ thêm nhiều loài động thực vật quý hiếm.",
+                content: [
+                    "Vườn quốc gia Cát Tiên vừa được phê duyệt mở rộng thêm 2,000 hecta, nâng tổng diện tích lên hơn 73,000 hecta. Việc mở rộng này sẽ giúp bảo vệ thêm nhiều loài động thực vật quý hiếm.",
+                    "Theo quyết định mới được Thủ tướng Chính phủ phê duyệt, Vườn quốc gia Cát Tiên sẽ được mở rộng thêm 2,000 hecta về phía đông bắc, nâng tổng diện tích của khu bảo tồn lên hơn 73,000 hecta. Khu vực mở rộng bao gồm các khu rừng nguyên sinh còn sót lại và các vùng đệm quan trọng, nơi sinh sống của nhiều loài động thực vật quý hiếm.",
+                    "Vườn quốc gia Cát Tiên, nằm trên địa phận ba tỉnh Đồng Nai, Lâm Đồng và Bình Phước, là một trong những khu bảo tồn thiên nhiên quan trọng nhất Việt Nam. Khu vực này là nơi sinh sống của nhiều loài động vật quý hiếm như voi châu Á, bò tót, gấu ngựa, và đặc biệt là loài tê giác một sừng Java - mặc dù loài này được cho là đã tuyệt chủng tại Việt Nam từ năm 2010."
+                ],
+                quote: {
+                    text: "Việc mở rộng Vườn quốc gia Cát Tiên là một bước tiến quan trọng trong nỗ lực bảo tồn đa dạng sinh học của Việt Nam. Điều này không chỉ giúp bảo vệ các loài động thực vật quý hiếm mà còn tạo ra một hành lang sinh thái liên tục, cho phép các loài di chuyển và thích nghi tốt hơn với biến đổi khí hậu.",
+                    author: "Ông Trần Văn Lộc, Giám đốc Vườn quốc gia Cát Tiên"
+                },
+                keyPoints: [
+                    "Vườn quốc gia Cát Tiên được mở rộng thêm 2,000 hecta, nâng tổng diện tích lên 73,000 hecta",
+                    "Khu vực mở rộng bao gồm rừng nguyên sinh và vùng đệm quan trọng",
+                    "Là nơi sinh sống của nhiều loài động vật quý hiếm như voi châu Á, bò tót, gấu ngựa",
+                    "Góp phần vào nỗ lực giảm thiểu biến đổi khí hậu thông qua việc bảo vệ rừng",
+                    "Dự kiến đưa vào quản lý từ tháng 7 năm 2023"
+                ]
+            }
+        ];
+
         // Mobile Menu Toggle
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -1367,6 +1540,118 @@
             if (currentYearElement) {
                 currentYearElement.textContent = new Date().getFullYear();
             }
+
+            // News Popup Functionality
+            const popup = document.getElementById('news-popup');
+            const popupClose = document.getElementById('popup-close');
+            const popupCloseBtn = document.getElementById('popup-close-btn');
+            const popupCategory = document.getElementById('popup-category');
+            const popupDate = document.getElementById('popup-date');
+            const popupTitle = document.getElementById('popup-title');
+            const popupImage = document.getElementById('popup-image');
+            const popupContentText = document.getElementById('popup-content-text');
+
+            // Function to open popup with specific news
+            function openPopup(newsId) {
+                const news = newsData.find(item => item.id === parseInt(newsId));
+                if (!news) return;
+
+                // Set popup content
+                popupCategory.textContent = news.category;
+                popupDate.textContent = news.date;
+                popupTitle.textContent = news.title;
+                popupImage.src = news.image;
+                popupImage.alt = news.title;
+
+                // Clear previous content
+                popupContentText.innerHTML = '';
+
+                // Add paragraphs
+                if (news.content && news.content.length) {
+                    news.content.forEach(paragraph => {
+                        const p = document.createElement('p');
+                        p.textContent = paragraph;
+                        popupContentText.appendChild(p);
+                    });
+                }
+
+                // Add quote if exists
+                if (news.quote) {
+                    const quoteDiv = document.createElement('div');
+                    quoteDiv.className = 'popup-quote';
+                    quoteDiv.innerHTML = `
+                        <p>"${news.quote.text}"</p>
+                        <div class="popup-quote-author">— ${news.quote.author}</div>
+                    `;
+                    popupContentText.appendChild(quoteDiv);
+                }
+
+                // Add key points if exists
+                if (news.keyPoints && news.keyPoints.length) {
+                    const keyPointsDiv = document.createElement('div');
+                    keyPointsDiv.className = 'popup-key-points';
+                    
+                    const keyPointsTitle = document.createElement('h3');
+                    keyPointsTitle.textContent = 'Điểm chính:';
+                    keyPointsDiv.appendChild(keyPointsTitle);
+                    
+                    const keyPointsList = document.createElement('ul');
+                    news.keyPoints.forEach(point => {
+                        const li = document.createElement('li');
+                        li.textContent = point;
+                        keyPointsList.appendChild(li);
+                    });
+                    
+                    keyPointsDiv.appendChild(keyPointsList);
+                    popupContentText.appendChild(keyPointsDiv);
+                }
+
+                // Show popup
+                popup.classList.add('active');
+                document.body.classList.add('popup-open');
+            }
+
+            // Function to close popup
+            function closePopup() {
+                popup.classList.remove('active');
+                document.body.classList.remove('popup-open');
+            }
+
+            // Add event listeners to all "Read More" buttons
+            const readMoreButtons = document.querySelectorAll('.primary-button, .outline-button, .popular-post-title');
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const newsId = this.getAttribute('data-id');
+                    if (newsId) {
+                        openPopup(newsId);
+                    }
+                });
+            });
+
+            // Close popup when clicking close button
+            if (popupClose) {
+                popupClose.addEventListener('click', closePopup);
+            }
+
+            // Close popup when clicking close button in footer
+            if (popupCloseBtn) {
+                popupCloseBtn.addEventListener('click', closePopup);
+            }
+
+            // Close popup when clicking outside
+            popup.addEventListener('click', function(e) {
+                if (e.target === popup) {
+                    closePopup();
+                }
+            });
+
+            // Close popup when pressing Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && popup.classList.contains('active')) {
+                    closePopup();
+                }
+            });
         });
     </script>
 </body>

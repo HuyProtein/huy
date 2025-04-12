@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 3,
             name: "Đại bàng đầu trắng",
             scientificName: "Haliaeetus leucocephalus",
-            image: "images/eagle.jpg",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLudQVJtEtkJ7Ok34DNFg4r4y7itRkUTV1Ow&s",
             description: "Đại bàng đầu trắng là biểu tượng quốc gia của Hoa Kỳ. Loài chim săn mồi này có đầu và đuôi màu trắng đặc trưng, sống gần các vùng nước và chủ yếu ăn cá.",
             status: "Ít lo ngại",
             habitat: "Vùng ven biển, hồ và sông",
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 4,
             name: "Cá heo mũi chai",
             scientificName: "Tursiops truncatus",
-            image: "images/dolphin.jpg",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd11ubToyq1NJ-q7WgnDKj8facVZaJ8sY_5A&s",
             description: "Cá heo mũi chai là một trong những loài cá heo thông minh nhất, nổi tiếng với khả năng học hỏi, giao tiếp phức tạp và tính cách thân thiện. Chúng sống theo đàn và có thể được tìm thấy ở hầu hết các đại dương trên thế giới.",
             status: "Ít lo ngại",
             habitat: "Đại dương, vùng biển ven bờ",
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 6,
             name: "Gấu trúc lớn",
             scientificName: "Ailuropoda melanoleuca",
-            image: "images/panda.jpg",
+            image: "https://static.tuoitre.vn/tto/i/s626/2015/01/17/CsCS3SeX.jpeg",
             description: "Gấu trúc lớn là biểu tượng toàn cầu của công tác bảo tồn động vật hoang dã. Loài này chủ yếu ăn tre và sống ở các khu rừng núi cao tại Trung Quốc.",
             status: "Sắp nguy cấp",
             habitat: "Rừng tre vùng núi cao",
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 7,
             name: "Rắn hổ mang chúa",
             scientificName: "Ophiophagus hannah",
-            image: "images/king-cobra.jpg",
+            image: "https://images.kienthuc.net.vn/zoomh/800/Uploaded/quocquan/2025_01_25/vi-sao-ran-ho-mang-chua-la-chua-cua-cac-loai-ran-Hinh-8.jpg",
             description: "Rắn hổ mang chúa là loài rắn độc dài nhất thế giới, có thể dài tới 5.5 mét. Chúng sống chủ yếu ở các khu rừng nhiệt đới Đông Nam Á và Ấn Độ.",
             status: "Sắp nguy cấp",
             habitat: "Rừng nhiệt đới",
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 8,
             name: "Ếch xanh mắt đỏ",
             scientificName: "Agalychnis callidryas",
-            image: "images/red-eyed-tree-frog.jpg",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSsV3AuZw1SLv9rX-ghzZkPGDqQaH7OZGPSA&s",
             description: "Ếch xanh mắt đỏ là loài ếch nhỏ sống trên cây, nổi tiếng với đôi mắt đỏ rực và thân màu xanh lá cây tươi sáng. Chúng sống trong các khu rừng mưa nhiệt đới ở Trung Mỹ.",
             status: "Ít lo ngại",
             habitat: "Rừng mưa nhiệt đới",
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 9,
             name: "Cá mập trắng lớn",
             scientificName: "Carcharodon carcharias",
-            image: "images/great-white-shark.jpg",
+            image: "https://icdn.dantri.com.vn/thumb_w/960/2019/04/05/ca-map-trang-lon-duoi-theo-hai-cau-qua-rung-tao-bedocx-1554419107769.jpeg",
             description: "Cá mập trắng lớn là một trong những loài cá mập lớn nhất và nổi tiếng nhất. Chúng là loài săn mồi đỉnh cao trong hệ sinh thái biển và có thể được tìm thấy ở hầu hết các đại dương trên thế giới.",
             status: "Sắp nguy cấp",
             habitat: "Đại dương",
@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 </div>
                 <div class="animal-footer">
-                    <a href="animal-detail.html?id=${animal.id}" class="button primary-button">Tìm hiểu thêm</a>
+                    <a>Tìm hiểu thêm</a>
                 </div>
             `;
 
