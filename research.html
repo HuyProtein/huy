@@ -7,6 +7,411 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <style>
+        .habitat-hero {
+    background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+    color: white;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.habitat-hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.habitat-hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: 0.2s;
+}
+        /* Research Page Specific Styles */
+.research-header {
+    background-color: #f1f8e9;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.research-header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.page-description {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--gray-color);
+}
+
+/* Research Intro Section */
+.research-intro-section {
+    padding: 60px 0;
+}
+
+.research-intro {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+@media (min-width: 768px) {
+    .research-intro {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+}
+
+.research-intro-content h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.research-intro-content p {
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.research-intro-image {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+.research-intro-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Research Papers Section */
+.research-papers-section {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.research-papers {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+    .research-papers {
+        grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+    }
+}
+
+.research-paper {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease;
+}
+
+.research-paper:hover {
+    transform: translateY(-5px);
+}
+
+.paper-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: var(--gray-color);
+    font-size: 0.9rem;
+}
+
+.paper-category {
+    background-color: #f1f8e9;
+    color: var(--primary-color);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.paper-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.paper-authors {
+    font-style: italic;
+    color: var(--gray-color);
+    margin-bottom: 15px;
+}
+
+.paper-abstract {
+    color: var(--gray-color);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.paper-links {
+    display: flex;
+    gap: 15px;
+}
+
+.paper-link {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #f1f8e9;
+    color: var(--primary-color);
+    border-radius: 5px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.paper-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Current Projects Section */
+.current-projects-section {
+    padding: 60px 0;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+@media (min-width: 768px) {
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+    }
+}
+
+.project-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+@media (min-width: 768px) {
+    .project-card {
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+.project-image {
+    height: 250px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.project-content {
+    padding: 25px;
+}
+
+.project-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.project-content p {
+    color: var(--gray-color);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    color: var(--gray-color);
+    font-size: 0.9rem;
+}
+
+/* Citizen Science Section */
+.citizen-science-section {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+.citizen-science-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+@media (min-width: 768px) {
+    .citizen-science-content {
+        grid-template-columns: 3fr 2fr;
+        align-items: center;
+    }
+}
+
+.citizen-science-text h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.citizen-science-text p {
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.citizen-science-text h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--dark-color);
+}
+
+.participation-list {
+    margin-bottom: 30px;
+    padding-left: 20px;
+}
+
+.participation-list li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.participation-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+
+.citizen-science-image {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+.citizen-science-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Research Resources Section */
+.research-resources-section {
+    padding: 60px 0;
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+@media (min-width: 576px) {
+    .resources-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .resources-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.resource-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+}
+
+.resource-icon {
+    width: 64px;
+    height: 64px;
+    background-color: #f1f8e9;
+    color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.resource-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.resource-card p {
+    color: var(--gray-color);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.resource-link {
+    display: inline-block;
+    color: var(--primary-color);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.resource-link:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+    </style>
     <header class="main-header">
         <div class="container">
             <div class="logo">
@@ -16,7 +421,7 @@
             <nav class="main-nav">
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">Trang chủ</a></li>
-                    <li><a href="animals.html" class="nav-link active">Các loài động vật</a></li>
+                    <li><a href="animals.html" class="nav-link">Các loài động vật</a></li>
                     <li><a href="habitats.html" class="nav-link">Môi trường sống</a></li>
                     <li><a href="conservation.html" class="nav-link">Bảo tồn</a></li>
                     <li><a href="explore.html" class="nav-link">Góc khám phá</a></li>
@@ -47,15 +452,19 @@
     </header>
 
     <main>
-        <div class="page-header research-header">
-            <div class="container">
-                <h1>Nghiên cứu khoa học</h1>
-                <p class="page-description">
-                    Khám phá các nghiên cứu khoa học về động vật hoang dã và bảo tồn thiên nhiên
-                </p>
-            </div>
+        <!-- Hero Section -->
+<section class="hero" style="background-image: url('https://img.thuthuatphanmem.vn/uploads/2018/10/09/nhung-hinh-anh-thien-nhien-dep-nhat_041756306.jpg'); background-size: cover; background-position: center;">
+    <div class="container">
+        <div class="hero-content">
+            <h1 style="color: white;">Nghiên cứu khoa học</h1>
+            <p style="color: white;">
+                Khám phá các nghiên cứu khoa học về động vật hoang dã và bảo tồn thiên nhiên
+            </p>
         </div>
-
+    </div>
+</section>
+       
+      
         <section class="research-intro-section">
             <div class="container">
                 <div class="research-intro">
@@ -69,7 +478,7 @@
                         </p>
                     </div>
                     <div class="research-intro-image">
-                        <img src="/placeholder.svg?height=400&width=600" alt="Nghiên cứu về động vật hoang dã" loading="lazy">
+                        <img src="https://resource.kinhtedothi.vn/2023/09/28/bac-si-thu-y-trinh-thi-thu-hang-kiem-tra-suc-khoe-ca-the-rua-dau-to-tai-trung-tam-anh-anh-ngoc.jpg" alt="Nghiên cứu về động vật hoang dã" >
                     </div>
                 </div>
             </div>
@@ -90,10 +499,7 @@
                         <p class="paper-abstract">
                             Nghiên cứu này đánh giá tác động của biến đổi khí hậu đối với phân bố và số lượng của các loài động vật có vú ở khu vực Đông Nam Á, với trọng tâm là các loài đang bị đe dọa. Kết quả cho thấy nhiều loài có thể mất đến 30% môi trường sống phù hợp vào năm 2050 nếu không có các biện pháp bảo tồn hiệu quả.
                         </p>
-                        <div class="paper-links">
-                            <a href="#" class="paper-link">Đọc tóm tắt</a>
-                            <a href="#" class="paper-link">Tải xuống PDF</a>
-                        </div>
+                        
                     </div>
                     
                     <div class="research-paper">
@@ -106,10 +512,7 @@
                         <p class="paper-abstract">
                             Nghiên cứu này khám phá mối quan hệ giữa đa dạng thực vật và đa dạng côn trùng trong các khu rừng nhiệt đới ở Việt Nam. Kết quả cho thấy có mối tương quan mạnh mẽ giữa đa dạng thực vật và đa dạng côn trùng, nhấn mạnh tầm quan trọng của việc bảo tồn các khu rừng nguyên sinh.
                         </p>
-                        <div class="paper-links">
-                            <a href="#" class="paper-link">Đọc tóm tắt</a>
-                            <a href="#" class="paper-link">Tải xuống PDF</a>
-                        </div>
+                       
                     </div>
                     
                     <div class="research-paper">
@@ -122,16 +525,11 @@
                         <p class="paper-abstract">
                             Nghiên cứu này so sánh hành vi xã hội của voi châu Á trong môi trường tự nhiên và bán tự nhiên. Kết quả cho thấy có sự khác biệt đáng kể trong cấu trúc xã hội và hành vi giao tiếp giữa các quần thể voi trong các môi trường khác nhau, cung cấp thông tin quan trọng cho các nỗ lực bảo tồn.
                         </p>
-                        <div class="paper-links">
-                            <a href="#" class="paper-link">Đọc tóm tắt</a>
-                            <a href="#" class="paper-link">Tải xuống PDF</a>
-                        </div>
+                       
                     </div>
                 </div>
                 
-                <div class="text-center">
-                    <a href="#" class="button primary-button">Xem thêm bài báo</a>
-                </div>
+                
             </div>
         </section>
 
@@ -142,7 +540,7 @@
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="/placeholder.svg?height=250&width=400" alt="Dự án theo dõi hổ Đông Dương" loading="lazy">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbpIex9amOP9jqPzCqX9fkdZmmScR8mbJ2tw&s" alt="Dự án theo dõi hổ Đông Dương" loading="lazy">
                         </div>
                         <div class="project-content">
                             <h3>Dự án theo dõi hổ Đông Dương</h3>
@@ -153,13 +551,13 @@
                                 <span class="project-duration">2021 - 2025</span>
                                 <span class="project-location">Việt Nam, Lào, Campuchia</span>
                             </div>
-                            <a href="#" class="button secondary-button">Tìm hiểu thêm</a>
+                            <a href="news.html" class="button secondary-button">Tìm hiểu thêm</a>
                         </div>
                     </div>
                     
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="/placeholder.svg?height=250&width=400" alt="Nghiên cứu đa dạng sinh học biển Việt Nam" loading="lazy">
+                            <img src="https://media.baobinhphuoc.com.vn/upload/news/11_2020/500a_09195502112020.jpg" alt="Nghiên cứu đa dạng sinh học biển Việt Nam" loading="lazy">
                         </div>
                         <div class="project-content">
                             <h3>Nghiên cứu đa dạng sinh học biển Việt Nam</h3>
@@ -170,13 +568,13 @@
                                 <span class="project-duration">2022 - 2026</span>
                                 <span class="project-location">Vùng biển Việt Nam</span>
                             </div>
-                            <a href="#" class="button secondary-button">Tìm hiểu thêm</a>
+                            <a href="news.html" class="button secondary-button">Tìm hiểu thêm</a>
                         </div>
                     </div>
                     
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="/placeholder.svg?height=250&width=400" alt="Khảo sát đa dạng chim ở Tây Nguyên" loading="lazy">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZyF3bLpK_pc92w4MF0KCT82Q-0L8c0g8I5Q&s" alt="Khảo sát đa dạng chim ở Tây Nguyên" loading="lazy">
                         </div>
                         <div class="project-content">
                             <h3>Khảo sát đa dạng chim ở Tây Nguyên</h3>
@@ -217,10 +615,10 @@
                                 <strong>Khảo sát động vật hoang dã:</strong> Tham gia các cuộc khảo sát động vật hoang dã được tổ chức bởi các tổ chức bảo tồn.
                             </li>
                         </ul>
-                        <a href="#" class="button primary-button">Tìm dự án để tham gia</a>
+                        <a href="volunteer.html" class="button primary-button">Tìm dự án để tham gia</a>
                     </div>
                     <div class="citizen-science-image">
-                        <img src="/placeholder.svg?height=400&width=600" alt="Khoa học công dân" loading="lazy">
+                        <img src="https://nhuavasuckhoe.s3.ap-southeast-1.amazonaws.com/%E1%BA%A2nh%20b%C3%A0i%20vi%E1%BA%BFt/1648173150623d205e265148.76129997.jpg" alt="Khoa học công dân" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -242,7 +640,7 @@
                         <p>
                             Truy cập cơ sở dữ liệu các bài báo khoa học, báo cáo và dữ liệu về động vật hoang dã và bảo tồn.
                         </p>
-                        <a href="#" class="resource-link">Truy cập cơ sở dữ liệu</a>
+                        
                     </div>
                     
                     <div class="resource-card">
@@ -257,7 +655,7 @@
                         <p>
                             Tài liệu hướng dẫn về các phương pháp nghiên cứu động vật hoang dã, từ theo dõi GPS đến phân tích DNA.
                         </p>
-                        <a href="#" class="resource-link">Xem hướng dẫn</a>
+                       
                     </div>
                     
                     <div class="resource-card">
@@ -273,7 +671,7 @@
                         <p>
                             Kết nối với các nhà nghiên cứu và tổ chức đang làm việc trong lĩnh vực bảo tồn động vật hoang dã.
                         </p>
-                        <a href="#" class="resource-link">Tham gia mạng lưới</a>
+                       
                     </div>
                     
                     <div class="resource-card">
@@ -288,7 +686,7 @@
                         <p>
                             Thông tin về các nguyên tắc đạo đức trong nghiên cứu động vật hoang dã và làm việc với cộng đồng địa phương.
                         </p>
-                        <a href="#" class="resource-link">Đọc hướng dẫn</a>
+                       
                     </div>
                 </div>
             </div>
@@ -399,6 +797,7 @@
     </div>
 
     <script src="main.js"></script>
+    <script src="vv.js"></script>
 </body>
 </html>
 
