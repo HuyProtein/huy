@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 9,
             name: "Cá mập trắng lớn",
             scientificName: "Carcharodon carcharias",
-            image: "https://vb.1cdn.vn/2023/08/25/ca-map-trang-lon-nhat-the-gioi.jpg",
+            image: "camap.png",
             description: "Cá mập trắng lớn là một trong những loài cá mập lớn nhất và nổi tiếng nhất. Chúng là loài săn mồi đỉnh cao trong hệ sinh thái biển và có thể được tìm thấy ở hầu hết các đại dương trên thế giới.",
             status: "Sắp nguy cấp",
             habitat: "Đại dương",
