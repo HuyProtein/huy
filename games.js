@@ -4,7 +4,7 @@ const gamesData = [
         id: 1,
         title: "Câu đố động vật",
         description: "Kiểm tra kiến thức của bạn về động vật hoang dã với bộ câu đố thú vị này.",
-        image: "/placeholder.svg?height=200&width=350&text=Quiz",
+        image: "https://images.twinkl.co.uk/tw1n/image/private/t_630_eco/image_repo/01/9b/vt-s-1725119310-the-tro-choi-do-vui-to-la-ai-dong-vat_ver_1.jpg",
         category: "quiz",
         difficulty: "Dễ",
         ageRange: "8+",
@@ -15,7 +15,7 @@ const gamesData = [
         id: 2,
         title: "Ghép hình động vật",
         description: "Ghép các mảnh hình để hoàn thành bức tranh về các loài động vật hoang dã.",
-        image: "/placeholder.svg?height=200&width=350&text=Puzzle",
+        image: "https://product.hstatic.net/200000042672/product/64392_-_ghep_hinh_10_con_vat_3b53bb91892d45038917ae57cfce9445.jpg",
         category: "puzzle",
         difficulty: "Trung bình",
         ageRange: "6+",
@@ -26,7 +26,7 @@ const gamesData = [
         id: 3,
         title: "Trò chơi ghi nhớ",
         description: "Tìm các cặp thẻ giống nhau để khám phá các loài động vật hoang dã.",
-        image: "/placeholder.svg?height=200&width=350&text=Memory",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHK9C-fHD_ZfqhN_4yWd32wJTs0zMN-pQ1Wg&s",
         category: "memory",
         difficulty: "Dễ",
         ageRange: "5+",
@@ -37,7 +37,7 @@ const gamesData = [
         id: 4,
         title: "Tô màu động vật",
         description: "Tô màu các loài động vật hoang dã và học hỏi về chúng.",
-        image: "/placeholder.svg?height=200&width=350&text=Coloring",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReVOmnt4ldWeG72JvzTciLS0AKZVa5peRDcg&s",
         category: "coloring",
         difficulty: "Dễ",
         ageRange: "4+",
@@ -48,7 +48,7 @@ const gamesData = [
         id: 5,
         title: "Tìm từ động vật",
         description: "Tìm các từ liên quan đến động vật hoang dã trong bảng chữ cái.",
-        image: "/placeholder.svg?height=200&width=350&text=Word+Search",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRamhlniEm6ClCykWlxkJOe4kea_5VV7hUm6A&s",
         category: "word",
         difficulty: "Trung bình",
         ageRange: "8+",
@@ -59,7 +59,7 @@ const gamesData = [
         id: 6,
         title: "Câu đố về môi trường sống",
         description: "Kiểm tra kiến thức của bạn về môi trường sống của các loài động vật.",
-        image: "/placeholder.svg?height=200&width=350&text=Habitat+Quiz",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRje0Ni6AlkGm15npTyHTiCnlzajVUoGbKFA&s",
         category: "quiz",
         difficulty: "Khó",
         ageRange: "10+",
@@ -70,7 +70,7 @@ const gamesData = [
         id: 7,
         title: "Ghép hình môi trường sống",
         description: "Ghép các mảnh hình để hoàn thành bức tranh về các môi trường sống tự nhiên.",
-        image: "/placeholder.svg?height=200&width=350&text=Habitat+Puzzle",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9O-7Jze1ljeQ7sXzWGcdtdAYCTfXBjUdZ0A&s",
         category: "puzzle",
         difficulty: "Trung bình",
         ageRange: "7+",
@@ -81,7 +81,7 @@ const gamesData = [
         id: 8,
         title: "Trò chơi ghi nhớ động vật biển",
         description: "Tìm các cặp thẻ giống nhau để khám phá các loài động vật biển.",
-        image: "/placeholder.svg?height=200&width=350&text=Ocean+Memory",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8BNY_OSqYAnwbmq7FKAxlkbjcM7UDXZQ_Qg&s",
         category: "memory",
         difficulty: "Dễ",
         ageRange: "5+",
@@ -92,7 +92,7 @@ const gamesData = [
         id: 9,
         title: "Tô màu động vật rừng",
         description: "Tô màu các loài động vật sống trong rừng và học hỏi về chúng.",
-        image: "/placeholder.svg?height=200&width=350&text=Forest+Coloring",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdyM2WHhYALIkquF7snsUYN_ppts1QFjeP-g&s",
         category: "coloring",
         difficulty: "Dễ",
         ageRange: "4+",
@@ -167,29 +167,29 @@ const quizData = [
 
 // Dữ liệu trò chơi ghi nhớ
 const memoryGameData = [
-    { id: 1, name: "Hổ", image: "/placeholder.svg?height=150&width=150&text=Tiger" },
-    { id: 2, name: "Sư tử", image: "/placeholder.svg?height=150&width=150&text=Lion" },
-    { id: 3, name: "Voi", image: "/placeholder.svg?height=150&width=150&text=Elephant" },
-    { id: 4, name: "Hươu cao cổ", image: "/placeholder.svg?height=150&width=150&text=Giraffe" },
-    { id: 5, name: "Tê giác", image: "/placeholder.svg?height=150&width=150&text=Rhino" },
-    { id: 6, name: "Ngựa vằn", image: "/placeholder.svg?height=150&width=150&text=Zebra" },
-    { id: 7, name: "Khỉ đột", image: "/placeholder.svg?height=150&width=150&text=Gorilla" },
-    { id: 8, name: "Gấu trúc", image: "/placeholder.svg?height=150&width=150&text=Panda" }
+    { id: 1, name: "Hổ", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBBX6svNNd54XaEXPJz74sZmiprHQKp96n5A&s" },
+    { id: 2, name: "Sư tử", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJOk0K6HcyKj1Y5wKZZLnb38EaLvVMRTUeXA&s" },
+    { id: 3, name: "Voi", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9sY3ifChVXHAP0munbbPrRDSA_a8_sY0Jsg&s" },
+    { id: 4, name: "Hươu cao cổ", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO9mOL2SNXqDwqEI6XsLUd9VG_Ibqa-L_Lbg&s" },
+    { id: 5, name: "Tê giác", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeWORnEitXOI7HJlyXoDrNZMZhqcsrTb60pQ&s" },
+    { id: 6, name: "Ngựa vằn", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJAFJ2cCC3gFAubQ8mFa77Oj8KFexvUJkM0A&s" },
+    { id: 7, name: "Khỉ đột", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi16dQjkAKd4lt_kbeUjMa0LZuLVcUNkIGlg&s" },
+    { id: 8, name: "Gấu trúc", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_2D5Q3F9UEDgYuyf311c7eiitkrNUgaYbZg&s" }
 ];
 
 // Dữ liệu trò chơi ghép hình
 const puzzleGameData = {
-    image: "/placeholder.svg?height=300&width=300&text=Wildlife",
+    image: "image.png",
     pieces: [
-        "/placeholder.svg?height=100&width=100&text=Piece1",
-        "/placeholder.svg?height=100&width=100&text=Piece2",
-        "/placeholder.svg?height=100&width=100&text=Piece3",
-        "/placeholder.svg?height=100&width=100&text=Piece4",
-        "/placeholder.svg?height=100&width=100&text=Piece5",
-        "/placeholder.svg?height=100&width=100&text=Piece6",
-        "/placeholder.svg?height=100&width=100&text=Piece7",
-        "/placeholder.svg?height=100&width=100&text=Piece8",
-        "/placeholder.svg?height=100&width=100&text=Piece9"
+        "1.png",
+        "2.png",
+        "3.png",
+        "4.png",
+        "5.png",
+        "6.png",
+        "7.png",
+        "8.png",
+        "9.png"
     ]
 };
 
